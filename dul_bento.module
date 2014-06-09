@@ -1,0 +1,22 @@
+<?php
+
+// UNCOMMENT HOOKS AS NEEDED
+//
+//function dul_bento_menu() {
+//	return array();
+//}
+
+/**
+ * Implements hook_theme()
+ */
+//function dul_bento_theme() {
+//	return array();	// return array of theme 'hooks'
+//}
+
+/**
+ * Implements page callback for overall search results
+ */
+//function dul_bento_search_results() {
+//	return 'Coming Soon';	// TODO replace with Render Array (preferred) or HTML markup
+//}
+

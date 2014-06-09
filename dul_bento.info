@@ -1,0 +1,6 @@
+name = Duke Libraries Bento Box
+description = Bento Box search project for Duke University Libraries' website
+package = Duke Libraries UI
+core = 7.x
+version = 1.0-alpha
+
