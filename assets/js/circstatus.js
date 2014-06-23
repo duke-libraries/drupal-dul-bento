@@ -12,6 +12,12 @@
 	Drupal.behaviors.dul_bento = {
 		attach: function (context, settings) {
 			// process all rows returned from Endeca RSS (or XML) feed
+
+			// Local IDs, or Sys(tem) Numbers as known by ALEPH
+			// are represented by a "titlelocalid" attribute.
+			$( 'DIV[titlelocalid]' ).each(function(ndx, elem) {
+			
+			});
 		}
 	}
 })(jQuery);
