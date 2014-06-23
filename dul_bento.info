@@ -4,3 +4,6 @@ package = Duke Libraries UI
 core = 7.x
 version = 1.0-alpha
 
+; javascript files
+scripts[] = assets/js/circstatus.js
+
