@@ -43,3 +43,10 @@ border: 1px solid #fff;
 .gs-no-results-result {
 	display: block !important;
 }	
+
+
+/* More styles */
+
+.content-pad {
+	padding: 10px 15px 10px 15px;
+}

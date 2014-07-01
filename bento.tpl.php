@@ -36,25 +36,35 @@ else $contentType = NULL;
 	</div>
 
 
-	<div class="span-4">
-
+	<div class="grid-4 alpha">
+		
+		<div class="content-pad">
+		
 		<?php
 		
 		include("assets/includes/summon_articles.php"); 
 	
 		?>
+		
+		</div>
 	
 	</div>
 	
 	
-	<div class="span-4">
+	<div class="grid-4">
+	
+		<div class="content-pad">
 		
 		<?php include("assets/includes/endeca.php"); ?>
+		
+		</div>
 	
 	</div>
 	
 	
-	<div class="span-4">
+	<div class="grid-4 omega">
+	
+		<div class="content-pad">
 		
 		<?php include("assets/includes/libguides.php"); ?>
 		
@@ -65,5 +75,7 @@ else $contentType = NULL;
 		<br /><hr /><br />
 		
 		<?php include("assets/includes/google_cse.php"); ?>
+		
+		</div>
 	
 	</div>
