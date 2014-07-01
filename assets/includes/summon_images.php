@@ -41,8 +41,17 @@ if($queryTerms == "") {
 		// Loop through results array and add markup!
 
 		foreach($theData['documents'] as $document) {
+			
+			// truncate long titles
+			$theTitle = $document["Title"][0];
 	
-
+			if (strlen($theTitle) > 110) {
+				$theTitle = wordwrap($theTitle, 110);
+				$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
+				$theTitle = $theTitle . ' (&hellip;)';
+			}
+			
+			
 			//if(isset($document["thumbnail_s"][0])) {
 		
 				echo '<div class="document-frame">';
@@ -60,7 +69,7 @@ if($queryTerms == "") {
 					}
 				
 					echo '<div class="result-title">';
-						echo '<a href="' . $document["link"] . '">' . $document["Title"][0] . '</a>';
+						echo '<a href="' . $document["link"] . '">' . $theTitle . '</a>';
 					echo '</div>';
 			
 				echo '</div>';
