@@ -59,6 +59,8 @@ if($searchResults != "0" AND $theSearch != "") {
 		if (!empty ($author)) {
 			$theAuthor = (string) $author[0];
 			$theAuthor = rtrim(htmlentities($theAuthor, ENT_QUOTES, 'UTF-8'), '.');
+		} else {
+			$theAuthor = "NONE";
 		}
 		
 		if (!empty ($itemtype)) {
@@ -127,45 +129,49 @@ if($searchResults != "0" AND $theSearch != "") {
 				// AUTHORS
 				echo '<div class="authors">';
 				
-				if ($theAuthor != "") {
+				if ($theAuthor != "NONE") {
 					echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22">' . $theAuthor . '</a>';
-				}
 				
-				if (!empty ($otherAuthors)) {
+					if (!empty ($otherAuthors)) {
 				
-					if (isset($otherAuthors1)) {
+						if (isset($otherAuthors1)) {
 					
-						if (isset($theAuther)) {
+							if (isset($theAuther)) {
 						
-							echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
+								echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
 						
-						} else {
+							} else {
 						
-							echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
+								echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
+							}
+					
+						}	
+					
+						if (isset($otherAuthors2)) {
+							echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors2 . '%22">' . $otherAuthors2 . '</a>';
+						
 						}
 					
-					}	
+						if (isset($otherAuthors3)) {
+							echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors3 . '%22">' . $otherAuthors3 . '</a>';
+						
+						}
 					
-					if (isset($otherAuthors2)) {
-						echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors2 . '%22">' . $otherAuthors2 . '</a>';
+						if (isset($otherAuthors4)) {
+							echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors4 . '%22">' . $otherAuthors4 . '</a>';
+						
+						}
+					
+						if (isset($otherAuthors5)) {
+							echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors5 . '%22">' . $otherAuthors5 . '</a>';
+						
+						}
 						
 					}
-					
-					if (isset($otherAuthors3)) {
-						echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors3 . '%22">' . $otherAuthors3 . '</a>';
-						
-					}
-					
-					if (isset($otherAuthors4)) {
-						echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors4 . '%22">' . $otherAuthors4 . '</a>';
-						
-					}
-					
-					if (isset($otherAuthors5)) {
-						echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors5 . '%22">' . $otherAuthors5 . '</a>';
-						
-					}
+				
 				}
+				
+				
 					
 				echo '</div>';
 				
@@ -187,8 +193,6 @@ if($searchResults != "0" AND $theSearch != "") {
 					
 				echo '</div>';
 				
-				
-				//echo $theItemtype;
 				
 		
 			echo '</div>';
