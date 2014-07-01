@@ -67,6 +67,8 @@ if($searchResults != "0" AND $theSearch != "") {
 		
 		if (!empty ($OCLC)) {
 			$theOCLC = (string) $OCLC[0];
+		} else {
+			$theOCLC = "";
 		}
 		
 		if (!empty ($Published)) {

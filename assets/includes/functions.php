@@ -22,28 +22,36 @@ function hmacsha1($key,$data) {
 }
 
 function formatAuthor($document) {
+	
 	$authorList = "";
 	$i = 1;
-	$t = count($document["Author"]);
-
-	if(is_array($document["Author"])) {
+	$t = 1;
+	if (isset($document["Author"])) {
 		
-		foreach($document["Author"] as $author) {
+		$t = count($document["Author"]);
+		
+		if(is_array($document["Author"])) {
+		
+			foreach($document["Author"] as $author) {
 			
-			$authorList .= $author;
-			if(($t - 1) == $i) $authorList .= " and ";
-			elseif(($t - 1) > $i) $authorList .= "; ";
-			$i++;
+				$authorList .= $author;
+				if(($t - 1) == $i) $authorList .= " and ";
+				elseif(($t - 1) > $i) $authorList .= "; ";
+				$i++;
+			}
 		}
+	
+		elseif(isset($document[CorporateAuthor][0])) {
+			$authorList = $document[CorporateAuthor][0]; // for Government documents, etc.
+		}
+	
+		else $authorList = NULL;
+	
+		return $authorList;
+		
 	}
+
 	
-	elseif(isset($document[CorporateAuthor][0])) {
-		$authorList = $document[CorporateAuthor][0]; // for Government documents, etc.
-	}
-	
-	else $authorList = NULL;
-	
-	return $authorList;
 }
 
 function querySummonDUL($query, $results, $type1, $type2) {
@@ -110,10 +118,12 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	// Summon API authentication configuration
 	// ==============================================
 	
-
-	$accessId = "duke";
-	$secretKey = "3QgiL9OlZVbaknojLAaffNuB7k";
-	$clientKey = "PM6MT7VG3J"; 
+	
+	$accessId = variable_get('dul_bento.summon_accessId', '');
+	$secretKey = variable_get('dul_bento.summon_secretKey', '');
+	$clientKey = variable_get('dul_bento.summon_clientKey', '');
+	
+	
 	
 	// Build the 'Authorization Headers' for Summon API authentication
 	$headers = array('Accept' => 'application/json',

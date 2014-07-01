@@ -2,7 +2,7 @@
 
 require_once("functions.php");
 
-echo '<h2>Images <a href="<?php echo $requestURL; ?>" class="callbox" style="margin-left: 10px;">See All »</a></h2>
+echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
 		<p class="smaller muted">From our digitized collections</p>
 		<div class="results-panel">';
 
