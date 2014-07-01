@@ -2,6 +2,14 @@
 
 function dul_bento_admin_settings() {
 	
+	
+	$form['results_title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Bento Page Title'),
+		'#description' => t('Enter the desired title for bento search results'),
+		'#default_value' => variable_get('dul_bento.results_title', ''),
+	);
+	
 	$form['results_url'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Bento URL'),
@@ -41,6 +49,7 @@ function dul_bento_admin_settings() {
  * Submit callback for the above form function^
  */
 function dul_bento_admin_settings_submit($form, $form_state) {
+	variable_set('dul_bento.results_title', $form_state['values']['results_title']);
 	variable_set('dul_bento.results_url', $form_state['values']['results_url']);
 	variable_set('dul_bento.summon_accessId', $form_state['values']['summon_accessId']);
 	variable_set('dul_bento.summon_secretKey', $form_state['values']['summon_secretKey']);

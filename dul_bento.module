@@ -18,7 +18,7 @@ function dul_bento_menu() {
     
     //$items['find/bento'] = array(
     $items[variable_get('dul_bento.results_url', '')] = array(
-        'title' => 'Search Results',
+        'title' => variable_get('dul_bento.results_title', ''),
         'page callback' => 'dul_bento_search_results',
         'access arguments' => array('access content'),
         'type' => MENU_CALLBACK,
