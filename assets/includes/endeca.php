@@ -25,7 +25,7 @@ if ($theSearch != "") {
         
 		<h2>Books &amp; More <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See All »</a></h2>
         
-		<p>Books, journals, films, audio &amp; more</p>	
+		<p class="smaller muted">Books, journals, films, audio &amp; more</p>	
 		
 <?php 
 
