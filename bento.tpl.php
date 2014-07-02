@@ -68,11 +68,7 @@ else $contentType = NULL;
 		
 		<?php include("assets/includes/libguides.php"); ?>
 		
-		<br /><br />
-		
 		<?php include("assets/includes/summon_images.php"); ?>
-		
-		<br /><br />
 		
 		<?php include("assets/includes/google_cse.php"); ?>
 		

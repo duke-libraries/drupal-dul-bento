@@ -1,23 +1,26 @@
 <?php
 
+echo '<div class="results-block first">';
 
-echo '<h2>Research Guides <a href="http://guides.library.duke.edu/search.php?iid=150&gid=0&c=0&search=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
-		<p class="smaller muted">For assistance researching unfamiliar topics</p>
-		<div class="results-panel">';
+	echo '<h2>Research Guides <a href="http://guides.library.duke.edu/search.php?iid=150&gid=0&c=0&search=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
+			<p class="smaller muted">For assistance researching unfamiliar topics</p>
+			<div class="results-panel">';
 
 
-if($queryTerms != "") {
+	if($queryTerms != "") {
 
-	$theSearch = urlencode($queryTerms);
+		$theSearch = urlencode($queryTerms);
 
-	echo "<div id='api_search_guides_iid150'></div>";
-	echo "<script type='text/javascript' src='http://api.libguides.com/api_search.php?iid=150&type=guides&limit=3&more=false&sortby=relevance&context=object&format=js&search=" . $theSearch . "'> </script>";
+		echo "<div id='api_search_guides_iid150'></div>";
+		echo "<script type='text/javascript' src='http://api.libguides.com/api_search.php?iid=150&type=guides&limit=3&more=false&sortby=relevance&context=object&format=js&search=" . $theSearch . "'> </script>";
 	
-	}
+		}
+
+
+	echo '</div>';
 
 
 echo '</div>';
-	
 
 
 ?>
