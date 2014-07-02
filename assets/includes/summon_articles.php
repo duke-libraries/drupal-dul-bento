@@ -35,7 +35,7 @@ if($queryTerms == "") {
 	
 	if ($theData['recordCount'] == "0") {
 		
-		echo "No results found.";
+		echo "No Articles results found for <em>" . $queryTerms . "</em>.";
 	
 	} else {
 	

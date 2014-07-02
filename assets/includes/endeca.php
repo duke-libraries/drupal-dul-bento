@@ -207,7 +207,7 @@ if($searchResults != "0" AND $theSearch != "") {
 
 else {
 	
-	$searchWarning = "No results found.";
+	$searchWarning = "No Books &amp; More results found for <em>" . $queryTerms . "</em>.";
 	
 	if ($theSearch == "") {
 		$searchWarning = "Please enter a search term above.";

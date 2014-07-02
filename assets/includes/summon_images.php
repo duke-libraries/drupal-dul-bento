@@ -34,7 +34,7 @@ if($queryTerms == "") {
 	
 	if ($theData['recordCount'] == "0") {
 		
-		echo "No results found.";
+		echo "No Images results found for <em>" . $queryTerms . "</em>.";
 	
 	} else {
 
