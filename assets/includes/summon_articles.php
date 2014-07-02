@@ -2,7 +2,7 @@
 
 require_once("functions.php");
 
-echo '<h2>Articles <a href="http://search.library.duke.edu/search?sugg=&source=duke&Nty=1&N=0&Ntk=Keyword&Ntt=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
+echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&keep_r=true&articleScope=s.q&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
 		<p class="smaller muted">From journals, newspapers &amp; magazines</p>
 		<div class="results-panel">';
 
