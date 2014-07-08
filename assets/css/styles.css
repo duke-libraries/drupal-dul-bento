@@ -93,7 +93,7 @@ border: 1px solid #fff;
 }
 
 .document-frame {
-clear: both;
+overflow: hidden;
 }
 
 .document-summary {
