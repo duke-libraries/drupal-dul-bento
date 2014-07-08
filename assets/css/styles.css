@@ -6,6 +6,7 @@
 .gsc-url-top,
 .gs-fileFormat,
 .gsc-cursor-box,
+.gsc-url-bottom,
 .gsc-webResult:nth-last-child(n+4) {
 	display: none !important;
 }
