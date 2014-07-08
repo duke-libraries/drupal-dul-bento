@@ -10,6 +10,15 @@
 	display: none !important;
 }
 
+form.gsc-search-box {
+	display: none !important;
+}
+
+.gsc-resultsbox-visible:after {
+	content: "Powered by " url('https://www.google.com/uds/css/small-logo.png');
+	font-size: 11px;
+}
+
 .cse .gsc-control-cse, .gsc-control-cse {
 border: none !important
 }
@@ -48,6 +57,8 @@ border: 1px solid #fff;
 .gsc-table-result td,
 .gsc-table-result th {
 	padding: 0 !important;
+	font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif !important;
+	font-size: 12px;
 }
 
 .gs-result .gs-title,
