@@ -55,7 +55,8 @@ border: 1px solid #fff;
 }
 
 .gsc-webResult .gsc-result {
-	padding: 4px 0 4px 0 !important;
+	padding: 5px 0 5px 0 !important;
+	border-bottom: none !important;
 }
 
 .gs-result .gs-title, .gs-result .gs-title * {
