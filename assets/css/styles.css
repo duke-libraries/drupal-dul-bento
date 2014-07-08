@@ -43,8 +43,12 @@ border: 1px solid #fff;
 
 .gs-no-results-result {
 	display: block !important;
-}	
+}
 
+.gsc-table-result td,
+.gsc-table-result th {
+	padding: 0 !important;
+}
 
 /* More styles */
 
