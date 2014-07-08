@@ -7,6 +7,7 @@
 .gs-fileFormat,
 .gsc-cursor-box,
 .gsc-url-bottom,
+#cse_libguides .gs-snippet,
 .gsc-webResult:nth-last-child(n+4) {
 	display: none !important;
 }
@@ -15,6 +16,14 @@
 #cse_web form.gsc-search-box {
 	display: none !important;
 }
+
+
+#cse_libguides .gs-result .gs-title, 
+#cse_libguides .gs-result .gs-title * {
+overflow: visible !important;
+}
+
+
 
 .gsc-resultsbox-visible:after {
 	content: "Powered by " url('https://www.google.com/uds/css/small-logo.png');
