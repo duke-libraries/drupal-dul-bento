@@ -10,14 +10,22 @@
 	display: none !important;
 }
 
-form.gsc-search-box {
+#cse_libguides form.gsc-search-box,
+#cse_web form.gsc-search-box {
 	display: none !important;
 }
 
 .gsc-resultsbox-visible:after {
 	content: "Powered by " url('https://www.google.com/uds/css/small-logo.png');
+	vertical-align: top;
 	font-size: 11px;
+	text-align: right;
+	width: 100%;
+	display: block;
+	padding-top: 5px;
 }
+
+
 
 .cse .gsc-control-cse, .gsc-control-cse {
 border: none !important
