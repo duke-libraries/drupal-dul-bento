@@ -67,13 +67,13 @@ else $contentType = NULL;
 	
 		<div class="content-pad">
 		
-		<?php include("assets/includes/libguides.php"); ?>
+		<?php include("assets/includes/google_libguides.php"); ?>
 		
 		<?php //include("assets/includes/staff.php"); ?>
 		
 		<?php include("assets/includes/summon_images.php"); ?>
 		
-		<?php include("assets/includes/google_cse.php"); ?>
+		<?php include("assets/includes/google_website.php"); ?>
 		
 		</div>
 	
