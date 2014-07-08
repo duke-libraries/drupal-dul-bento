@@ -118,9 +118,22 @@ if($searchResults != "0" AND $theSearch != "") {
 			echo '</div>';
 		
 		if (isset($theISBN)) {
-			echo '<div class="thumbnail">';
-				echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
-			echo '</div>';
+			
+			
+			$imagePath = "http://www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
+			$imageSize = getimagesize($imagePath);
+				
+			if ($imageSize[0] != '1') {
+			
+			
+				echo '<div class="thumbnail">';
+					echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+				echo '</div>';
+				
+				
+			}
+			
+			
 		}
 		
 		

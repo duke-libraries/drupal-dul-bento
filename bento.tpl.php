@@ -25,7 +25,6 @@ else $contentType = NULL;
 		<div class="tab-content">
 			<div id="articles" class="tab-pane active">			
 				<form class="form-inline" action="bento">
-				<!-- Replace 'action' URL with variable! -->
 
 					<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
 
@@ -43,7 +42,9 @@ else $contentType = NULL;
 		<?php
 		
 		include("assets/includes/summon_articles.php"); 
-	
+		
+		include("assets/includes/summon_other.php"); 
+		
 		?>
 		
 		</div>
@@ -67,6 +68,8 @@ else $contentType = NULL;
 		<div class="content-pad">
 		
 		<?php include("assets/includes/libguides.php"); ?>
+		
+		<?php //include("assets/includes/staff.php"); ?>
 		
 		<?php include("assets/includes/summon_images.php"); ?>
 		

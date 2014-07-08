@@ -54,19 +54,15 @@ function formatAuthor($document) {
 	
 }
 
-function querySummonDUL($query, $results, $type1, $type2) {
+function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting) {
+
 	// ==============================================
 	// Summon API query parameters
 	// ==============================================
 	
+	
 	$pagesize = 20; // default value
 	if(isset($results)) $pagesize = $results; 
-	
-	if(isset($type1)) $contentType1 = $type1; 
-	else $contentType1 = NULL; // default value
-	
-	if(isset($type2)) $contentType2 = $type2; 
-	else $contentType2 = NULL; // default value
 	
 	$summon_js_query = stripslashes($query);
 	
@@ -77,17 +73,15 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	// These definitions are for the 'Identification String'
 	$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
 	
-	$facetParameter = "s.cmd=setHoldingsOnly(true)"; // Limit to records held by Duke
+	$facetParameter = "s.cmd=" . $facetParameterSetting; // Limit to records held by Duke
 	$facetParameter .= " setPageSize($pagesize)";  // set number of results per page
 	
-	// Get content Type variable if set and filter; to use, uncomment here and below 
-	if(isset($contentType1)) {
-		$facetParameter .= " addFacetValueFilters(ContentType,$contentType1)"; // filter for specific content type
-	}
 	
-	if(isset($contentType2)) {
-		$facetParameter .= " addFacetValueFilters(ContentType,$contentType2)"; // filter for specific content type
-	}
+	// add contentTypes
+	$facetParameter = $facetParameter . implode(" ", $contentTypes);
+	
+	//echo $facetParameter . '<br />';
+	
 	
 	$requestParameters = array();
 	array_push($requestParameters, $facetParameter);
@@ -98,16 +92,21 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	//$encodedQueryParameter = "s.q=" . $request_query;  // User query
 	$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
 	
-	$encodedFacetParameter = "s.cmd=" . urlencode("setHoldingsOnly(true)"); // Limit to records held by Duke
+	$encodedFacetParameter = "s.cmd=" . urlencode($facetParameterSetting); // Limit to records held by Duke
+	
 	$encodedFacetParameter .= urlencode(" setPageSize($pagesize)");  // set number of results per page
 	
-	if(isset($contentType1)) {
-		$encodedFacetParameter .= urlencode(" addFacetValueFilters(ContentType,$contentType1)"); // filter for specific content type
+	
+	$encodedContentTypes = array();
+	
+	foreach($contentTypes as $type) {
+   
+		array_push($encodedContentTypes, urlencode($type));
+		
 	}
 	
-	if(isset($contentType2)) {
-		$encodedFacetParameter .= urlencode(" addFacetValueFilters(ContentType,$contentType2)"); // filter for specific content type
-	}
+	$encodedFacetParameter = $encodedFacetParameter . implode("+", $encodedContentTypes);
+	
 	
 	$encodedRequestParameters = array();
 	array_push($encodedRequestParameters, $encodedFacetParameter);
@@ -124,7 +123,6 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	$clientKey = variable_get('dul_bento.summon_clientKey', '');
 	
 	
-	
 	// Build the 'Authorization Headers' for Summon API authentication
 	$headers = array('Accept' => 'application/json',
 					 'x-summon-date' => date('D, d M Y H:i:s T'),
@@ -133,6 +131,7 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	// Build the 'Identification String' used for Summon API authentication
 	$identificationString = implode($headers, "\n") . "\n/2.0.0/search\n" . implode($requestParameters, "&") . "\n";
 	
+	
 	// Build the HMAC hash used for Summon API authentication
 	$hmacHash = hmacsha1($secretKey, $identificationString);
 	
@@ -140,13 +139,19 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	$headers['Authorization'] = "Summon $accessId;$clientKey;$hmacHash";
 	
 	// Assemble the target Summon API request URL
-	$summonApiUrl = "http://api.summon.serialssolutions.com/2.0.0/search?" . implode($encodedRequestParameters, "&");
+	
+		
+		$summonApiUrl = "http://api.summon.serialssolutions.com/2.0.0/search?" . implode($encodedRequestParameters, "&");
+
+
 	
 	// Reformat HTTP headers array to be curl-friendly
 	foreach ($headers as $key => $value) {
 		$curlHeaders[] = $key . ": " . $value;
 	}
 	
+	//Debug:
+	//echo $summonApiUrl;
 
 
 	// ==============================================
@@ -168,6 +173,8 @@ function querySummonDUL($query, $results, $type1, $type2) {
 	// ==============================================
 	
 	return $response;
+	
+	
 
 }
 
