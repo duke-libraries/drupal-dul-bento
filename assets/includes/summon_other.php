@@ -37,8 +37,6 @@ foreach($myLibraries as $item) {
 // Merge the Arrays
 $contentTypes = array_merge($formatedContentTypes, $formatedLibraries);
 
-//$contentTypes = $formatedContentTypes;
-
 
 $theSearch = urlencode($queryTerms);
 
@@ -64,11 +62,8 @@ echo '<div class="results-block">';
 	} else {
 
 		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
+		
 		$theData = json_decode($data, TRUE);
-
-		//Debug:
-		//echo "The data:<br />";
-		//print_r($data);
 
 	
 		if ($theData['recordCount'] == "0") {
@@ -109,7 +104,7 @@ echo '<div class="results-block">';
 				}
 	
 				echo '<div class="document-summary">';
-				
+					
 					// AUTHORS
 					echo '<div class="authors">';
 					$authorList = formatAuthor($document);
@@ -125,20 +120,40 @@ echo '<div class="results-block">';
 		
 					//Engineering & Technology, ISSN 1750-9637, 12/2012, Volume 7, Issue 12, pp. 102 - 103
 		
-					$theTitle = $document["PublicationTitle"][0];
-					echo htmlentities($theTitle);
+					if (isset ($document["PublicationTitle"][0])) {
+					
+						$theTitle = $document["PublicationTitle"][0];
+						echo htmlentities($theTitle);
+						
+					}
+					
+					if (isset ($document["PublicationTitle"][0]) AND isset($document["ISSN"][0])) {
+						
+						echo ', ';
+						
+					}
+					
+					
 		
 					if(isset($document["ISSN"][0])) {
 		
-						echo ', <strong>ISSN</strong> ' . $document["ISSN"][0];
+						echo '<strong>ISSN</strong> ' . $document["ISSN"][0];
 			
 					}
+					
+					
+					if (isset ($document["PublicationDate"][0]) AND isset($document["ISSN"][0])) {
+						
+						echo ', ';
+						
+					}
+					
 		
 					if(isset($document["PublicationDate"][0])) {
 			
 						$theDate = $document["PublicationDate"][0];
 			
-						echo ', ' . date("m/Y", strtotime($theDate)); 
+						echo date("m/Y", strtotime($theDate)); 
 					}
 		
 					if(isset($document["Volume"][0])) {
