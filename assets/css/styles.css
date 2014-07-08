@@ -20,7 +20,8 @@
 
 #cse_libguides .gs-result .gs-title, 
 #cse_libguides .gs-result .gs-title * {
-overflow: visible !important;
+height: auto;
+line-height: 1.1;
 }
 
 
