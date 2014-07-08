@@ -56,6 +56,10 @@ border: 1px solid #fff;
 clear: both;
 }
 
+.document-summary {
+padding-left: 0;
+}
+
 .results-block {
 	clear: both;
 	margin-top: 2em;
