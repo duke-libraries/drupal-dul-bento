@@ -39,6 +39,24 @@ function dul_bento_admin_settings() {
 	);
 	
 	
+	$form['summon_other_content_types'] = array(
+		'#type' => 'textarea',
+		'#title' => t('Summon "Other" Content Types'),
+		'#description' => t('Enter the list of content types'),
+		'#default_value' => variable_get('dul_bento.summon_other_content_types', ''),
+	);
+	
+	$form['summon_other_libraries'] = array(
+		'#type' => 'textarea',
+		'#title' => t('Summon "Other" Libraries'),
+		'#description' => t('Enter the list of libraries'),
+		'#default_value' => variable_get('dul_bento.summon_other_libraries', ''),
+	);
+	
+	
+	
+	
+	
 	
 	$form['#submit'][] = 'dul_bento_admin_settings_submit';
 
@@ -54,4 +72,6 @@ function dul_bento_admin_settings_submit($form, $form_state) {
 	variable_set('dul_bento.summon_accessId', $form_state['values']['summon_accessId']);
 	variable_set('dul_bento.summon_secretKey', $form_state['values']['summon_secretKey']);
 	variable_set('dul_bento.summon_clientKey', $form_state['values']['summon_clientKey']);
+	variable_set('dul_bento.summon_other_content_types', $form_state['values']['summon_other_content_types']);
+	variable_set('dul_bento.summon_other_libraries', $form_state['values']['summon_other_libraries']);
 }
