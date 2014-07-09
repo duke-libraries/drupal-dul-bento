@@ -69,7 +69,7 @@ else $contentType = NULL;
 		
 		<?php include("assets/includes/google_libguides.php"); ?>
 		
-		<?php //include("assets/includes/staff.php"); ?>
+		<?php include("assets/includes/staff.php"); ?>
 		
 		<?php include("assets/includes/summon_images.php"); ?>
 		

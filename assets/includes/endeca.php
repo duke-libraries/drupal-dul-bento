@@ -46,6 +46,15 @@ if($searchResults != "0" AND $theSearch != "") {
 		if (!empty ($title)) {
 			$theTitle = (string) $title[0];
 			$theTitle = htmlentities($theTitle, ENT_QUOTES, 'UTF-8');
+			
+			// truncate long titles
+			if (strlen($theTitle) > 185) {
+				$theTitle = wordwrap($theTitle, 185);
+				$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
+				$theTitle = $theTitle . ' (&hellip;)';
+			}
+			
+			
 		}
 		
 		if (!empty ($ID)) {

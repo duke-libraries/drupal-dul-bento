@@ -2,6 +2,25 @@
 
 require_once("functions.php");
 
+//$queryTerms = 'science';
+$pageSize = 6;
+$contentTypes = array('Journal Article','Magazine Article');
+$facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
+
+$formatedContentTypes = array();
+
+foreach($contentTypes as $type) {
+	array_push($formatedContentTypes, 'addFacetValueFilters(ContentType,' . $type . ')');
+}
+
+$contentTypes = $formatedContentTypes;
+
+
+$theSearch = urlencode($queryTerms);
+
+///
+
+
 echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&keep_r=true&articleScope=s.q&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See All »</a></h2>
 		<p class="smaller muted">From journals, newspapers &amp; magazines</p>
 		<div class="results-panel">';
@@ -9,12 +28,7 @@ echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf
 
 ////
 
-//$queryTerms = 'puppies';
-$pageSize = 6;
-$contentType1 = 'Journal Article';
-$contentType2 = 'Magazine Article';
 
-$theSearch = urlencode($queryTerms);
 
 
 if($queryTerms == "") {
@@ -23,12 +37,12 @@ if($queryTerms == "") {
 	echo $searchWarning;
 			
 } else {
-
-	//querySummon($query, $results, $type)
-	$data = querySummonDUL($queryTerms, $pageSize, $contentType1, $contentType2);
+	
+	$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
+	
 	$theData = json_decode($data, TRUE);
 
-	//Debug:
+	Debug:
 	//echo "The data:<br />";
 	//print_r($data);
 
@@ -45,11 +59,21 @@ if($queryTerms == "") {
 		foreach($theData['documents'] as $document) {
 	
 		echo '<div class="document-frame">';
-	
+			
+			$theTitle = $document["Title"][0];
+			
+			// truncate long titles
+			if (strlen($theTitle) > 185) {
+				$theTitle = wordwrap($theTitle, 185);
+				$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
+				$theTitle = $theTitle . ' (&hellip;)';
+			}
+
+			
 			// Title
 			echo '<div class="title">';
 				echo '<div class="text">';
-					echo '<h3 class="resultTitle"><a href="' . $document["link"] . '">' . $document["Title"][0] . '</a></h3>';
+					echo '<h3 class="resultTitle"><a href="' . $document["link"] . '">' . $theTitle . '</a></h3>';
 				echo '</div>';
 			echo '</div>';
 	
@@ -77,8 +101,10 @@ if($queryTerms == "") {
 		
 				//Engineering & Technology, ISSN 1750-9637, 12/2012, Volume 7, Issue 12, pp. 102 - 103
 		
-				$theTitle = $document["PublicationTitle"][0];
-				echo htmlentities($theTitle);
+				$thePubTitle = (string) $document["PublicationTitle"][0];
+				$thePubTitle = rtrim(htmlentities($thePubTitle, ENT_QUOTES, 'UTF-8'), '.');
+				
+				echo $thePubTitle;
 		
 				if(isset($document["ISSN"][0])) {
 		
