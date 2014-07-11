@@ -54,7 +54,7 @@ else $contentType = NULL;
 
 	<div class="grid-4 alpha">
 		
-		<div class="content-pad">
+		<div class="content-pad-left">
 		
 		<?php
 		
@@ -82,7 +82,7 @@ else $contentType = NULL;
 	
 	<div class="grid-4 omega">
 	
-		<div class="content-pad">
+		<div class="content-pad-right">
 		
 		<?php include("assets/includes/google_libguides.php"); ?>
 		

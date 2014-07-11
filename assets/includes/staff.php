@@ -14,7 +14,7 @@ $theSearch = $queryTerms;
 
 <div class="results-block" id="results-staff">
         
-	<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See All »</a></h2>
+	<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
         
 	<p class="smaller muted">Contact library staff for help researching this topic</p>
 	

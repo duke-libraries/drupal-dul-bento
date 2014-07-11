@@ -88,19 +88,19 @@ border: 1px solid #fff;
 }
 
 
-//*************//
+/* *********** */
 /* More styles */
 
 .content-pad {
 	padding: 10px 15px 10px 15px;
 }
 
-.alpha .content-pad {
-	padding: 10px 15px 10px 0;
+.content-pad-right {
+	padding: 10px 0px 10px 15px;
 }
 
-.omega .content-pad {
-	padding: 10px 0 10px 15px;
+.content-pad-left {
+	padding: 10px 15px 10px 0px;
 }
 
 .document-frame {
@@ -199,9 +199,9 @@ width: 30%;
 		font-size: 115%;
 	}
 	
-	.content-pad,
-	.alpha .content-pad,
-	.omega .content-pad {
+	.content-pad-left,
+	.content-pad-right,
+	.content-pad {
 		padding:0;
 	}
 	
