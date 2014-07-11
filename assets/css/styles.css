@@ -87,10 +87,20 @@ border: 1px solid #fff;
 	color: #0062A0 !important;
 }
 
+
+//*************//
 /* More styles */
 
 .content-pad {
 	padding: 10px 15px 10px 15px;
+}
+
+.alpha .content-pad {
+	padding: 10px 15px 10px 0;
+}
+
+.omega .content-pad {
+	padding: 10px 0 10px 15px;
 }
 
 .document-frame {
@@ -138,4 +148,62 @@ width: 30%;
 	font-size: 12px;
 	font-style: italic;
 	line-height: 1.1;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+.search-results-nav {
+	display: none;
+}
+
+
+@media (min-width: 740px) and (max-width: 979px) {
+
+	.thumbnail {
+		width: 50px;
+		float: left;
+		margin: 0 10px 10px 0;
+	}
+
+}
+
+
+@media (max-width: 739px) {
+  
+	.search-results-nav {
+		display: block;
+		margin-top: 1em;
+		margin-bottom: .5em;
+	}
+	
+	.search-results-nav ul,
+	.search-results-nav li {
+		list-style: none;
+		padding:0;
+		margin:0;
+	}
+	
+	.search-results-nav li {
+		float: left;
+	}
+	
+	.search-results-nav li a {
+		padding: 5px;
+		margin: 5px;
+		font-size: 115%;
+	}
+	
+	.content-pad,
+	.alpha .content-pad,
+	.omega .content-pad {
+		padding:0;
+	}
+	
+
 }

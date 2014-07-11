@@ -12,7 +12,7 @@ $theSearch = $queryTerms;
 ?>
 
 
-<div class="results-block">
+<div class="results-block" id="results-staff">
         
 	<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See All »</a></h2>
         
@@ -58,7 +58,9 @@ if($queryTerms == "") {
 	
 	if ($staff_persons->rowCount() == 0) {
 	
-		echo "No Staff results found for <em>" . $queryTerms . "</em>."; 
+		echo "No Staff results found for <em>" . $queryTerms . "</em>.";
+		
+		echo '<br/><br/><a href="http://library.duke.edu/apps/directory/">Try another search &raquo;</a>';
 	
 	} else {
 		

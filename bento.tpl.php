@@ -33,6 +33,23 @@ else $contentType = NULL;
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="search-results-nav">
+	
+		<ul>
+		
+			<li><a href="#results-articles">Articles</a></li>
+			<li><a href="#results-other">Other Resources</a></li>
+			<li><a href="#results-books">Books & More</a></li>
+			<li><a href="#results-libguides">Research Guides</a></li>
+			<li><a href="#results-staff">Staff</a></li>
+			<li><a href="#results-images">Images</a></li>
+			<li><a href="#results-website">Our Website</a></li>
+		
+		</ul>
+	
+	</div>
 
 
 	<div class="grid-4 alpha">
