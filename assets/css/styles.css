@@ -7,7 +7,7 @@
 .gs-fileFormat,
 .gsc-cursor-box,
 .gsc-url-bottom,
-#cse_libguides .gs-snippet,
+/*#cse_libguides .gs-snippet,*/
 .gsc-webResult:nth-last-child(n+4) {
 	display: none !important;
 }
@@ -154,8 +154,18 @@ width: 30%;
 	color: green;
 }
 
+.green a {
+	color: green !important;
+	text-decoration: underline !important;
+}
+
 .red {
 	color: red;
+}
+
+.red a {
+	color: red !important;
+	text-decoration: underline !important;
 }
 
 .search-results-nav {
