@@ -33,11 +33,28 @@ else $contentType = NULL;
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="search-results-nav">
+	
+		<ul>
+		
+			<li><a href="#results-articles">Articles</a></li>
+			<li><a href="#results-other">Other Resources</a></li>
+			<li><a href="#results-books">Books & More</a></li>
+			<li><a href="#results-libguides">Research Guides</a></li>
+			<li><a href="#results-staff">Staff</a></li>
+			<li><a href="#results-images">Images</a></li>
+			<li><a href="#results-website">Our Website</a></li>
+		
+		</ul>
+	
+	</div>
 
 
 	<div class="grid-4 alpha">
 		
-		<div class="content-pad">
+		<div class="content-pad-left">
 		
 		<?php
 		
@@ -65,11 +82,11 @@ else $contentType = NULL;
 	
 	<div class="grid-4 omega">
 	
-		<div class="content-pad">
+		<div class="content-pad-right">
 		
 		<?php include("assets/includes/google_libguides.php"); ?>
 		
-		<?php //include("assets/includes/staff.php"); ?>
+		<?php include("assets/includes/staff.php"); ?>
 		
 		<?php include("assets/includes/summon_images.php"); ?>
 		

@@ -36,6 +36,7 @@ google.setOnLoadCallback(function(){
   	options_web.enableSearchResultsOnly();
   	options_web.setAutoComplete(true);
  	google.search.Csedr.addOverride("bentoweb_");
+ 	//options_web.setNoResultsString("No Website results found for your term");
 
     // Draw the Custom Search Control in the div named "cse_web"
   	customSearchControl_web.draw('cse_web', options_web); 
@@ -43,17 +44,18 @@ google.setOnLoadCallback(function(){
 
 
 	// Libguides search
-	var cx_staff = '012356957315223414689:eqn6ecttvlm';
-  	var customSearchControl_staff =   new google.search.CustomSearchControl(cx_staff, customSearchOptions);
-  	customSearchControl_staff.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
-  	var options_staff = new google.search.DrawOptions();
-  	options_staff.enableSearchResultsOnly();
-  	options_staff.setAutoComplete(true);
+	var cx_libguides = '012356957315223414689:eqn6ecttvlm';
+  	var customSearchControl_libguides =   new google.search.CustomSearchControl(cx_libguides, customSearchOptions);
+  	customSearchControl_libguides.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  	var options_libguides = new google.search.DrawOptions();
+  	options_libguides.enableSearchResultsOnly();
+  	options_libguides.setAutoComplete(true);
  	google.search.Csedr.addOverride("bentolibguides_");
+ 	//options_libguides.setNoResultsString("No Research Guides results found for your term");
 
-    // Draw the Custom Search Control in the div named "cse_staff"
-  	customSearchControl_staff.draw('cse_libguides', options_staff);
-    customSearchControl_staff.execute(urlParams[queryParamName]);
+    // Draw the Custom Search Control in the div named "cse_libguides"
+  	customSearchControl_libguides.draw('cse_libguides', options_libguides);
+    customSearchControl_libguides.execute(urlParams[queryParamName]);
 	
 
 }, true);

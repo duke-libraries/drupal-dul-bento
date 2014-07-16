@@ -6,9 +6,38 @@
 .gsc-url-top,
 .gs-fileFormat,
 .gsc-cursor-box,
+.gsc-url-bottom,
+/*#cse_libguides .gs-snippet,*/
 .gsc-webResult:nth-last-child(n+4) {
 	display: none !important;
 }
+
+#cse_libguides form.gsc-search-box,
+#cse_web form.gsc-search-box {
+	display: none !important;
+}
+
+
+#cse_libguides .gs-result .gs-title, 
+#cse_libguides .gs-result .gs-title * {
+height: auto;
+line-height: 1.1;
+}
+
+
+
+.gsc-resultsbox-visible:after {
+	content: "Powered by " url('https://www.google.com/uds/css/small-logo.png');
+	vertical-align: top;
+	font-size: 11px;
+	text-align: right;
+	width: 100%;
+	display: block;
+	padding-top: 5px;
+	color: #A0A1A3;
+}
+
+
 
 .cse .gsc-control-cse, .gsc-control-cse {
 border: none !important
@@ -26,7 +55,12 @@ border: 1px solid #fff;
 }
 
 .gsc-webResult .gsc-result {
-	padding: 4px 0 4px 0 !important;
+	padding: 5px 0 5px 0 !important;
+	border-bottom: none !important;
+}
+
+.gs-result .gs-snippet {
+	line-height: 1.4;
 }
 
 .gs-result .gs-title, .gs-result .gs-title * {
@@ -48,16 +82,74 @@ border: 1px solid #fff;
 .gsc-table-result td,
 .gsc-table-result th {
 	padding: 0 !important;
+	font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif !important;
+	font-size: 12px;
 }
 
+.gs-result .gs-title,
+.gs-result .gs-title * {
+	color: #0062A0 !important;
+}
+
+
+#cse_libguides .gs-no-results-result .gs-snippet,
+#cse_web .gs-no-results-result .gs-snippet {
+	display: none;
+}
+
+#cse_libguides .gs-no-results-result:after {
+	content: 'No Research Guides results found for your term';
+}
+
+#cse_web .gs-no-results-result:after {
+	content: 'No Website results found for your term';
+}
+
+.gs-image-box {
+display: block;
+padding: 4px !important;
+line-height: 20px;
+border: 1px solid #ddd;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+margin-right: 10px !important;
+margin-bottom: 10px !important;
+}
+
+
+.gs-web-image-box img.gs-image, .gs-promotion-image-box img.gs-promotion-image {
+	width: 100%;
+}
+
+
+
+
+
+/* *********** */
 /* More styles */
 
 .content-pad {
 	padding: 10px 15px 10px 15px;
 }
 
+.content-pad-right {
+	padding: 10px 0px 10px 15px;
+}
+
+.content-pad-left {
+	padding: 10px 15px 10px 0px;
+}
+
 .document-frame {
-clear: both;
+overflow: hidden;
 }
 
 .document-summary {
@@ -66,7 +158,8 @@ padding-left: 0 !important
 
 .results-block {
 	clear: both;
-	margin-top: 2em;
+	margin-top: 1em;
+	overflow: hidden;
 }
 
 .first {
@@ -77,4 +170,116 @@ padding-left: 0 !important
 width: 85px;
 float: left;
 margin: 0 15px 15px 0;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+
+
+.personResult .thumbnail {
+float: none;
+margin: 0 0 5px 0;	
+}
+
+.personResult {
+float: left;
+margin: 0 5px 0 5px;
+width: 30%;
+}
+
+.personResult .title {
+	color: #888;
+	font-size: 12px;
+	font-style: italic;
+	line-height: 1.1;
+}
+
+.result-title {
+	padding-top: 15px;
+}
+
+.authors {
+	line-height: 1.3;
+}
+
+.publisher {
+	line-height: 1.3;
+	padding-top: 5px;
+}
+
+.holdings {
+	line-height: 1.3;
+	padding-top: 5px;
+	font-size: 12px;
+}
+
+.green {
+	color: green;
+}
+
+.green a {
+	color: green !important;
+	text-decoration: underline !important;
+}
+
+.red {
+	color: red;
+}
+
+.red a {
+	color: red !important;
+	text-decoration: underline !important;
+}
+
+.search-results-nav {
+	display: none;
+}
+
+
+
+
+@media (min-width: 740px) and (max-width: 979px) {
+
+	.thumbnail {
+		width: 50px;
+		float: left;
+		margin: 0 10px 10px 0;
+	}
+
+}
+
+
+@media (max-width: 739px) {
+  
+	.search-results-nav {
+		display: block;
+		margin-top: 1em;
+		margin-bottom: .5em;
+	}
+	
+	.search-results-nav ul,
+	.search-results-nav li {
+		list-style: none;
+		padding:0;
+		margin:0;
+	}
+	
+	.search-results-nav li {
+		float: left;
+	}
+	
+	.search-results-nav li a {
+		padding: 5px;
+		margin: 5px;
+		font-size: 115%;
+	}
+	
+	.content-pad-left,
+	.content-pad-right,
+	.content-pad {
+		padding:0;
+	}
+	
+
 }
