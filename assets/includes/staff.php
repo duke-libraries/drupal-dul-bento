@@ -8,27 +8,20 @@ $theSearch = $queryTerms;
 	
 ///
 
+if($queryTerms != "") {
 
 ?>
 
 
-<div class="results-block" id="results-staff">
-        
-	<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
-        
-	<p class="smaller muted">Contact library staff for help researching this topic</p>
+	<div class="results-block" id="results-staff">
+		
+		<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
+		
+		<p class="smaller muted">Contact library staff for help researching this topic</p>
 	
-	<div class="results-panel">
+		<div class="results-panel">
 
-<?php
-
-
-if($queryTerms == "") {
-						
-	$searchWarning = "Please enter a search term above.";		
-	echo $searchWarning;
-			
-} else {
+	<?php
 
 
 	# set the active database to 'django'
@@ -52,19 +45,19 @@ if($queryTerms == "") {
 	$query->orderBy('p.last_name', 'ASC');
 	$query->orderBy('p.first_name', 'ASC');
 	$query->range(0,3); // limit to 3 results
-	
+
 
 	$staff_persons = $query->execute();
-	
+
 	if ($staff_persons->rowCount() == 0) {
-	
+
 		echo "No Staff results found for <em>" . $queryTerms . "</em>.";
-		
-		echo '<br/><br/><a href="http://library.duke.edu/apps/directory/">Try another search &raquo;</a>';
 	
+		echo '<br/><br/><a href="http://library.duke.edu/apps/directory/">Try another search &raquo;</a>';
+
 	} else {
-		
-		
+	
+	
 		foreach ($staff_persons as $person) {
 
 			// Set Profile
@@ -75,9 +68,9 @@ if($queryTerms == "") {
 					$theProfile = substr($theProfile, 0, strpos($theProfile, "\n"));
 					$theProfile = $theProfile . ' (&hellip;)';
 				}
-				
 			
-			
+		
+		
 			// Set Title
 			if ($person->preferred_title != "") {
 				$theTitle = $person->preferred_title;
@@ -90,50 +83,51 @@ if($queryTerms == "") {
 					$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
 					$theTitle = $theTitle . ' (&hellip;)';
 				}
-	
-	
-	
+
+
+
 			echo '<div class="personResult" title="' . $theProfile . '">';
-		
-		
+	
+	
 				if ($person->photo_url != "") {
-			
+		
 					echo '<div class="thumbnail">';
 					echo '<a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/"><img src="' . $person->photo_url . '"></a>';
 					echo '</div>';
-		
+	
 				} else {
-				
+			
 					echo '<div class="thumbnail">';
 					echo '<a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/"><img src="http://libcms.oit.duke.edu/sites/default/files/dul/directory/no_photo_reading_devil.png"></a>';
 					echo '</div>';
 
 				}
-		
+	
 				echo '<div class="name"><a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/">' . $person->display_name . '</a></div>';
 				echo '<div class="title">' . $theTitle . '</div>';
-		
-		
+	
+	
 			echo '</div>';
-			
+		
 		}
 
-  
+
 	}
-	
+
 
 	# before you leave, set the active database back to the default.
 	db_set_active();        // no arguments = 'default'
-  
+
 
 }
 
 ?>
 
+		</div>
+
+
 	</div>
-
-
-</div>
+	
 
 
 	
