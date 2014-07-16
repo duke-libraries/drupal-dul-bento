@@ -150,6 +150,13 @@ width: 30%;
 	line-height: 1.1;
 }
 
+.result-title {
+	padding-top: 15px;
+}
+
+.authors {
+	line-height: 1.3;
+}
 
 .publisher {
 	line-height: 1.3;
