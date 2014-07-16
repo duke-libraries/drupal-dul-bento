@@ -21,7 +21,7 @@ if ($theSearch != "") {
 
 
 
-if ($searchResults != "0") {
+if ($theSearch != "") {
 			
 ?>
 
