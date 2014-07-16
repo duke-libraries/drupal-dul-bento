@@ -34,10 +34,31 @@
 						// locate the element with item-id
 						for (barcodeKey in data) {
 							barcodeData = data[barcodeKey].data;
+							
+							// determine the actual item status based on Duke Library's business logic
+							iStatus = dukeItemStatusMap.itemStatusInformation( barcodeData );
+							
+							// replace %placerequest% with actual <a> element
+							iStatus = iStatus.replace('%placerequest%', 
+								'<a href="http://library.duke.edu/librarycatalog/request/' + data[barcodeKey].sys_no + '">Place Request</a>');
+
+							console.log( 'iStatus for ' + barcodeKey + ' = [' + iStatus + ']' );
 
 							$( 'DIV[itemid="' + barcodeKey + '"]').each(function(ndx, el) {
 								console.log( this );
 								$( '.library', this ).html( barcodeData['sub-library'] );
+								
+								availElementClass = (iStatus == 'Available') ? 'green' : 'red';
+								$( '.available-status', this )
+									.html( iStatus )
+									.addClass( availElementClass )
+									.show();
+									
+								if ($(this).attr('callno') != '') {
+									$( '.call-number', this )
+										.html( $( this ).attr('callno') + ",&nbsp;" )
+										.show();
+								}
 							});
 						}
 					},
