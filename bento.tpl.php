@@ -20,16 +20,17 @@ else $contentType = NULL;
 
 ?>
 
+	<div class="discovery">
+		<div class="search-resources-tabs bento">
+			<div class="tab-content">
+				<div id="articles" class="tab-pane active">			
+					<form class="form-inline" action="bento">
 
-	<div class="search-resources-tabs">
-		<div class="tab-content">
-			<div id="articles" class="tab-pane active">			
-				<form class="form-inline" action="bento">
+						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
 
-					<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
-
-				</form>
+					</form>
 			
+				</div>
 			</div>
 		</div>
 	</div>
