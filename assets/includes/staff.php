@@ -92,18 +92,18 @@ if($queryTerms != "") {
 				if ($person->photo_url != "") {
 		
 					echo '<div class="thumbnail">';
-					echo '<a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/"><img src="' . $person->photo_url . '"></a>';
+					echo '<a href="/about/directory/staff/' . $person->id .  '/"><img src="' . $person->photo_url . '"></a>';
 					echo '</div>';
 	
 				} else {
 			
 					echo '<div class="thumbnail">';
-					echo '<a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/"><img src="http://libcms.oit.duke.edu/sites/default/files/dul/directory/no_photo_reading_devil.png"></a>';
+					echo '<a href="/about/directory/staff/' . $person->id .  '/"><img src="http://libcms.oit.duke.edu/sites/default/files/dul/directory/no_photo_reading_devil.png"></a>';
 					echo '</div>';
 
 				}
 	
-				echo '<div class="name"><a href="http://library.duke.edu/apps/directory/staff/' . $person->id .  '/">' . $person->display_name . '</a></div>';
+				echo '<div class="name"><a href="/about/directory/staff/' . $person->id .  '/">' . $person->display_name . '</a></div>';
 				echo '<div class="title">' . $theTitle . '</div>';
 	
 	
