@@ -54,7 +54,7 @@ if($queryTerms != "") {
 
 		echo "No Staff results found for <em>" . $queryTerms . "</em>.";
 	
-		echo '<br/><br/><a href="http://library.duke.edu/apps/directory/">Try another search &raquo;</a>';
+		echo '<br/><br/><a href="/about/directory/">Try another search &raquo;</a>';
 
 	} else {
 	
