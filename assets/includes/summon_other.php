@@ -3,7 +3,7 @@
 require_once("functions.php");
 
 //$queryTerms = 'science';
-$pageSize = 3;
+$pageSize = 2;
 $facetParameterSetting = "setHoldingsOnly(false)";
 
 
@@ -83,22 +83,6 @@ if($queryTerms != "") {
 					echo '</div>';
 				echo '</div>';
 	
-				// Thumb
-				if(isset($document["thumbnail_m"][0])) {
-				
-					$imagePath = $document["thumbnail_s"][0];
-					$imageSize = getimagesize($imagePath);
-							
-					if ($imageSize[0] != '1') {
-				
-						echo '<div class="thumbnail">';
-							echo '<a href="' . $document["link"] . '"><img src="' . $document["thumbnail_m"][0] . '" alt="cover artwork" class="artwork"></a>';
-						echo '</div>';
-						
-					}
-					
-					
-				}
 	
 				echo '<div class="document-summary">';
 					

@@ -6,7 +6,13 @@ $theSearch = urlencode($queryTerms);
 
 $theXML = simplexml_load_file ($urlString . $theSearch);
 
+
+$tempISBN = "";
+$isDiffISBN = false;
+
 $i = 1;
+
+$maxResults = 8;
 
 if ($theSearch != "") {
 
@@ -37,8 +43,8 @@ if ($theSearch != "") {
 		<?php 
 
 		if($searchResults != "0" AND $theSearch != "") {
-
-			while ($i < 7):
+			
+			while ($i < $maxResults):
 
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
@@ -52,10 +58,10 @@ if ($theSearch != "") {
 				$ItemID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Item-ID/item');
 				$Libraries = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Libraries/item');
 				$CallNumber = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Call-Number/item');
-				$Statuses = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statuses/item');
 				$SOR = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statement-of-Responsibility/item');
-		
-		
+				
+				$Statuses = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statuses/item');
+				
 				# NOTE: The Libraries, Items Types, Call Numbers and Item IDs, as a unit, represent (a portion) of a Holdings record
 				# so, an array will be created to store those values (array)
 				# the itemtype, libraries and item-id's need to be split by the '|' delimiter
@@ -126,11 +132,30 @@ if ($theSearch != "") {
 				if (!empty ($ID)) {
 					$theID = (string) $ID[0];
 				}
-		
+				
+				
 				// ISBN
 				if (!empty ($ISBN)) {
+					
 					$theISBN = (string) $ISBN[0];
+					
+					
+					// check if ISBN repeats
+					
+					if ($tempISBN != $theISBN) {
+					
+						$isDiffISBN = true;
+						$tempISBN = $theISBN;
+					
+					} else {
+						
+						$isDiffISBN = false;
+					
+					}
+
+					
 				}
+				
 		
 				// Main Author
 				if (!empty ($author)) {
@@ -206,17 +231,19 @@ if ($theSearch != "") {
 					echo '</div>';
 		
 				if (isset($theISBN)) {
-			
-			
-					$imagePath = "http://www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
-					$imageSize = getimagesize($imagePath);
 				
-					if ($imageSize[0] != '1') {
+					if ($isDiffISBN == true) {
 			
+						$imagePath = "http://www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
+						$imageSize = getimagesize($imagePath);
+				
+						if ($imageSize[0] != '1') {
 			
-						echo '<div class="thumbnail">';
-							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
-						echo '</div>';
+							echo '<div class="thumbnail">';
+								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '</div>';
+							
+						}
 				
 				
 					}
@@ -345,7 +372,39 @@ if ($theSearch != "") {
 					echo '</div>';
 
 				echo '</div>';
-
+				
+				// clear all variables
+				unset($title);
+				unset($theTitle);
+				unset($ID);
+				unset($theID);
+				unset($ISBN);
+				unset($theISBN);
+				unset($author);
+				unset($theAuthor);
+				unset($otherAuthors);
+				unset($otherAuthors1);
+				unset($otherAuthors2);
+				unset($otherAuthors3);
+				unset($otherAuthors4);
+				unset($itemtype);
+				unset($theItemtype);
+				unset($OCLC);
+				unset($theOCLC);
+				unset($Published);
+				unset($thePublished);
+				unset($Material);
+				unset($theMaterial);
+				unset($ItemID);
+				unset($theItemID);
+				unset($Libraries);
+				unset($theLibraries);
+				unset($CallNumber);
+				unset($theCallNumber);
+				unset($SOR);
+				unset($theSOR);
+				unset($Statuses);
+				
 				$i ++;
 
 			endwhile;

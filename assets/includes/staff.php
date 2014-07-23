@@ -15,7 +15,7 @@ if($queryTerms != "") {
 
 	<div class="results-block" id="results-staff">
 		
-		<h2>Staff <a href="http://library.duke.edu/apps/directory/search/?q=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
+		<h2>Staff <a href="/about/directory/>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
 		
 		<p class="smaller muted">Contact library staff for help researching this topic</p>
 	
@@ -38,6 +38,7 @@ if($queryTerms != "") {
 				->condition('p.nickname', '%' . $theSearch . '%', 'LIKE')
 				->condition('p.display_name', '%' . $theSearch . '%', 'LIKE')
 				->condition('p.title', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.profile', '%' . $theSearch . '%', 'LIKE')
 				->condition('p.keywords', '%' . $theSearch . '%', 'LIKE')
 		);
 	$query->distinct(); // make distinct
