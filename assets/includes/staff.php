@@ -15,7 +15,7 @@ if($queryTerms != "") {
 
 	<div class="results-block" id="results-staff">
 		
-		<h2>Staff <a href="/about/directory/>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
+		<h2>Staff <a href="/about/directory/" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
 		
 		<p class="smaller muted">Contact library staff for help researching this topic</p>
 	
