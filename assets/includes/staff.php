@@ -63,9 +63,13 @@ if($queryTerms != "") {
 
 			// Set Profile
 			$theProfile = $person->profile;
+				
+				// remove html characters
+				$theProfile = strip_tags(str_replace('&nbsp;',' ',$theProfile));
+				
 				// truncate long profiles
-				if (strlen($theProfile) > 250) {
-					$theProfile = wordwrap($theProfile, 250);
+				if (strlen($theProfile) > 150) {
+					$theProfile = wordwrap($theProfile, 150);
 					$theProfile = substr($theProfile, 0, strpos($theProfile, "\n"));
 					$theProfile = $theProfile . ' (&hellip;)';
 				}

@@ -114,6 +114,7 @@ if ($theSearch != "") {
 				unset($tmpCallNumber);
 				unset($tmpStatus);
 
+				// Title
 				if (!empty ($title)) {
 					$theTitle = (string) $title[0];
 					$theTitle = htmlentities($theTitle, ENT_QUOTES, 'UTF-8');
@@ -126,12 +127,17 @@ if ($theSearch != "") {
 					}
 			
 			
+				} else {
+					$theTitle = "";
 				}
 		
 				// ID
 				if (!empty ($ID)) {
 					$theID = (string) $ID[0];
+				} else {
+					$theID = "";
 				}
+				
 				
 				
 				// ISBN
