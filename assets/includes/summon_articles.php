@@ -3,7 +3,7 @@
 require_once("functions.php");
 
 //$queryTerms = 'science';
-$pageSize = 9;
+$pageSize = 10;
 $contentTypes = array('Journal Article','Magazine Article');
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
 
