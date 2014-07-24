@@ -49,6 +49,7 @@ if ($theSearch != "") {
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
 				$ISBN = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Syndetics-ISBN/item');
+				$UPC = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/UPC/item');
 				$author = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Author/item');
 				$otherAuthors = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Other-Authors/item');
 				$itemtype = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Item-Types/item');
@@ -162,6 +163,12 @@ if ($theSearch != "") {
 					
 				}
 				
+				
+				// UPC
+				if (!empty ($UPC)) {
+					$theUPC = (string) $UPC[0];
+				}
+				
 		
 				// Main Author
 				if (!empty ($author)) {
@@ -235,7 +242,9 @@ if ($theSearch != "") {
 							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">' . $theTitle . '</a></h3>';
 						echo '</div>';
 					echo '</div>';
-		
+				
+				
+				// ISBN Thumbnails
 				if (isset($theISBN)) {
 				
 					if ($isDiffISBN == true) {
@@ -254,7 +263,21 @@ if ($theSearch != "") {
 				
 					}
 			
+				
+				// UPC Thumbnails
+				} else if (isset($theUPC)) {
+				
+					$imagePath = "http://www.syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
+					$imageSize = getimagesize($imagePath);
+				
+					if ($imageSize[0] != '1') {
 			
+						echo '<div class="thumbnail">';
+							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+						echo '</div>';
+							
+					}
+				
 				}
 		
 		
@@ -271,7 +294,6 @@ if ($theSearch != "") {
 				
 						if (!empty ($otherAuthors)) {
 					
-							// what exactly am I checking for here?
 							if (isset($otherAuthors1)) {
 				
 								if ($theAuthor == "NONE") {
@@ -386,6 +408,8 @@ if ($theSearch != "") {
 				unset($theID);
 				unset($ISBN);
 				unset($theISBN);
+				unset($UPC);
+				unset($theUPC);
 				unset($author);
 				unset($theAuthor);
 				unset($otherAuthors);
