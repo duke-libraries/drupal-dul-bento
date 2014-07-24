@@ -148,6 +148,13 @@ margin-bottom: 10px !important;
 	padding: 10px 15px 10px 0px;
 }
 
+.content-pad h2,
+.content-pad-right h2,
+.content-pad-left h2 {
+	font-size: 26px;
+}
+
+
 .document-frame {
 overflow: hidden;
 }
@@ -286,6 +293,7 @@ width: 28%;
 		display: block;
 		margin-top: 1em;
 		margin-bottom: .5em;
+		overflow: hidden;
 	}
 	
 	.search-results-nav ul,
