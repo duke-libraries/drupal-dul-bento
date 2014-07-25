@@ -159,6 +159,10 @@ border-bottom: 1px dotted #ddd;
 padding-bottom: 10px;
 }
 
+h3.resultTitle {
+	margin: 1em 0 .5em 0;
+}
+
 .document-frame {
 overflow: hidden;
 padding-bottom: .5em;
