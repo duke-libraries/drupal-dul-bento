@@ -402,11 +402,11 @@ if ($theSearch != "") {
 							
 							if (isset($theISBN)) {
 							
-								echo ', ISBN: ' . $theISBN;
+								echo ', <strong>ISBN:</strong> ' . $theISBN;
 							
 							} else if (isset($theUPC)) {
 							
-								echo ', UPC: ' . $theUPC;
+								echo ', <strong>UPC:</strong> ' . $theUPC;
 							
 							}
 
