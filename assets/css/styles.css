@@ -161,6 +161,7 @@ padding-bottom: 10px;
 
 .document-frame {
 overflow: hidden;
+padding-bottom: .5em;
 }
 
 .document-summary {
