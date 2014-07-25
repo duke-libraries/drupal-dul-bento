@@ -154,6 +154,10 @@ margin-bottom: 10px !important;
 	font-size: 28px;
 }
 
+.muted {
+border-bottom: 1px dotted #ddd;
+padding-bottom: 10px;
+}
 
 .document-frame {
 overflow: hidden;
