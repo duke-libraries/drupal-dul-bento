@@ -48,6 +48,8 @@ if ($theSearch != "") {
 
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
+				$Imprint = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Imprint/item');
+				$Publisher = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Publisher/item');
 				$ISBN = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Syndetics-ISBN/item');
 				$UPC = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/UPC/item');
 				$author = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Author/item');
@@ -163,6 +165,15 @@ if ($theSearch != "") {
 					
 				}
 				
+				// Imprint
+				if (!empty ($Imprint)) {
+					$theImprint = (string) $Imprint[0];
+				}
+				
+				// Publisher
+				if (!empty ($Publisher)) {
+					$thePublisher = (string) $Publisher[0];
+				}
 				
 				// UPC
 				if (!empty ($UPC)) {
@@ -349,9 +360,17 @@ if ($theSearch != "") {
 						// PUBLISHER
 						echo '<div class="publisher">';
 					
-							if (isset($thePublished)) {
-								echo $thePublished . ', ';
-							}
+							if (isset($theImprint)) {
+								echo $theImprint;
+							} else {
+							
+								if (isset($thePublisher)) {
+									echo $thePublisher;
+								}
+								
+								if (isset($thePublished)) {
+									echo ', ' . $thePublished;
+								}
 
 							if (isset($theISBN)) {
 								echo '<strong>ISBN </strong>' . $theISBN . ', ';
@@ -362,7 +381,36 @@ if ($theSearch != "") {
 							}
 					
 						echo '</div>';
-				
+						
+						
+						// Format and ISBN/ISSN/UPC
+						echo '<div class="isbn">';
+						
+							if (!empty ($arrHoldings)) {
+						
+								$holdingsCount = count($arrHoldings);
+								$firstHolding = array_shift($arrHoldings);
+								
+								$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
+								
+								echo '<span class="item-type">' . $firstHolding['item-type'] . '</span>'; 
+								
+							}
+							
+							if (isset($theISBN)) {
+							
+								echo ', ISBN: ' . $theISBN;
+							
+							} else if (isset($theUPC)) {
+							
+								echo ', UPC: ' . $theUPC;
+							
+							}
+
+						
+						echo '</div>';
+						
+						
 						// HOLDINGS
 						if (!empty ($arrHoldings)) {
 					
@@ -372,7 +420,7 @@ if ($theSearch != "") {
 							echo '<div class="holdings">';
 							
 					
-							$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
+							//$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
 					
 							// render the raw status
 							$holdingString  .= '<span class="available-status" style="display:none">' . $firstHolding['status'] . '</span>, ';
@@ -380,12 +428,17 @@ if ($theSearch != "") {
 							$holdingString .= '<span class="library">' . $firstHolding['library'] . '</span>';
 
 
-							echo sprintf("<div itemtype=\"%s\" callno=\"%s\" library=\"%s\" itemid=\"%s\">%s</div>", 
-								$firstHolding['item-type'],
-								$firstHolding['call-number'],
+							echo sprintf("<div library=\"%s\" callno=\"%s\">%s</div>", 
 								$firstHolding['library'],
-								$firstHolding['item-id'],
+								$firstHolding['call-number'],
 								$holdingString);
+								
+							//echo sprintf("<div itemtype=\"%s\" callno=\"%s\" library=\"%s\" itemid=\"%s\">%s</div>", 
+								//$firstHolding['item-type'],
+								//$firstHolding['call-number'],
+								//$firstHolding['library'],
+								//$firstHolding['item-id'],
+								//$holdingString);
 						
 							$holdingsCount = count($arrHoldings);
 							if ($holdingsCount) {
@@ -406,6 +459,10 @@ if ($theSearch != "") {
 				unset($theTitle);
 				unset($ID);
 				unset($theID);
+				unset($Imprint);
+				unset($theImprint);
+				unset($Publisher);
+				unset($thePublisher);
 				unset($ISBN);
 				unset($theISBN);
 				unset($UPC);
