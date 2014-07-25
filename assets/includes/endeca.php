@@ -426,7 +426,7 @@ if ($theSearch != "") {
 							//$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
 					
 							// render the raw status
-							$holdingString  .= '<span class="available-status" style="display:none">' . $firstHolding['status'] . '</span>, ';
+							$holdingString  .= '<span class="available-status">' . $firstHolding['status'] . '</span>, '; // style="display:none"
 							$holdingString  .= '<span class="call-number" style="display:none"></span>';
 							$holdingString .= '<span class="library">' . $firstHolding['library'] . '</span>';
 
