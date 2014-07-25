@@ -362,7 +362,8 @@ if ($theSearch != "") {
 					
 							if (isset($theImprint)) {
 								echo $theImprint;
-							} else {
+							} 
+							else {
 							
 								if (isset($thePublisher)) {
 									echo $thePublisher;
@@ -371,6 +372,8 @@ if ($theSearch != "") {
 								if (isset($thePublished)) {
 									echo ', ' . $thePublished;
 								}
+								
+							}
 
 							if (isset($theISBN)) {
 								echo '<strong>ISBN </strong>' . $theISBN . ', ';
