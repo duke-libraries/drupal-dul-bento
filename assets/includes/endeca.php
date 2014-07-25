@@ -311,32 +311,12 @@ if ($theSearch != "") {
 					
 									echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
 					
-								} //else {
-					
-									//echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . //$otherAuthors1 . '</a>';
-								//}
+								}
 				
 							}	
 				
-							//if (isset($otherAuthors2)) {
-								//echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors2 . '%22">' . //$otherAuthors2 . '</a>';
-					
-							//}
-				
-							//if (isset($otherAuthors3)) {
-								//echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors3 . '%22">' . //$otherAuthors3 . '</a>';
-					
-							//}
-				
-							//if (isset($otherAuthors4)) {
-								//echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors4 . '%22">' . //$otherAuthors4 . '</a>';
-					
-							//}
-				
-							//if (isset($otherAuthors5)) {
-								//echo ' and <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors5 . '%22">' . //$otherAuthors5 . '</a>';
-					
-							//}
+							// MTD: removed other authors code on 7/25
+							
 					
 						}
 				
@@ -351,9 +331,7 @@ if ($theSearch != "") {
 							}
 					
 						}
-				
-				
-					
+
 						echo '</div>';
 				
 				
@@ -361,9 +339,10 @@ if ($theSearch != "") {
 						echo '<div class="publisher">';
 					
 							if (isset($theImprint)) {
+								
 								echo $theImprint;
-							} 
-							else {
+								
+							} else {
 							
 								if (isset($thePublisher)) {
 									echo $thePublisher;
@@ -375,13 +354,6 @@ if ($theSearch != "") {
 								
 							}
 
-							//if (isset($theISBN)) {
-								//echo '<strong>ISBN </strong>' . $theISBN . ', ';
-							//}
-					
-							//if (isset($theMaterial)) {
-								//echo $theMaterial;
-							//}
 					
 						echo '</div>';
 						
@@ -389,14 +361,9 @@ if ($theSearch != "") {
 						// Format and ISBN/ISSN/UPC
 						echo '<div class="isbn">';
 						
-							if (!empty ($arrHoldings)) {
-						
-								$holdingsCount = count($arrHoldings);
-								$firstHolding = array_shift($arrHoldings);
-								
-								$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
-								
-								echo '<span class="item-type">' . $firstHolding['item-type'] . '</span>'; 
+							if (!empty ($theItemtype)) {
+					
+								echo '<span class="item-type">' . $theItemtype . '</span>'; 
 								
 							}
 							
@@ -422,8 +389,7 @@ if ($theSearch != "") {
 				
 							echo '<div class="holdings">';
 							
-					
-							//$holdingString = '<span class="item-type">' . $firstHolding['item-type'] . '</span>: ';
+							// $holdingString = '<span class="item-type" style="display:none;">' . $firstHolding['item-type'] . '</span>: ';
 					
 							// render the raw status
 							$holdingString  .= '<span class="available-status">' . $firstHolding['status'] . '</span>, '; // style="display:none"
