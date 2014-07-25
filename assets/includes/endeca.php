@@ -375,13 +375,13 @@ if ($theSearch != "") {
 								
 							}
 
-							if (isset($theISBN)) {
-								echo '<strong>ISBN </strong>' . $theISBN . ', ';
-							}
+							//if (isset($theISBN)) {
+								//echo '<strong>ISBN </strong>' . $theISBN . ', ';
+							//}
 					
-							if (isset($theMaterial)) {
-								echo $theMaterial;
-							}
+							//if (isset($theMaterial)) {
+								//echo $theMaterial;
+							//}
 					
 						echo '</div>';
 						
