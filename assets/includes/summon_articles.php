@@ -110,14 +110,25 @@ echo '<div class="results-block first" id="results-articles">';
 	
 				//Engineering & Technology, ISSN 1750-9637, 12/2012, Volume 7, Issue 12, pp. 102 - 103
 	
-				$thePubTitle = (string) $document["PublicationTitle"][0];
-				$thePubTitle = rtrim(htmlentities($thePubTitle, ENT_QUOTES, 'UTF-8'), '.');
-			
+				if (isset($document["PublicationTitle"][0])) {
+					$thePubTitle = (string) $document["PublicationTitle"][0];
+					$thePubTitle = rtrim(htmlentities($thePubTitle, ENT_QUOTES, 'UTF-8'), '.');
+				} else {
+					$thePubTitle = "";
+				}
+				
 				echo $thePubTitle;
 	
+				
 				if(isset($document["ISSN"][0])) {
-	
-					echo ', <strong>ISSN</strong> ' . $document["ISSN"][0];
+					
+					if ($thePubTitle != "") {
+					
+						echo ', ';
+					
+					}
+					
+					echo '<strong>ISSN</strong> ' . $document["ISSN"][0];
 		
 				}
 	
@@ -125,7 +136,13 @@ echo '<div class="results-block first" id="results-articles">';
 		
 					$theDate = $document["PublicationDate"][0];
 		
-					echo ', ' . date("m/Y", strtotime($theDate)); 
+					if(isset($document["ISSN"][0])) {
+					
+						echo ', ';
+					
+					}
+					
+					echo date("m/Y", strtotime($theDate)); 
 				}
 	
 				if(isset($document["Volume"][0])) {

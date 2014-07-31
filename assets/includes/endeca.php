@@ -192,7 +192,40 @@ if ($theSearch != "") {
 				// Item Type
 				if (!empty ($itemtype)) {
 					$theItemtype = (string) $itemtype[0];
+					$theItemtypeHolder = explode("|",$theItemtype);
+					$theItemtype = $theItemtypeHolder[0];
 				}
+				
+				
+				// Set Item Type Display
+					
+				$theItemtypeDisplay = ucwords(strtolower(str_replace('|', '', $theItemtype)));
+					
+					if ($theItemtypeDisplay == "Mfich") {
+						
+						$theItemtypeDisplay = "Microfiche";
+						
+					} elseif ($theItemtypeDisplay == "Itnet") {
+						
+						$theItemtypeDisplay = "Internet resource";
+						
+					} elseif ($theItemtypeDisplay == "Lprec") {
+						
+						$theItemtypeDisplay = "LP record";
+						
+					} elseif ($theItemtypeDisplay == "Cdrec") {
+						
+						$theItemtypeDisplay = "Audio CD";
+						
+					} elseif ($theItemtypeDisplay == "Dvd") {
+						
+						$theItemtypeDisplay = "Video DVD";
+						
+					} 
+					
+					
+
+					
 		
 				// OCLC
 				if (!empty ($OCLC)) {
@@ -220,22 +253,6 @@ if ($theSearch != "") {
 					if (isset($otherAuthors[0])) {
 					$otherAuthors1 = (string) $otherAuthors[0];
 						$otherAuthors1 = rtrim(htmlentities($otherAuthors1, ENT_QUOTES, 'UTF-8'), '.');
-					}
-					if (isset($otherAuthors[1])) {
-					$otherAuthors2 = (string) $otherAuthors[1];
-						$otherAuthors2 = rtrim(htmlentities($otherAuthors2, ENT_QUOTES, 'UTF-8'), '.');
-					}
-					if (isset($otherAuthors[2])) {
-					$otherAuthors3 = (string) $otherAuthors[2];
-						$otherAuthors3 = rtrim(htmlentities($otherAuthors3, ENT_QUOTES, 'UTF-8'), '.');
-					}
-					if (isset($otherAuthors[3])) {
-					$otherAuthors4 = (string) $otherAuthors[3];
-						$otherAuthors4 = rtrim(htmlentities($otherAuthors4, ENT_QUOTES, 'UTF-8'), '.');
-					}
-					if (isset($otherAuthors[4])) {
-					$otherAuthors5 = (string) $otherAuthors[4];
-						$otherAuthors5 = rtrim(htmlentities($otherAuthors5, ENT_QUOTES, 'UTF-8'), '.');
 					}
 				}
 		
@@ -363,7 +380,7 @@ if ($theSearch != "") {
 						
 							if (!empty ($theItemtype)) {
 					
-								echo '<span class="item-type">' . $theItemtype . '</span>'; 
+								echo '<span class="item-type">' . $theItemtypeDisplay . '</span>'; 
 								
 							}
 							
@@ -375,7 +392,13 @@ if ($theSearch != "") {
 							
 								echo ', <strong>UPC:</strong> ' . $theUPC;
 							
+							} else if ($theOCLC != "") {
+							
+								echo ', <strong>OCLC:</strong> ' . $theOCLC;
+								
 							}
+							
+							
 
 						
 						echo '</div>';
@@ -392,14 +415,20 @@ if ($theSearch != "") {
 							// $holdingString = '<span class="item-type" style="display:none;">' . $firstHolding['item-type'] . '</span>: ';
 					
 							// render the raw status
-							$holdingString  .= '<span class="available-status">' . $firstHolding['status'] . '</span>, '; // style="display:none"
-							$holdingString  .= '<span class="call-number" style="display:none"></span>';
-							$holdingString .= '<span class="library">' . $firstHolding['library'] . '</span>';
+							
+							$holdingString = '<span class="library">' . $firstHolding['library'] . '</span>';
+							
+							$holdingString .= ', ';
+							
+							$holdingString .= '<span class="call-number" style="display:none"></span>';
+								
+							$holdingString .= '<span class="available-status">' . $firstHolding['status'] . '</span>'; // style="display:none"
 
 
-							echo sprintf("<div library=\"%s\" callno=\"%s\">%s</div>", 
+							echo sprintf("<div library=\"%s\" callno=\"%s\" itemid=\"%s\">%s</div>", 
 								$firstHolding['library'],
 								$firstHolding['call-number'],
+								$firstHolding['item-id'],
 								$holdingString);
 								
 							//echo sprintf("<div itemtype=\"%s\" callno=\"%s\" library=\"%s\" itemid=\"%s\">%s</div>", 
@@ -440,9 +469,6 @@ if ($theSearch != "") {
 				unset($theAuthor);
 				unset($otherAuthors);
 				unset($otherAuthors1);
-				unset($otherAuthors2);
-				unset($otherAuthors3);
-				unset($otherAuthors4);
 				unset($itemtype);
 				unset($theItemtype);
 				unset($OCLC);
