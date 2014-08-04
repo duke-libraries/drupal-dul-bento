@@ -194,12 +194,10 @@ if ($theSearch != "") {
 					$theItemtype = (string) $itemtype[0];
 					$theItemtypeHolder = explode("|",$theItemtype);
 					$theItemtype = $theItemtypeHolder[0];
-				}
-				
-				
-				// Set Item Type Display
 					
-				$theItemtypeDisplay = ucwords(strtolower(str_replace('|', '', $theItemtype)));
+					// Set Item Type Display
+					
+					$theItemtypeDisplay = ucwords(strtolower(str_replace('|', '', $theItemtype)));
 					
 					if ($theItemtypeDisplay == "Mfich") {
 						
@@ -221,7 +219,16 @@ if ($theSearch != "") {
 						
 						$theItemtypeDisplay = "Video DVD";
 						
+					} elseif ($theItemtypeDisplay == "Mss") {
+						
+						$theItemtypeDisplay = "Manuscript";
+						
 					} 
+					
+				}
+				
+				
+				
 					
 					
 

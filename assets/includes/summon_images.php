@@ -53,8 +53,8 @@ if($queryTerms != "") {
 				// truncate long titles
 				$theTitle = $document["Title"][0];
 	
-				if (strlen($theTitle) > 110) {
-					$theTitle = wordwrap($theTitle, 110);
+				if (strlen($theTitle) > 50) {
+					$theTitle = wordwrap($theTitle, 50);
 					$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
 					$theTitle = $theTitle . ' (&hellip;)';
 				}
@@ -62,7 +62,7 @@ if($queryTerms != "") {
 			
 				//if(isset($document["thumbnail_s"][0])) {
 		
-					echo '<div class="document-frame">';
+					echo '<div class="document-frame images">';
 					
 						if(isset($document["thumbnail_s"][0])) {
 						

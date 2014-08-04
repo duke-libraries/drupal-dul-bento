@@ -90,7 +90,15 @@ if($queryTerms != "") {
 					echo '<div class="authors">';
 					$authorList = formatAuthor($document);
 					if($authorList != "") {
-						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22">' . $authorList . '</a>';
+						
+						// truncate long author lists
+						if (strlen($authorList) > 125) {
+							$authorList = wordwrap($authorList, 125);
+							$authorList = substr($authorList, 0, strpos($authorList, "\n"));
+							$authorListDisplay = $authorList . ' (&hellip;)';
+						}
+						
+						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22">' . $authorListDisplay . '</a>';
 					}
 		
 					echo '</div>';

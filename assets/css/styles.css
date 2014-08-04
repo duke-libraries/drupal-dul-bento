@@ -130,9 +130,6 @@ margin-bottom: 10px !important;
 }
 
 
-
-
-
 /* *********** */
 /* More styles */
 
@@ -202,16 +199,22 @@ margin: 0 15px 15px 0;
 }
 
 
-.personResult .thumbnail {
+.personResult .thumbnail,
+.images .thumbnail {
 float: none;
 margin: 0 0 5px 0;
 width: 95%;	
 }
 
-.personResult {
+.personResult,
+.images {
 float: left;
 margin: 0 2.5% 0 2.5%;
 width: 28%;
+}
+
+.images {
+	overflow: visible;
 }
 
 .personResult .title {
@@ -221,8 +224,14 @@ width: 28%;
 	line-height: 1.1;
 }
 
-.result-title {
-	padding-top: 15px;
+.personResult .name {
+	line-height: 1.2;
+}
+
+.images .result-title {
+	padding-top: 0;
+	text-align: center;
+	line-height: 1.2;
 }
 
 .authors {
