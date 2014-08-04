@@ -8,7 +8,8 @@
 .gsc-cursor-box,
 .gsc-url-bottom,
 /*#cse_libguides .gs-snippet,*/
-.gsc-webResult:nth-last-child(n+4) {
+/*.gsc-webResult:nth-last-child(n+4)*/
+.gsc-webResult:nth-child(n+3){
 	display: none !important;
 }
 
