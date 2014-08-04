@@ -28,7 +28,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 
 	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&keep_r=true&articleScope=s.q&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
-			<p class="smaller muted">From journals, newspapers &amp; magazines</p>
+			<p class="smaller muted">From journals and magazines</p>
 			<div class="results-panel">';
 
 
