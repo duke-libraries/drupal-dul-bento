@@ -194,6 +194,19 @@ echo '<div class="results-block first" id="results-articles">';
 					}
 	
 				echo '</div>';
+				
+				
+				
+			// clear all variables
+				unset($theTitle);
+				unset($authorList);
+				unset($authorListDisplay);
+				unset($thePubTitle);
+				unset($theDate);
+				unset($startPage);
+				unset($endPage);
+				unset($contentType);
+	
 	
 	
 			echo '</div>';

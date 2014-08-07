@@ -24,6 +24,7 @@ function hmacsha1($key,$data) {
 function formatAuthor($document) {
 	
 	$authorList = "";
+	
 	$i = 1;
 	$t = 1;
 	if (isset($document["Author"])) {
@@ -39,17 +40,23 @@ function formatAuthor($document) {
 				elseif(($t - 1) > $i) $authorList .= "; ";
 				$i++;
 			}
+			
 		}
 	
 		elseif(isset($document[CorporateAuthor][0])) {
+			
 			$authorList = $document[CorporateAuthor][0]; // for Government documents, etc.
+		
 		}
 	
-		else $authorList = NULL;
-	
-		return $authorList;
 		
+	} else {
+	
+		echo "no author!";
+	
 	}
+		
+	return $authorList;
 
 	
 }

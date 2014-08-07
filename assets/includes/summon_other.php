@@ -3,7 +3,7 @@
 require_once("functions.php");
 
 //$queryTerms = 'science';
-$pageSize = 2;
+$pageSize = 5;
 $facetParameterSetting = "setHoldingsOnly(false)";
 
 
@@ -59,6 +59,9 @@ if($queryTerms != "") {
 		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
 		
 		$theData = json_decode($data, TRUE);
+		
+		// debug
+		// print_r($theData);
 
 	
 		if ($theData['recordCount'] == "0") {
@@ -88,7 +91,9 @@ if($queryTerms != "") {
 					
 					// AUTHORS
 					echo '<div class="authors">';
+					
 					$authorList = formatAuthor($document);
+					
 					if($authorList != "") {
 						
 						// truncate long author lists
@@ -96,6 +101,12 @@ if($queryTerms != "") {
 							$authorList = wordwrap($authorList, 125);
 							$authorList = substr($authorList, 0, strpos($authorList, "\n"));
 							$authorListDisplay = $authorList . ' (&hellip;)';
+						}
+						
+						else {
+							
+							$authorListDisplay = $authorList;
+							
 						}
 						
 						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22">' . $authorListDisplay . '</a>';
@@ -195,7 +206,18 @@ if($queryTerms != "") {
 		
 					echo '</div>';
 		
-		
+				
+				// clear all variables
+				unset($theTitle);
+				unset($authorList);
+				unset($authorListDisplay);
+				unset($thePubTitle);
+				unset($theDate);
+				unset($startPage);
+				unset($endPage);
+				unset($contentType);
+				
+				
 				echo '</div>';
 	
 			echo '</div>';

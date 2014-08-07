@@ -99,6 +99,12 @@ if($queryTerms != "") {
 					echo '</div>';
 
 				//}
+				
+				
+				// clear all variables
+				unset($theTitle);
+				unset($imagePath);
+				unset($imageSize);
 		
 			}
 		
