@@ -52,7 +52,7 @@ function formatAuthor($document) {
 		
 	} else {
 	
-		echo "no author!";
+		// echo "no author!";
 	
 	}
 		
