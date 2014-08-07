@@ -3,7 +3,7 @@
 require_once("functions.php");
 
 //$queryTerms = 'science';
-$pageSize = 5;
+$pageSize = 2;
 $facetParameterSetting = "setHoldingsOnly(false)";
 
 
