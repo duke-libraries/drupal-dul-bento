@@ -27,6 +27,7 @@ function formatAuthor($document) {
 	
 	$i = 1;
 	$t = 1;
+	
 	if (isset($document["Author"])) {
 		
 		$t = count($document["Author"]);
@@ -42,19 +43,25 @@ function formatAuthor($document) {
 			}
 			
 		}
-	
-		elseif(isset($document[CorporateAuthor][0])) {
-			
-			$authorList = $document[CorporateAuthor][0]; // for Government documents, etc.
 		
-		}
-	
-		
-	} else {
-	
-		// echo "no author!";
-	
 	}
+	
+	if (isset($document["CorporateAuthor"])) {
+			
+		if (!isset($document["Author"])) {
+			
+			$authorList = $document["CorporateAuthor"][0];
+				
+		} 
+		
+		else {
+			
+			$authorList .= "; and " . $document["CorporateAuthor"][0];
+			
+		}
+		
+	}
+	
 		
 	return $authorList;
 
