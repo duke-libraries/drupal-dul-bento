@@ -91,6 +91,7 @@ if ($theSearch != "") {
 				
 				if (isset($Statuses[0])) {
 					$tmpStatus = explode('|', (string) $Statuses[0]);
+					$primaryStatus = $tmpStatus[0];
 				}
 				
 				
@@ -140,6 +141,7 @@ if ($theSearch != "") {
 				} else {
 					$theID = "";
 				}
+				
 				
 				
 				
@@ -413,45 +415,129 @@ if ($theSearch != "") {
 						
 						// HOLDINGS
 						if (!empty ($arrHoldings)) {
-					
+						
+						echo '<div class="holdings-wrapper">';
+						
 							$holdingsCount = count($arrHoldings);
 							$firstHolding = array_shift($arrHoldings);
 				
 							echo '<div class="holdings">';
 							
-							// $holdingString = '<span class="item-type" style="display:none;">' . $firstHolding['item-type'] . '</span>: ';
-					
-							// render the raw status
+							// Replace Library Names
+								if ($firstHolding['library'] == "PERKN") {
+									$libraryName = "Perkins/Bostock Library";
+								}
 							
-							$holdingString = '<span class="library">' . $firstHolding['library'] . '</span>';
+								if ($firstHolding['library'] == "SCL") {
+									$libraryName = "Rubenstein Library";
+								}
 							
-							$holdingString .= ', ';
+								if ($firstHolding['library'] == "LILLY") {
+									$libraryName = "Lilly Library";
+								}
 							
-							$holdingString .= '<span class="call-number" style="display:none"></span>';
+								if ($firstHolding['library'] == "LAW") {
+									$libraryName = "Goodson Law Library";
+								}
+							
+								if ($firstHolding['library'] == "ARCH") {
+									$libraryName = "University Archives";
+								}
+							
+								if ($firstHolding['library'] == "MUSIC") {
+									$libraryName = "Music Library";
+								}
 								
-							$holdingString .= '<span class="available-status">' . $firstHolding['status'] . '</span>'; // style="display:none"
-
-
-							echo sprintf("<div library=\"%s\" callno=\"%s\" itemid=\"%s\">%s</div>", 
-								$firstHolding['library'],
-								$firstHolding['call-number'],
-								$firstHolding['item-id'],
-								$holdingString);
+								if ($firstHolding['library'] == "FORD") {
+									$libraryName = "Ford Library";
+								}
 								
-							//echo sprintf("<div itemtype=\"%s\" callno=\"%s\" library=\"%s\" itemid=\"%s\">%s</div>", 
-								//$firstHolding['item-type'],
-								//$firstHolding['call-number'],
-								//$firstHolding['library'],
-								//$firstHolding['item-id'],
-								//$holdingString);
-						
-							$holdingsCount = count($arrHoldings);
-							if ($holdingsCount) {
-								echo '<div class="toggle" style="cursor: pointer;"><span class="availArrow">.</span><span class="availMore"> Show ' . $holdingsCount . ' more...</span></div>';
+								if ($firstHolding['library'] == "DIV") {
+									$libraryName = "Divinity School Library";
+								}
+								
+								if ($firstHolding['library'] == "DIV") {
+									$libraryName = "Divinity School Library";
+								}
+								
+								if ($firstHolding['library'] == "MCL") {
+									$libraryName = "Medical Center Library";
+								}
+								
+								if ($firstHolding['library'] == "LSC") {
+									$libraryName = "Library Service Center";
+								}
+								
+								if ($firstHolding['library'] == "MARIN") {
+									$libraryName = "Marine Lab Library";
+								}
+								
+								if ($firstHolding['library'] == "BES") {
+									$libraryName = "Biol-Env. Sciences Library";
+								}
+								
+								if ($firstHolding['library'] == "DOCS") {
+									$libraryName = "Perkins Public Documents/Maps";
+								}
+								
+								if ($firstHolding['library'] == "VESIC") {
+									$libraryName = "Perkins/Bostock Library {V}";
+								}
+
+							
+							if (isset($libraryName)) {
+								echo '<span class="library">' . $libraryName . '</span>' . ', ';
 							}
-							echo '</div>';		// holdings
-					
+
+							echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
+							
+							
+							if (strpos($firstHolding['status'],'Available') !== false) {
+							
+								echo '<span class="available-status green">' . $firstHolding['status'] . '</span>';
+							
+							} else {
+							
+								echo '<span class="available-status red">' . $firstHolding['status'] . '</span>';
+							
+							}
+							
+							
+							
+							echo '</div>';
+							
+							//echo 'firstHolding-status: ';
+							//echo $firstHolding['status'];
+							//echo '<br />';
+							
+							
+							$holdingsCount = count($arrHoldings);
+							
+							// Extra Holdings
+							if ($holdingsCount) {
+								
+								
+								if ($holdingsCount == 1) {
+									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">show more &raquo;</a></div>';
+								} else {
+									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">show more &raquo;</a></div>';
+								}
+								
+								//print_r($arrHoldings);
+								
+								// extra holdings 
+									
+								
+
+							
+							}
+							
+						//print_r($Statuses);
+						
+						echo '</div>';
+						
 						}
+						// End holdings
 				
 				
 		
@@ -493,6 +579,15 @@ if ($theSearch != "") {
 				unset($SOR);
 				unset($theSOR);
 				unset($Statuses);
+				unset($primaryStatus);
+				
+				unset($holdingsCount);
+				unset($holdingString);
+				unset($x);
+				
+				unset ($libraryName);
+				
+				
 				
 				$i ++;
 
