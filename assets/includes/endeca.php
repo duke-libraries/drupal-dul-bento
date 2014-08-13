@@ -419,7 +419,8 @@ if ($theSearch != "") {
 						echo '<div class="holdings-wrapper">';
 						
 							$holdingsCount = count($arrHoldings);
-							$firstHolding = array_shift($arrHoldings);
+							//$firstHolding = array_shift($arrHoldings); // first item in array
+							$firstHolding = array_pop($arrHoldings); //last item in array
 				
 							echo '<div class="holdings">';
 							
@@ -490,6 +491,11 @@ if ($theSearch != "") {
 							}
 
 							echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
+							
+							// change status where appropriate
+							if ($firstHolding['status'] == "Ask at Circulation Desk") {
+								$firstHolding['status'] = "Available";
+							}
 							
 							
 							if (strpos($firstHolding['status'],'Available') !== false) {
