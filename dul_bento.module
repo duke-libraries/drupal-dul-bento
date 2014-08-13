@@ -69,7 +69,7 @@ function dul_bento_search_results() {
 	drupal_add_js('https://www.google.com/jsapi', 'external');
 	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/google_search.js', array('preprocess' => FALSE));
 	
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/circstatus.js', array('preprocess' => FALSE));
+	
 	
 	$page['results_content'] = array (
 		'#theme' => 'the_results',
