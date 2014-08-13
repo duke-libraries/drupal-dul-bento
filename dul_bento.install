@@ -6,6 +6,9 @@
  * Define the needed module-based variables here 
  * when the module is installed.
  */
+
+/*
 function dul_bento_install() {
 	variable_set('dul_bento.circstatus_url_prefix', 'http://library.duke.edu/librarycatalog/circstatus/');
 }
+*/

@@ -5,6 +5,3 @@ core = 7.x
 version = 1.0-alpha
 configure = admin/config/bento
 
-; javascript files
-scripts[] = assets/js/circstatus.js
-
