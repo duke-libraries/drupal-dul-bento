@@ -30,7 +30,7 @@ line-height: 1.1;
 }
 
 .gsc-resultsbox-visible:after {
-	content: "Powered by " url('https://www.google.com/uds/css/small-logo.png');
+	content: "Powered by " url('../images/google-small-logo.png');
 	vertical-align: top;
 	font-size: 11px;
 	text-align: right;
