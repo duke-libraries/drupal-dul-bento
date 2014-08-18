@@ -34,37 +34,39 @@ if($queryTerms != "") {
 	
 	// 'Old' staff query technique
 	
-	//$query = db_select('directory_person', 'p')
-	//	->fields('p');        // all columns in the 'directory_person table
-	//$query->join('directory_orgunit_members', 'm', 'p.id = m.person_id');
-	//$query->join('directory_orgunit', 'o', 'o.id = m.orgunit_id');
-	//$query->addField('o', 'name', 'dept_name');
+	$query = db_select('directory_person', 'p')
+		->fields('p');        // all columns in the 'directory_person table
+	$query->join('directory_orgunit_members', 'm', 'p.id = m.person_id');
+	$query->join('directory_orgunit', 'o', 'o.id = m.orgunit_id');
+	$query->addField('o', 'name', 'dept_name');
 	
-	//$query->condition(
-	//	db_or()	->condition('p.first_name', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.last_name', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.nickname', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.display_name', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.preferred_title', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.profile', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('p.keywords', '%' . $theSearch . '%', 'LIKE')
-	//			->condition('o.name', '%' . $theSearch . '%', 'LIKE')
-	//	);
-	// *commented out before * //$query->distinct(); // make distinct
-	// *commented out before * //$query->orderBy('p.id', 'ASC');
-	//$query->orderBy('p.last_name', 'ASC');
-	//$query->orderBy('p.first_name', 'ASC');
-	//$query->range(0,10); // limit to 10 results
+	$query->condition(
+		db_or()	->condition('p.first_name', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.last_name', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.nickname', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.display_name', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.preferred_title', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.profile', '%' . $theSearch . '%', 'LIKE')
+				->condition('p.keywords', '%' . $theSearch . '%', 'LIKE')
+				->condition('o.name', '%' . $theSearch . '%', 'LIKE')
+		);
+	//$query->distinct(); // make distinct
+	//$query->orderBy('p.id', 'ASC');
+	$query->orderBy('p.last_name', 'ASC');
+	$query->orderBy('p.first_name', 'ASC');
+	$query->range(0,10); // limit to 10 results
 
-	//$staff_persons = $query->execute();
+	$staff_persons = $query->execute();
 	
 	
-	// 'New' staff query technique
-	// simple 'or' search -- ideally we should index the table and assign relevancy multipliers, etc.
-	$staff_persons = db_query("SELECT p.* FROM {directory_person} p INNER JOIN {directory_orgunit_members} m ON p.id = m.person_id INNER JOIN {directory_orgunit} o ON o.id = m.orgunit_id WHERE MATCH (p.first_name, p.last_name, p.nickname, p.display_name, p.preferred_title, p.profile, p.keywords, o.name) AGAINST ('" . $theSearch . "' IN BOOLEAN MODE) ORDER BY p.last_name ASC, p.first_name ASC LIMIT 10");
-	
-	
-	
+	if ($staff_persons->rowCount() == 0) {
+
+		// 'New' staff query technique
+		// simple 'or' search -- ideally we should index the table and assign relevancy multipliers, etc.
+		$staff_persons = db_query("SELECT p.* FROM {directory_person} p INNER JOIN {directory_orgunit_members} m ON p.id = m.person_id INNER JOIN {directory_orgunit} o ON o.id = m.orgunit_id WHERE MATCH (p.first_name, p.last_name, p.nickname, p.display_name, p.preferred_title, p.profile, p.keywords, o.name) AGAINST ('" . $theSearch . "' IN BOOLEAN MODE) ORDER BY p.last_name ASC, p.first_name ASC LIMIT 10");
+		
+		
+	}
 
 
 	if ($staff_persons->rowCount() == 0) {
