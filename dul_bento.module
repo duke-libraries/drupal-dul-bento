@@ -53,23 +53,12 @@ function dul_bento_search_results() {
 	
 	$page = array();
 
-	//drupal_add_js(
-		//'http://library.duke.edu/static/librarycatalog/js/dukeStatusMappingRules.js', 
-		//array('type' => 'external', 'weight' => -100)
-		//);
-	//drupal_add_js(array('circstatus_url_prefix' => variable_get('dul_bento.circstatus_url_prefix')), 'setting');
+	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/combined.min.css' , array('preprocess' => FALSE));
 
-	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/styles.css' , array('preprocess' => FALSE));
-	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/DUKE_autosuggest.css' , array('preprocess' => FALSE));
-	
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/jquery.trln.autocomplete.js', array('preprocess' => FALSE));
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/jquery.trln.autosuggest.js', array('preprocess' => FALSE));
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/trln_init.js', array('preprocess' => FALSE));
-	
-	//drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/circstatus.js', array('preprocess' => FALSE));
+	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/combined.min.js', array('preprocess' => FALSE));
 	
 	drupal_add_js('https://www.google.com/jsapi', 'external');
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/google_search.js', array('preprocess' => FALSE));
+	//drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/google_search.js', array('preprocess' => TRUE));
 	
 	
 	
