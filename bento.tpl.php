@@ -5,6 +5,8 @@ settype($results, "string");
 settype($ctype, "string"); 
 extract($_GET, EXTR_IF_EXISTS);
 
+$bento_action = $GLOBALS['base_path'] . variable_get('dul_bento.results_url', '');
+
 if(isset($Ntt))
 {
 	$queryTerms = stripslashes($Ntt);
@@ -24,7 +26,7 @@ else $contentType = NULL;
 		<div class="search-resources-tabs bento">
 			<div class="tab-content">
 				<div id="articles" class="tab-pane active">			
-					<form class="form-inline" action="bento">
+					<form class="form-inline" action="<?php echo $bento_action; ?>">
 
 						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
 
