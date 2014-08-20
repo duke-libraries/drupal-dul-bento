@@ -36,7 +36,7 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 		
-				<h2>Books &amp; Media <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;">See&nbsp;All&nbsp;&raquo;</a></h2>
+				<h2>Books &amp; Media <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMEdia\', \'SeeAll\']);"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 		
 				<p class="smaller muted">Books, music, movies &amp; more</p>	
 		
@@ -44,7 +44,11 @@ if ($theSearch != "") {
 
 		if($searchResults != "0" AND $theSearch != "") {
 			
+			$resultCount = 0; // for GA event tracking
+			
 			while ($i < $maxResults):
+			
+				$resultCount = $i;
 
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
@@ -229,12 +233,7 @@ if ($theSearch != "") {
 					
 				}
 				
-				
-				
-					
-					
 
-					
 		
 				// OCLC
 				if (!empty ($OCLC)) {
@@ -276,7 +275,7 @@ if ($theSearch != "") {
 		
 					echo '<div class="title">';
 						echo '<div class="text">';
-							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">' . $theTitle . '</a></h3>';
+							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemTitle' . $resultCount . '\']);">' . $theTitle . '</a></h3>';
 						echo '</div>';
 					echo '</div>';
 				
@@ -292,7 +291,7 @@ if ($theSearch != "") {
 						if ($imageSize[0] != '1') {
 			
 							echo '<div class="thumbnail">';
-								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemThumbnail' . $resultCount . '\']);"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 							echo '</div>';
 							
 						}
@@ -310,7 +309,7 @@ if ($theSearch != "") {
 					if ($imageSize[0] != '1') {
 			
 						echo '<div class="thumbnail">';
-							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemThumbnail' . $resultCount . '\']);"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 						echo '</div>';
 							
 					}
@@ -324,7 +323,7 @@ if ($theSearch != "") {
 						echo '<div class="authors">';
 				
 						if ($theAuthor != "NONE") {
-							echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22">' . $theAuthor . '</a>';
+							echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemAuthor' . $resultCount . '\']);">' . $theAuthor . '</a>';
 				
 						}
 				
@@ -335,7 +334,7 @@ if ($theSearch != "") {
 				
 								if ($theAuthor == "NONE") {
 					
-									echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22">' . $otherAuthors1 . '</a>';
+									echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemAuthor' . $resultCount . '\']);">' . $otherAuthors1 . '</a>';
 					
 								}
 				
@@ -524,9 +523,9 @@ if ($theSearch != "") {
 								
 								
 								if ($holdingsCount == 1) {
-									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemMoreHoldings' . $resultCount . '\']);">show more &raquo;</a></div>';
 								} else {
-									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'itemMoreHoldings' . $resultCount . '\']);">show more &raquo;</a></div>';
 								}
 								
 								//print_r($arrHoldings);
@@ -598,6 +597,8 @@ if ($theSearch != "") {
 				$i ++;
 
 			endwhile;
+			
+			unset($resultCount);
 
 		}
 
@@ -605,7 +606,7 @@ if ($theSearch != "") {
 	
 			$searchWarning = "No Books &amp; More results found for <em>" . $queryTerms . "</em>.";
 	
-			$searchWarning .= '<br/><br/><a href="http://search.library.duke.edu/">Try another search &raquo;</a>';
+			$searchWarning .= '<br/><br/><a href="http://search.library.duke.edu/" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
 	
 			echo $searchWarning;
 		}
