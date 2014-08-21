@@ -331,12 +331,12 @@ width: 28%;
 }
 
 #articles .inline {
-	margin-bottom: 1.5em;
+	margin-bottom: 1.5em !important;
 }
 
 #articles .inline li a {
 
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #ccc !important;
 }
 
 
