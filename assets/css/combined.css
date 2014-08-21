@@ -335,11 +335,11 @@ width: 28%;
 	width: 75%;
 }
 
-#articles .inline {
+.discovery .small {
 	margin-bottom: 1.5em !important;
 }
 
-#articles .inline li a {
+.discovery .inline li a {
 
 	border-bottom: 1px dotted #ccc !important;
 }
