@@ -29,7 +29,12 @@ else $contentType = NULL;
 					<form class="form-inline" action="<?php echo $bento_action; ?>">
 
 						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
-
+						
+						
+						<ul class="inline small">
+							<li><a href="http://blogs.library.duke.edu/blog/2014/08/21/bento-searching/" title="Learn more about this search results page" onclick="_gaq.push(['_trackEvent', 'BentoResults', 'MainSearch', 'About']);">About</a></li>
+						</ul>
+						
 					</form>
 			
 				</div>
