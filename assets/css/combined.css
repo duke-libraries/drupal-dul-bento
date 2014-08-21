@@ -1,3 +1,8 @@
+/* ++++++++++ */
+/* STYLES.CSS */
+/* ++++++++++ */
+
+
 /* Google CSE Overrides */
 
 .gsc-search-box,
@@ -330,6 +335,15 @@ width: 28%;
 	width: 75%;
 }
 
+#articles .inline {
+	margin-bottom: 1.5em;
+}
+
+#articles .inline li a {
+
+	border-bottom: 1px dotted #ccc;
+}
+
 
 
 @media (min-width: 980px) {
@@ -387,6 +401,11 @@ width: 28%;
 
 }
 
+
+
+/* ++++++++++++++++++++ */
+/* DUKE_autosuggest.CSS */
+/* ++++++++++++++++++++ */
 
 
 .ac_results {
