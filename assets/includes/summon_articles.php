@@ -45,10 +45,15 @@ echo '<div class="results-block first" id="results-articles">';
 	
 
 	if ($theData['recordCount'] == "0") {
-	
+		
+		echo '<div class="no-results">';
+		
 		echo "No Articles results found for <em>" . $queryTerms . "</em>.";
 	
 		echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
+		
+		echo '</div>';
+		
 
 	} else {
 		
@@ -219,8 +224,10 @@ echo '<div class="results-block first" id="results-articles">';
 	
 	
 				echo '</div>';
+				
 
 			echo '</div>';
+			
 	
 		}
 	
@@ -228,6 +235,21 @@ echo '<div class="results-block first" id="results-articles">';
 
 
 	echo '</div>';
+	
+	
+	// See all bottom link
+	
+	if ($theData['recordCount'] != "0") {
+		
+		echo '<div class="see-all">';
+			
+			echo '<a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'SeeAllBottom\']);">See All Results</a>';
+			
+		echo '</div>';
+			
+	}
+	
+	
 
 echo '</div>';
 

@@ -2,7 +2,6 @@
 /* STYLES.CSS */
 /* ++++++++++ */
 
-
 /* Google CSE Overrides */
 
 .gsc-search-box,
@@ -44,8 +43,6 @@ line-height: 1.1;
 	padding-top: 5px;
 	color: #A0A1A3;
 }
-
-
 
 .cse .gsc-control-cse, .gsc-control-cse {
 border: none !important
@@ -92,6 +89,11 @@ border: 1px solid #fff;
 	padding: 0 !important;
 	font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif !important;
 	font-size: 12px;
+}
+
+.gs-no-results-result {
+	font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif !important;
+	font-size: 14px;
 }
 
 .gs-result .gs-title,
@@ -344,7 +346,16 @@ width: 28%;
 	border-bottom: 1px dotted #ccc !important;
 }
 
+.see-all {
+	text-align: center;
+	margin-top: 5px;
+	padding-top:10px;
+	border-top: 1px dotted #ddd;
+}
 
+.no-results {
+	margin-top: 1.5em;
+}
 
 @media (min-width: 980px) {
 	
@@ -400,7 +411,6 @@ width: 28%;
 	
 
 }
-
 
 
 /* ++++++++++++++++++++ */

@@ -36,7 +36,7 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 		
-				<h2>Books &amp; Media <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMEdia\', \'SeeAll\']);"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
+				<h2>Books &amp; Media <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'SeeAll\']);"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 		
 				<p class="smaller muted">Books, music, movies &amp; more</p>	
 		
@@ -550,6 +550,8 @@ if ($theSearch != "") {
 
 				echo '</div>';
 				
+				
+				
 				// clear all variables
 				unset($title);
 				unset($theTitle);
@@ -603,15 +605,33 @@ if ($theSearch != "") {
 		}
 
 		else {
-	
+			
+			echo '<div class="no-results">';
+			
 			$searchWarning = "No Books &amp; More results found for <em>" . $queryTerms . "</em>.";
 	
 			$searchWarning .= '<br/><br/><a href="http://search.library.duke.edu/" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
 	
 			echo $searchWarning;
+			
+			echo '</div>';
+			
 		}
 
 		echo '</div>';
+		
+	
+		// See all bottom link
+		if($searchResults != "0" AND $theSearch != "") {
+			
+			echo '<div class="see-all">';
+				
+				echo '<a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=' . $theSearch . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'BooksMedia\', \'SeeAllBottom\']);">See All Results</a>';
+				
+			echo '</div>';
+		
+		}
+	
 
 	echo '</div>';
 

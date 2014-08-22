@@ -65,11 +65,15 @@ if($queryTerms != "") {
 
 	
 		if ($theData['recordCount'] == "0") {
-		
+			
+			echo '<div class="no-results">';
+			
 			echo "No Other Resources results found for <em>" . $queryTerms . "</em>.";
 			
 			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/search?utf8=%E2%9C%93&s.fvf%5B%5D=ContentType%2CNewspaper+Article%2Ct&s.fvf%5B%5D=ContentType%2CJournal+Article%2Ct&s.fvf%5B%5D=ContentType%2CBook+Review%2Ct&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Ct&s.fvf%5B%5D=ContentType%2CTrade+Publication+Article%2Ct&s.fvf%5B%5D=ContentType%2CArchitectural+Drawing&s.fvf%5B%5D=ContentType%2CArchival+Material&s.fvf%5B%5D=ContentType%2CArtifact&s.fvf%5B%5D=ContentType%2CAtlas&s.fvf%5B%5D=ContentType%2CAudio+Recording&s.fvf%5B%5D=ContentType%2CBlueprints&s.fvf%5B%5D=ContentType%2CBook+%2F+eBook&s.fvf%5B%5D=ContentType%2CBook+Chapter&s.fvf%5B%5D=ContentType%2CCase&s.fvf%5B%5D=ContentType%2CCompact+Disc&s.fvf%5B%5D=ContentType%2CComputer+File&s.fvf%5B%5D=ContentType%2CConference+Proceeding&s.fvf%5B%5D=ContentType%2CCourse+Reading&s.fvf%5B%5D=ContentType%2CData+Set&s.fvf%5B%5D=ContentType%2CDatabase&s.fvf%5B%5D=ContentType%2CDissertation&s.fvf%5B%5D=ContentType%2CElectronic+Resource&s.fvf%5B%5D=ContentType%2CFilm&s.fvf%5B%5D=ContentType%2CFinding+Aid&s.fvf%5B%5D=ContentType%2CGovernment+Document&s.fvf%5B%5D=ContentType%2CInteractive+Media&s.fvf%5B%5D=ContentType%2CJournal+%2F+eJournal&s.fvf%5B%5D=ContentType%2CKit&s.fvf%5B%5D=ContentType%2CLibrary+Holding&s.fvf%5B%5D=ContentType%2CMagazine&s.fvf%5B%5D=ContentType%2CManuscript&s.fvf%5B%5D=ContentType%2CMarket+Research&s.fvf%5B%5D=ContentType%2CMicrofilm&s.fvf%5B%5D=ContentType%2CModel&s.fvf%5B%5D=ContentType%2CMusic+Recording&s.fvf%5B%5D=ContentType%2CMusic+Score&s.fvf%5B%5D=ContentType%2CNewsletter&s.fvf%5B%5D=ContentType%2CNewspaper&s.fvf%5B%5D=ContentType%2CPamphlet&s.fvf%5B%5D=ContentType%2CPaper&s.fvf%5B%5D=ContentType%2CPatent&s.fvf%5B%5D=ContentType%2CPerformance&s.fvf%5B%5D=ContentType%2CPlay&s.fvf%5B%5D=ContentType%2CPoem&s.fvf%5B%5D=ContentType%2CPresentation&s.fvf%5B%5D=ContentType%2CPublication&s.fvf%5B%5D=ContentType%2CRealia&s.fvf%5B%5D=ContentType%2CReference&s.fvf%5B%5D=ContentType%2CReport&s.fvf%5B%5D=ContentType%2CSheet+Music&s.fvf%5B%5D=ContentType%2CSpecial+Collection&s.fvf%5B%5D=ContentType%2CSpoken+Word+Recording&s.fvf%5B%5D=ContentType%2CStandard&s.fvf%5B%5D=ContentType%2CStreaming+Video&s.fvf%5B%5D=ContentType%2CStudent+Thesis&s.fvf%5B%5D=ContentType%2CTechnical+Report&s.fvf%5B%5D=ContentType%2CTranscript&s.fvf%5B%5D=ContentType%2CVideo+Recording&s.fvf%5B%5D=ContentType%2CWeb+Resource&s.fvf%5B%5D=Library%2CDuke+Internet+Resource%2Ct&s.fvf%5B%5D=Library%2CPerkins%2FBostock+Library%2Ct&s.fvf%5B%5D=Library%2CFord+Library%2Ct&s.fvf%5B%5D=Library%2CPerkins+Public+Documents%2FMaps%2Ct&s.fvf%5B%5D=Library%2CMusic+Library%2Ct&s.fvf%5B%5D=Library%2CPerkins%2FBostock+Library+%7BV%7D%2Ct&s.fvf%5B%5D=Library%2CLilly+Library%2Ct&s.fvf%5B%5D=Library%2CMarine+Lab+Library%2Ct&s.fvf%5B%5D=Library%2CLibrary+Service+Center%2Ct&s.fvf%5B%5D=Library%2CGoodson+Law+Library%2Ct&s.fvf%5B%5D=Library%2CRubenstein+Library%2Ct&s.fvf%5B%5D=Library%2CMedical+Center+Library%2Ct&s.fvf%5B%5D=Library%2CBiol-Env.+Sciences+Library%2Ct&s.fvf%5B%5D=Library%2CDivinity+School+Library%2Ct&s.fvf%5B%5D=Library%2CUniversity+Archives%2Ct&keep_r=true&s.q=" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'OtherResources\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
-	
+			
+			echo '</div>';
+			
 		} else {
 			
 			$resultCount = 0; // for GA event tracking

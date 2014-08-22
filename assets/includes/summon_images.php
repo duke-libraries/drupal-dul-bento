@@ -42,11 +42,14 @@ if($queryTerms != "") {
 	
 		if ($theData['recordCount'] == "0") {
 		
+			echo '<div class="no-results">';
+			
 			echo "No Images results found for <em>" . $queryTerms . "</em>.";
 			
 			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Images\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
 	 
-	
+			echo '</div>';
+			
 		} else {
 			
 			$resultCount = 0; // for GA event tracking
