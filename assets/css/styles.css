@@ -99,14 +99,16 @@ border: 1px solid #fff;
 }
 
 
-#cse_libguides .gs-no-results-result .gs-snippet,
+/*#cse_libguides .gs-no-results-result .gs-snippet,*/
 #cse_web .gs-no-results-result .gs-snippet {
 	display: none;
 }
 
+/*
 #cse_libguides .gs-no-results-result:after {
 	content: 'No Research Guides results found for your term';
 }
+*/
 
 #cse_web .gs-no-results-result:after {
 	content: 'No Website results found for your term';
