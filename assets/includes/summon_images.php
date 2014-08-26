@@ -26,7 +26,7 @@ if($queryTerms != "") {
 
 	echo '<div class="results-block">';
 
-		echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'SeeAll\']);">See All »</a></h2>
+		echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
 				<p class="smaller muted">Digitized collections</p>
 				<div class="results-panel">';
 
@@ -46,7 +46,7 @@ if($queryTerms != "") {
 			
 			echo "No Images results found for <em>" . $queryTerms . "</em>.";
 			
-			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Images\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
+			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/search?s.cmd=removeFacetValueFilter(ContentType,Book+Review)&s.fvf%5B%5D=ContentType,Image,f&s.fvf%5B%5D=ContentType,Photograph,f&s.fvf%5B%5D=ContentType,Book+Review,t&s.light=t&s.q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 	 
 			echo '</div>';
 			
@@ -87,7 +87,7 @@ if($queryTerms != "") {
 							if ($imageSize[0] != '1') {
 						
 								echo '<div class="thumbnail">';
-									echo '<a href="' . $document["link"] . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Images\', \'ItemThumbnail' . $resultCount . '\']);"><img src="' . $document["thumbnail_s"][0] . '" alt="cover artwork" class="artwork"></a>';
+									echo '<a href="' . $document["link"] . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $document["thumbnail_s"][0] . '" alt="cover artwork" class="artwork"></a>';
 								echo '</div>';
 								
 							} else {
@@ -108,7 +108,7 @@ if($queryTerms != "") {
 						}
 				
 						echo '<div class="result-title">';
-							echo '<a href="' . $document["link"] . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Images\', \'ItemTitle' . $resultCount . '\']);">' . $theTitle . '</a>';
+							echo '<a href="' . $document["link"] . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a>';
 						echo '</div>';
 			
 					echo '</div>';

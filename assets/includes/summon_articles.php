@@ -27,7 +27,7 @@ if($queryTerms != "") {
 echo '<div class="results-block first" id="results-articles">';
 
 
-	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'SeeAll\']);">See&nbsp;All&nbsp;&raquo;</a></h2>
+	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
 			<p class="smaller muted">From journals and magazines</p>
 			<div class="results-panel">';
 
@@ -50,7 +50,7 @@ echo '<div class="results-block first" id="results-articles">';
 		
 		echo "No Articles results found for <em>" . $queryTerms . "</em>.";
 	
-		echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'TryAnotherSearch\']);">Try another search &raquo;</a>';
+		echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 		
 		echo '</div>';
 		
@@ -85,7 +85,7 @@ echo '<div class="results-block first" id="results-articles">';
 				// Title
 				echo '<div class="title">';
 					echo '<div class="text">';
-						echo '<h3 class="resultTitle"><a href="' . $document["link"] . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'ItemTitle' . $resultCount . '\']);">' . $theTitle . '</a></h3>';
+						echo '<h3 class="resultTitle"><a href="' . $document["link"] . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 					echo '</div>';
 				echo '</div>';
 
@@ -112,7 +112,7 @@ echo '<div class="results-block first" id="results-articles">';
 							$authorListDisplay = $authorListDisplay . ' (&hellip;)';
 						}
 					
-						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'ItemAuthor' . $resultCount . '\']);">' . $authorListDisplay . '</a>';
+						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
 					}
 	
 					echo '</div>';
@@ -202,7 +202,7 @@ echo '<div class="results-block first" id="results-articles">';
 		
 						if($document["hasFullText"] == 1) {
 			
-							echo ': <a href="' . $document["link"] . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'ItemFulltext' . $resultCount . '\']);">Full Text Online</a>';
+							echo ': <a href="' . $document["link"] . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemFullText' . $resultCount . '\'});">Full Text Online</a>';
 			
 						}
 	
@@ -243,7 +243,7 @@ echo '<div class="results-block first" id="results-articles">';
 		
 		echo '<div class="see-all">';
 			
-			echo '<a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" onclick="_gaq.push([\'_trackEvent\', \'BentoResults\', \'Articles\', \'SeeAllBottom\']);">See All Results</a>';
+			echo '<a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
 			
 		echo '</div>';
 			
