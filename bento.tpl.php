@@ -36,7 +36,7 @@ else $contentType = NULL;
 				</div>
 				
 				<ul class="inline small">
-					<li><a href="/find/about" title="Learn more about this search results page" onClick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'MainSearch', eventLabel: 'About'});">About</a></li>
+					<li><a href="/find/about" title="Learn more about this search results page" onClick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'MainSearch', eventLabel: 'About'});">How to use the new search</a></li>
 				</ul>
 				
 			</div>
