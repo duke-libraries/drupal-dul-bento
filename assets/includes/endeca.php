@@ -492,9 +492,9 @@ if ($theSearch != "") {
 							echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
 							
 							// change status where appropriate
-							if ($firstHolding['status'] == "Ask at Circulation Desk") {
-								$firstHolding['status'] = "Available";
-							}
+							//if ($firstHolding['status'] == "Ask at Circulation Desk") {
+								//$firstHolding['status'] = "Available";
+							//}
 							
 							
 							if (strpos($firstHolding['status'],'Available') !== false) {
