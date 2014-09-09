@@ -491,10 +491,171 @@ if ($theSearch != "") {
 
 							echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
 							
-							// change status where appropriate
-							//if ($firstHolding['status'] == "Ask at Circulation Desk") {
-								//$firstHolding['status'] = "Available";
-							//}
+							
+							// change status message where appropriate
+							
+								//if ($firstHolding['status'] == "Ask at Circulation Desk") {
+									//$firstHolding['status'] = "Available";
+								//}
+								
+								if ($firstHolding['status'] == "Temporarily Unavailable") {
+									$firstHolding['status'] = "Not Available";
+								}
+								
+								if ($firstHolding['status'] == "On Shelf") {
+									$firstHolding['status'] = "Available";
+								}
+								
+								if ($firstHolding['status'] == "LSC") {
+									$firstHolding['status'] = "Available";
+								}
+								
+								if ($firstHolding['status'] == "Non-circulating") {
+									$firstHolding['status'] = "Available - Library Use Only";
+								}
+								
+								if ($firstHolding['status'] == "Library use only") {
+									$firstHolding['status'] = "Available - Library Use Only";
+								}
+								
+								if ($firstHolding['status'] == "Reading Room use only") {
+									$firstHolding['status'] = "Available - Library Use Only";
+								}
+								
+								if ($firstHolding['status'] == "Requested") {
+									$firstHolding['status'] = "On Hold";
+								}
+								
+								if ($firstHolding['status'] == "Recently labeled in LC") {
+									$firstHolding['status'] = "Ask at Circulation Desk";
+								}
+								
+								if ($firstHolding['status'] == "In process-LC") {
+									$firstHolding['status'] = "Ask at Circulation Desk";
+								}
+								
+								if ($firstHolding['status'] == "Rubenstein Move Prepped") {
+									$firstHolding['status'] = "Available";
+								}
+								
+								if ($firstHolding['status'] == "Rubenstein Move Print Prepped") {
+									$firstHolding['status'] = "Ask at Circulation Desk";
+								}
+								
+								if ($firstHolding['status'] == "In process-LC Cataloging Dept.") {
+									$firstHolding['status'] = "Ask at Circulation Desk";
+								}
+								
+								if ($firstHolding['status'] == "Sent to Binding") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Preservation") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Bindery-Boxing") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Preservation-Reformatting") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Ready to Bind") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Commercial Bindery") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "In process-Binding") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "Preservation-Disaster Response") {
+									$firstHolding['status'] = "Being Repaired";
+								}
+								
+								if ($firstHolding['status'] == "In Route") {
+									$firstHolding['status'] = "In Transit";
+								}
+								
+								if ($firstHolding['status'] == "In Transit/Sublibrary") {
+									$firstHolding['status'] = "In Transit";
+								}
+								
+								if ($firstHolding['status'] == "Missing") {
+									$firstHolding['status'] = "Lost/Missing";
+								}
+								
+								if ($firstHolding['status'] == "Lost") {
+									$firstHolding['status'] = "Lost/Missing";
+								}
+								
+								if ($firstHolding['status'] == "Order Initiated") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-Acquisitions") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-Cataloging") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-Collection Dev.") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-MPU") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-Documents") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process-Outsourced Cat.") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Sent to Technical Services") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "In process") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Expected") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Claimed") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Publication Delayed") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Delivery Delayed") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Out of Stock") {
+									$firstHolding['status'] = "On Order";
+								}
+								
+								if ($firstHolding['status'] == "Out of Print") {
+									$firstHolding['status'] = "On Order";
+								}
+							
+							
+							
 							
 							
 							if (strpos($firstHolding['status'],'Available') !== false) {
