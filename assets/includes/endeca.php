@@ -66,7 +66,8 @@ if ($theSearch != "") {
 				$Libraries = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Libraries/item');
 				$CallNumber = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Call-Number/item');
 				$SOR = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statement-of-Responsibility/item');
-				
+				$DueDate = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Item-Due-Date/item');
+	
 				$Statuses = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statuses/item');
 				
 				# NOTE: The Libraries, Items Types, Call Numbers and Item IDs, as a unit, represent (a portion) of a Holdings record
@@ -233,7 +234,17 @@ if ($theSearch != "") {
 					
 				}
 				
-
+				
+				// Due Date (just check if it exists)
+				
+				if (!empty ($DueDate)) {
+					$theDueDate = (string) $DueDate[0];
+					$theDueDate = str_replace("|", "", $theDueDate);
+					
+				} else {
+					$theDueDate = "";
+				}
+				
 		
 				// OCLC
 				if (!empty ($OCLC)) {
@@ -653,6 +664,16 @@ if ($theSearch != "") {
 								if ($firstHolding['status'] == "Out of Print") {
 									$firstHolding['status'] = "On Order";
 								}
+								
+								if ($theDueDate != "") {
+									$firstHolding['status'] = "Checked Out";
+								}
+								
+								if ($libraryName == "Rubenstein Library") {
+									if ($firstHolding['status'] == "Available") {
+										$firstHolding['status'] = "Available (Library Use Only)";
+									}
+								}
 							
 							
 							
@@ -748,14 +769,14 @@ if ($theSearch != "") {
 				unset($theSOR);
 				unset($Statuses);
 				unset($primaryStatus);
+				unset($DueDate);
+				unset($theDueDate);
 				
 				unset($holdingsCount);
 				unset($holdingString);
 				unset($x);
 				
 				unset ($libraryName);
-				
-				
 				
 				$i ++;
 
