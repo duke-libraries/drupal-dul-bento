@@ -50,10 +50,10 @@ else $contentType = NULL;
 		
 			<li><a href="#results-articles">Articles</a></li>
 			<li><a href="#results-books">Books &amp; More</a></li>
+			<li><a href="#results-website">Our Website</a></li>
 			<li><a href="#results-libguides">Research Guides</a></li>
 			<!--<li><a href="#results-staff">Staff</a></li>-->
 			<li><a href="#results-images">Images</a></li>
-			<li><a href="#results-website">Our Website</a></li>
 			<li><a href="#results-other">Other Resources</a></li>
 		
 		</ul>
@@ -87,13 +87,13 @@ else $contentType = NULL;
 	
 		<div class="content-pad-right">
 		
+		<?php include("assets/includes/google_website.php"); ?>
+		
 		<?php include("assets/includes/google_libguides.php"); ?>
 		
 		<?php // include("assets/includes/staff.php"); ?>
 		
 		<?php include("assets/includes/summon_images.php"); ?>
-		
-		<?php include("assets/includes/google_website.php"); ?>
 		
 		<?php include("assets/includes/summon_other.php"); ?>
 		

@@ -10,10 +10,16 @@
 .gsc-url-top,
 .gs-fileFormat,
 .gsc-cursor-box,
-.gsc-url-bottom,
-/*#cse_libguides .gs-snippet,*/
-/*.gsc-webResult:nth-last-child(n+4)*/
-.gsc-webResult:nth-child(n+3){
+.gsc-url-bottom
+/*.gsc-webResult:nth-child(n+3) */ {
+	display: none !important;
+}
+
+#cse_libguides .gsc-webResult:nth-child(n+3){
+	display: none !important;
+}
+
+#cse_web .gsc-webResult:nth-child(n+4){
 	display: none !important;
 }
 
@@ -24,7 +30,9 @@
 
 
 #cse_libguides .gs-result .gs-title, 
-#cse_libguides .gs-result .gs-title * {
+#cse_libguides .gs-result .gs-title *,
+#cse_web .gs-result .gs-title,
+#cse_web .gs-result .gs-title * {
 height: auto;
 line-height: 1.1;
 }
@@ -413,6 +421,8 @@ width: 28%;
 	
 
 }
+
+
 
 /* ++++++++++++++++++++ */
 /* DUKE_autosuggest.CSS */
