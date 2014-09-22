@@ -34,10 +34,11 @@ div.ac_results ul li span span.as_sleft {
 }
 
 div.ac_results ul li span small {
-	float: right;
+	/*float: right;
 	white-space: nowrap;
 	font-weight: bold;
-	color: #000066;
+	color: #000066;*/
+	display: none;
 }
 
 div.ac_results ul li span strong {
