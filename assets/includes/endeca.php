@@ -130,7 +130,7 @@ if ($theSearch != "") {
 			
 					// truncate long titles
 					if (strlen($theTitle) > 135) {
-						$theTitle = wordwrap($theTitle, 135);
+						$theTitle = wordwrap($theTitle, 110);
 						$theTitle = substr($theTitle, 0, strpos($theTitle, "\n"));
 						$theTitle = $theTitle . ' (&hellip;)';
 					}
@@ -372,52 +372,57 @@ if ($theSearch != "") {
 				
 				
 						// PUBLISHER
-						echo '<div class="publisher">';
+						//echo '<div class="publisher">';
 					
-							if (isset($theImprint)) {
+							//if (isset($theImprint)) {
 								
-								echo $theImprint;
+								//echo $theImprint;
 								
-							} else {
+							//} else {
 							
-								if (isset($thePublisher)) {
-									echo $thePublisher;
-								}
+								//if (isset($thePublisher)) {
+									//echo $thePublisher;
+								//}
 								
-								if (isset($thePublished)) {
-									echo ', ' . $thePublished;
-								}
+								//if (isset($thePublished)) {
+									//echo ', ' . $thePublished;
+								//}
 								
-							}
+							//}
 
 					
-						echo '</div>';
+						//echo '</div>';
 						
 						
 						// Format and ISBN/ISSN/UPC
 						echo '<div class="isbn">';
-						
+							
 							if (!empty ($theItemtype)) {
 					
 								echo '<span class="item-type">' . $theItemtypeDisplay . '</span>'; 
 								
 							}
 							
-							if (isset($theISBN)) {
+							//if (isset($theISBN)) {
 							
-								echo ', <strong>ISBN:</strong> ' . $theISBN;
+								//echo ', <strong>ISBN:</strong> ' . $theISBN;
 							
-							} else if (isset($theUPC)) {
+							//} else if (isset($theUPC)) {
 							
-								echo ', <strong>UPC:</strong> ' . $theUPC;
+								//echo ', <strong>UPC:</strong> ' . $theUPC;
 							
-							} else if ($theOCLC != "") {
+							//} else if ($theOCLC != "") {
 							
-								echo ', <strong>OCLC:</strong> ' . $theOCLC;
+								//echo ', <strong>OCLC:</strong> ' . $theOCLC;
+								
+							//}
+							
+							// added year
+							if (!empty ($thePublished)) {
+								
+								echo ', ' . $thePublished;
 								
 							}
-							
-							
 
 						
 						echo '</div>';
@@ -500,7 +505,7 @@ if ($theSearch != "") {
 								echo '<span class="library">' . $libraryName . '</span>' . ', ';
 							}
 
-							echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
+							// echo '<span class="call-number">' . $firstHolding['call-number'] . '</span>';
 							
 							
 							// change status message where appropriate

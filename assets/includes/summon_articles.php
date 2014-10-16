@@ -132,28 +132,30 @@ echo '<div class="results-block first" id="results-articles">';
 				
 					echo $thePubTitle;
 	
-				
-					if(isset($document["ISSN"][0])) {
 					
-						if ($thePubTitle != "") {
+					// removed issn display
+					//if(isset($document["ISSN"][0])) {
 					
-							echo ', ';
+						//if ($thePubTitle != "") {
 					
-						}
+							//echo ', ';
 					
-						echo '<strong>ISSN</strong> ' . $document["ISSN"][0];
+						//}
+					
+						//echo '<strong>ISSN</strong> ' . $document["ISSN"][0];
 		
-					}
+					//}
 	
 					if(isset($document["PublicationDate"][0])) {
 		
 						$theDate = $document["PublicationDate"][0];
 		
-						if(isset($document["ISSN"][0])) {
+						// not needed without issn
+						//if(isset($document["ISSN"][0])) {
 					
-							echo ', ';
+							//echo ', ';
 					
-						}
+						//}
 					
 						echo date("m/Y", strtotime($theDate)); 
 					}
