@@ -147,7 +147,13 @@ echo '<div class="results-block first" id="results-articles">';
 					//}
 	
 					if(isset($document["PublicationDate"][0])) {
-		
+						
+						if ($thePubTitle != "") {
+					
+							echo ', ';
+					
+						}
+						
 						$theDate = $document["PublicationDate"][0];
 		
 						// not needed without issn
