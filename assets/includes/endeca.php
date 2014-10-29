@@ -146,6 +146,11 @@ if ($theSearch != "") {
 				} else {
 					$theID = "";
 				}
+					
+					// Check for DC
+					if (strpos($theID,'DUKEDC') !== false) {
+    					$dcItem = "true";
+					}
 				
 				
 				
@@ -286,7 +291,20 @@ if ($theSearch != "") {
 		
 					echo '<div class="title">';
 						echo '<div class="text">';
-							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							
+							// check for DC
+							
+							if ($dcItem == "true") {
+								
+								echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+								
+							} else {
+							
+								echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							
+							}
+						
+						
 						echo '</div>';
 					echo '</div>';
 				
@@ -302,7 +320,18 @@ if ($theSearch != "") {
 						if ($imageSize[0] != '1') {
 			
 							echo '<div class="thumbnail">';
-								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								
+								// Check for DC
+								if ($dcItem == "true") {
+								
+									echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+									
+								} else {
+								
+									echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							
+								}
+							
 							echo '</div>';
 							
 						}
@@ -320,7 +349,19 @@ if ($theSearch != "") {
 					if ($imageSize[0] != '1') {
 			
 						echo '<div class="thumbnail">';
-							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							
+							// Check for DC
+							if ($dcItem == "true") {
+							
+								echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+						
+							} else {
+								
+								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								
+							}
+							
+							
 						echo '</div>';
 							
 					}
@@ -708,11 +749,36 @@ if ($theSearch != "") {
 							// Extra Holdings
 							if ($holdingsCount) {
 								
-								
+								// single holding
 								if ($holdingsCount == 1) {
-									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									
+									// Check for DC
+									if ($dcItem == "true") {
+									
+										echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+								
+									} else {
+										
+										echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+										
+									}
+								
+								
+								// multiple holdings
 								} else {
-									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+								
+									// Check for DC
+									if ($dcItem == "true") {
+									
+										echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+										
+									} else {
+										
+										echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									
+									}
+								
+								
 								}
 								
 								//print_r($arrHoldings);
@@ -782,6 +848,8 @@ if ($theSearch != "") {
 				unset($x);
 				
 				unset ($libraryName);
+				
+				unset ($dcItem);
 				
 				$i ++;
 
