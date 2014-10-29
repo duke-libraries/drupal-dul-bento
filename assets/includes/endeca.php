@@ -67,7 +67,8 @@ if ($theSearch != "") {
 				$CallNumber = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Call-Number/item');
 				$SOR = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statement-of-Responsibility/item');
 				$DueDate = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Item-Due-Date/item');
-	
+				$ThumbnailURL = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Thumbnail-URL/item');
+				
 				$Statuses = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statuses/item');
 				
 				# NOTE: The Libraries, Items Types, Call Numbers and Item IDs, as a unit, represent (a portion) of a Holdings record
@@ -148,6 +149,7 @@ if ($theSearch != "") {
 				}
 					
 					// Check for DC
+					$dcItem = "false";
 					if (strpos($theID,'DUKEDC') !== false) {
     					$dcItem = "true";
 					}
@@ -284,6 +286,14 @@ if ($theSearch != "") {
 					$theSOR = (string) $SOR[0];
 					$theSOR = htmlentities($theSOR, ENT_QUOTES, 'UTF-8');
 				}
+				
+				
+				// Thumbnail-URL (for DC items)
+				if (!empty ($ThumbnailURL)) {
+					$theThumbnailURL = (string) $ThumbnailURL[0];
+					$theThumbnailURL = htmlentities($theThumbnailURL, ENT_QUOTES, 'UTF-8');
+				}
+				
 		
 		
 
@@ -321,16 +331,8 @@ if ($theSearch != "") {
 			
 							echo '<div class="thumbnail">';
 								
-								// Check for DC
-								if ($dcItem == "true") {
-								
-									echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
-									
-								} else {
-								
-									echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 							
-								}
 							
 							echo '</div>';
 							
@@ -350,23 +352,29 @@ if ($theSearch != "") {
 			
 						echo '<div class="thumbnail">';
 							
-							// Check for DC
-							if ($dcItem == "true") {
-							
-								echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
-						
-							} else {
 								
-								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 								
-							}
-							
 							
 						echo '</div>';
 							
 					}
 				
-				}
+				// DC Thumbnails
+				} else if (isset($theThumbnailURL)) {
+				
+					// Check for DC
+					if ($dcItem == "true") {
+					
+						echo '<div class="thumbnail">';
+								
+							echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $theThumbnailURL . '" alt="item thumbnail" class="artwork"></a>';
+									
+						echo '</div>';
+					
+					}
+					
+				}		
 		
 		
 					echo '<div class="document-summary">';
@@ -850,6 +858,8 @@ if ($theSearch != "") {
 				unset ($libraryName);
 				
 				unset ($dcItem);
+				unset ($ThumbnailURL);
+				unset ($theThumbnailURL);
 				
 				$i ++;
 
