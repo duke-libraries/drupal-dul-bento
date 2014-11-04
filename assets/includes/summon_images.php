@@ -6,6 +6,7 @@ require_once("functions.php");
 $pageSize = 3;
 $contentTypes = array('Image','Photograph');
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
+$section = "Images Search";
 
 $formatedContentTypes = array();
 
@@ -33,7 +34,7 @@ if($queryTerms != "") {
 	///
 
 		//querySummon($query, $results, $type)
-		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
+		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting, $section);
 		$theData = json_decode($data, TRUE);
 
 		//Debug:

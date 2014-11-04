@@ -6,6 +6,7 @@ require_once("functions.php");
 $pageSize = 10;
 $contentTypes = array('Journal Article','Magazine Article', 'Newspaper Article:t', 'Book Review:t');
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
+$section = "Articles Search";
 
 $formatedContentTypes = array();
 
@@ -35,7 +36,7 @@ echo '<div class="results-block first" id="results-articles">';
 	////
 
 
-	$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
+	$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting, $section);
 
 	$theData = json_decode($data, TRUE);
 

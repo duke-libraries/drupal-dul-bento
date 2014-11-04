@@ -68,7 +68,7 @@ function formatAuthor($document) {
 	
 }
 
-function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting) {
+function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting, $section) {
 
 	// ==============================================
 	// Summon API query parameters
@@ -180,6 +180,14 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting)
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	$response = curl_exec($ch);
+	
+		// Get Info
+		$info = curl_getinfo($ch);
+		$summonTime = $info['total_time'];
+		global $summonPerformance;
+		//$summonPerformance .= $section . ": " . $summonTime . "\r\n";
+		$summonPerformance .= $summonTime . ",";
+	
 	curl_close($ch);
 	
 	// ==============================================

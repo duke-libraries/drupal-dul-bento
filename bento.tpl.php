@@ -1,5 +1,7 @@
 <?php
 
+$pageStart = microtime(true);
+
 settype($Ntt, "string");
 settype($results, "string");
 settype($ctype, "string"); 
@@ -100,3 +102,47 @@ else $contentType = NULL;
 		</div>
 	
 	</div>
+	
+<?php
+
+$nowDate = date('Y-m-d H:i:s');
+
+$pageEnd = microtime(true);
+$pageCreationTime = ($pageEnd - $pageStart);
+
+
+// Log performance data
+
+global $summonPerformance;
+
+$logfile = 'private://bento_log.txt';
+
+//$performance_info = "\r\n";
+$performance_info = "";
+
+$performance_info .= $nowDate . ",";
+
+$performance_info .= $queryTerms . ",";
+
+if ($summonPerformance != "") {
+
+	$performance_info .= $summonPerformance;
+	
+} else {
+	
+	$performance_info .= '"","","",';
+	
+}
+
+$performance_info .= $pageCreationTime ."\r\n";
+
+file_put_contents($logfile, $performance_info, FILE_APPEND | LOCK_EX);
+
+// echo $performance_info;
+// private storage path = /srv/web/libcms/backup
+
+// datetime, queryterms, articles, images, other, fullpage
+
+
+
+?>

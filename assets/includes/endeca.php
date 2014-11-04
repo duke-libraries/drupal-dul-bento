@@ -723,9 +723,12 @@ if ($theSearch != "") {
 									$firstHolding['status'] = "Checked Out";
 								}
 								
-								if ($libraryName == "Rubenstein Library") {
-									if ($firstHolding['status'] == "Available") {
-										$firstHolding['status'] = "Available (Library Use Only)";
+								
+								if (isset($libraryName)) {
+									if ($libraryName == "Rubenstein Library") {
+										if ($firstHolding['status'] == "Available") {
+											$firstHolding['status'] = "Available (Library Use Only)";
+										}
 									}
 								}
 							

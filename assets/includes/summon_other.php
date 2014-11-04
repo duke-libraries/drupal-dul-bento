@@ -5,6 +5,7 @@ require_once("functions.php");
 //$queryTerms = 'science';
 $pageSize = 2;
 $facetParameterSetting = "setHoldingsOnly(false)";
+$section = "Other Search";
 
 
 // Load list of Content Types
@@ -56,7 +57,7 @@ if($queryTerms != "") {
 
 
 
-		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting);
+		$data = querySummonDUL($queryTerms, $pageSize, $contentTypes, $facetParameterSetting, $section);
 		
 		$theData = json_decode($data, TRUE);
 		
