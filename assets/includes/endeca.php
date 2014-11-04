@@ -1,5 +1,9 @@
 <?php
 
+
+$endecaStart = microtime(true);
+
+
 $urlString = "http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
@@ -904,5 +908,9 @@ if ($theSearch != "") {
 	echo '</div>';
 
 }
+
+$endecaEnd = microtime(true);
+global $endecaCreationTime;
+$endecaCreationTime = ($endecaEnd - $endecaStart);
 
 ?>
