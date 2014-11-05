@@ -116,7 +116,7 @@ $pageCreationTime = ($pageEnd - $pageStart);
 
 global $summonPerformance;
 
-$logfile = 'private://bento_log.txt';
+$logfile = 'private://bento_log_' . date('Y-m-d') . '.txt';
 
 if ($summonPerformance != "") {
 
