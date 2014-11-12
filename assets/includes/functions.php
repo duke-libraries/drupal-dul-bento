@@ -85,7 +85,8 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	$key_query = $summon_js_query;
 	
 	// These definitions are for the 'Identification String'
-	$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
+	//$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
+	$queryParameter = "s.q=" . $key_query . "&s.role=none";  // User query without authentication
 	
 	$facetParameter = "s.cmd=" . $facetParameterSetting; // Limit to records held by Duke
 	$facetParameter .= " setPageSize($pagesize)";  // set number of results per page
@@ -103,8 +104,10 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	
 	
 	// These definitions are for the cURL request
-	//$encodedQueryParameter = "s.q=" . $request_query;  // User query
-	$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
+	//$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
+	$encodedQueryParameter = "s.q=" . $request_query . "&s.role=none";  // User query without authentication
+	
+	
 	
 	$encodedFacetParameter = "s.cmd=" . urlencode($facetParameterSetting); // Limit to records held by Duke
 	

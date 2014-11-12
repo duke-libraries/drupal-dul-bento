@@ -1,5 +1,8 @@
 <?php
 
+// cookie variable
+//$_SERVER['HTTP_COOKIE'];
+
 require_once("functions.php");
 
 //$queryTerms = 'science';
@@ -40,7 +43,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 	$theData = json_decode($data, TRUE);
 
-	Debug:
+	//Debug:
 	//echo "The data:<br />";
 	//print_r($data);
 	
