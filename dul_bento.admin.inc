@@ -38,6 +38,20 @@ function dul_bento_admin_settings() {
 		'#default_value' => variable_get('dul_bento.summon_clientKey', ''),
 	);
 	
+	$form['bento_logging'] = array(
+		'#type' => 'checkbox',
+		'#title' => t('Activate Bento Logging'),
+		'#description' => t('Dumps log file to ../backup'),
+		'#default_value' => variable_get('dul_bento.bento_logging', ''),
+	);
+	
+	
+	$form['bento_logging_daily'] = array(
+		'#type' => 'checkbox',
+		'#title' => t('Use Daily Log Files'),
+		'#description' => t('If selected, a new file will be generate every 24 hours. If not, there will be a single log file'),
+		'#default_value' => variable_get('dul_bento.bento_logging_daily', ''),
+	);
 	
 	$form['summon_other_content_types'] = array(
 		'#type' => 'textarea',
@@ -72,6 +86,10 @@ function dul_bento_admin_settings_submit($form, $form_state) {
 	variable_set('dul_bento.summon_accessId', $form_state['values']['summon_accessId']);
 	variable_set('dul_bento.summon_secretKey', $form_state['values']['summon_secretKey']);
 	variable_set('dul_bento.summon_clientKey', $form_state['values']['summon_clientKey']);
+	
+	variable_set('dul_bento.bento_logging', $form_state['values']['bento_logging']);
+	variable_set('dul_bento.bento_logging_daily', $form_state['values']['bento_logging_daily']);
+	
 	variable_set('dul_bento.summon_other_content_types', $form_state['values']['summon_other_content_types']);
 	variable_set('dul_bento.summon_other_libraries', $form_state['values']['summon_other_libraries']);
 }

@@ -108,43 +108,60 @@ else $contentType = NULL;
 
 // +++ Log performance data +++
 
-$nowDate = date('Y-m-d H:i:s');
 
-$pageEnd = microtime(true);
-$pageCreationTime = ($pageEnd - $pageStart);
+$bentoLogging = variable_get('dul_bento.bento_logging', '');
+$bentoLoggingDaily = variable_get('dul_bento.bento_logging_daily', '');
 
 
-global $summonPerformance;
-
-$logfile = 'private://bento_log_' . date('Y-m-d') . '.txt';
-
-if ($summonPerformance != "") {
-
-	$performance_info = "";
+if ($bentoLogging == 1) {
 	
-	$performance_info .= $nowDate . ',';
+	$nowDate = date('Y-m-d H:i:s');
+
+	$pageEnd = microtime(true);
+	$pageCreationTime = ($pageEnd - $pageStart);
+
+
+	global $summonPerformance;
+
+	if ($bentoLoggingDaily == 1) {
+	
+		$logfile = 'private://bento_log_' . date('Y-m-d') . '.txt';
 		
-		// replace " with '
-		$performanceTerms = str_replace('"',"'",$queryTerms);
+	} else {
 	
-	$performance_info .= '"' . $performanceTerms . '"' . ',';
+		$logfile = 'private://bento_log.txt';
 	
-	$performance_info .= $endecaCreationTime . ",";
+	}
 
-	$performance_info .= $summonPerformance;
+	if ($summonPerformance != "") {
 
-	$performance_info .= $pageCreationTime ."\r\n";
-
-	file_put_contents($logfile, $performance_info, FILE_APPEND | LOCK_EX);
+		$performance_info = "";
 	
-	//echo $performance_info;
+		$performance_info .= $nowDate . ',';
+		
+			// replace " with '
+			$performanceTerms = str_replace('"',"'",$queryTerms);
+	
+		$performance_info .= '"' . $performanceTerms . '"' . ',';
+	
+		$performance_info .= $endecaCreationTime . ",";
+
+		$performance_info .= $summonPerformance;
+
+		$performance_info .= $pageCreationTime ."\r\n";
+
+		file_put_contents($logfile, $performance_info, FILE_APPEND | LOCK_EX);
+	
+		//echo $performance_info;
+	
+	}
 	
 }
+
 	
+	// private storage path = /srv/web/libcms/backup
 
-// private storage path = /srv/web/libcms/backup
-
-// datetime, queryterms, endeca, articles, images, other, fullpage
+	// datetime, queryterms, endeca, articles, images, other, fullpage
 
 
 
