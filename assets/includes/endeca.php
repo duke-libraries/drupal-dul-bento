@@ -8,7 +8,10 @@ $urlString = "http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output
 
 $theSearch = urlencode($queryTerms);
 
+
+$endecaXMLStart = microtime(true);
 $theXML = simplexml_load_file ($urlString . $theSearch);
+$endecaXMLEnd = microtime(true);
 
 
 $tempISBN = "";
@@ -910,7 +913,18 @@ if ($theSearch != "") {
 }
 
 $endecaEnd = microtime(true);
-global $endecaCreationTime;
-$endecaCreationTime = ($endecaEnd - $endecaStart);
+
+// Check for logging
+$bentoLogging = variable_get('dul_bento.bento_logging', '');
+		
+if ($bentoLogging == 1) {
+
+	global $endecaCreationTime;
+	global $endecaXMLCreationTime;
+
+	$endecaCreationTime = ($endecaEnd - $endecaStart);
+	$endecaXMLCreationTime = ($endecaXMLEnd - $endecaXMLStart);
+	
+}
 
 ?>

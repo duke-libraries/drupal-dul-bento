@@ -45,11 +45,10 @@ function dul_bento_admin_settings() {
 		'#default_value' => variable_get('dul_bento.bento_logging', ''),
 	);
 	
-	
 	$form['bento_logging_daily'] = array(
 		'#type' => 'checkbox',
 		'#title' => t('Use Daily Log Files'),
-		'#description' => t('If selected, a new file will be generate every 24 hours. If not, there will be a single log file'),
+		'#description' => t('If selected, a new file will also be generate every 24 hours - only check if using logging.'),
 		'#default_value' => variable_get('dul_bento.bento_logging_daily', ''),
 	);
 	
@@ -66,9 +65,6 @@ function dul_bento_admin_settings() {
 		'#description' => t('Enter the list of libraries'),
 		'#default_value' => variable_get('dul_bento.summon_other_libraries', ''),
 	);
-	
-	
-	
 	
 	
 	

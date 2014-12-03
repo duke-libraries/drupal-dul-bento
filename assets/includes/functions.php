@@ -184,12 +184,17 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	$response = curl_exec($ch);
 	
-		// Get Info
-		$info = curl_getinfo($ch);
-		$summonTime = $info['total_time'];
-		global $summonPerformance;
-		//$summonPerformance .= $section . ": " . $summonTime . "\r\n";
-		$summonPerformance .= $summonTime . ",";
+		// Check for logging
+		$bentoLogging = variable_get('dul_bento.bento_logging', '');
+		
+		if ($bentoLogging == 1) {
+			// Get Info
+			$info = curl_getinfo($ch);
+			$summonTime = $info['total_time'];
+			global $summonPerformance;
+			//$summonPerformance .= $section . ": " . $summonTime . "\r\n";
+			$summonPerformance .= $summonTime . ",";
+		}
 	
 	curl_close($ch);
 	
@@ -197,9 +202,7 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	// Summon API response in JSON format
 	// ==============================================
 	
-	return $response;
-	
-	
+	return $response;	
 
 }
 

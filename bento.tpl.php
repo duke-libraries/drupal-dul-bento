@@ -123,15 +123,15 @@ if ($bentoLogging == 1) {
 
 	global $summonPerformance;
 
+	$logfile1 = 'private://bento_log.txt';
+	
+	// extra output for daily logging
 	if ($bentoLoggingDaily == 1) {
 	
-		$logfile = 'private://bento_log_' . date('Y-m-d') . '.txt';
+		$logfile2 = 'private://bento_log_' . date('Y-m-d') . '.txt';
 		
-	} else {
+	} 
 	
-		$logfile = 'private://bento_log.txt';
-	
-	}
 
 	if ($summonPerformance != "") {
 
@@ -144,13 +144,27 @@ if ($bentoLogging == 1) {
 	
 		$performance_info .= '"' . $performanceTerms . '"' . ',';
 	
+		$performance_info .= $endecaXMLCreationTime . ",";
+		
 		$performance_info .= $endecaCreationTime . ",";
 
 		$performance_info .= $summonPerformance;
+		
+		$performance_info .= $summonArticlesCreationTime . ",";
+		
+		$performance_info .= $summonImagesCreationTime . ",";
+		
+		$performance_info .= $summonOtherCreationTime . ",";
 
 		$performance_info .= $pageCreationTime ."\r\n";
 
-		file_put_contents($logfile, $performance_info, FILE_APPEND | LOCK_EX);
+		file_put_contents($logfile1, $performance_info, FILE_APPEND | LOCK_EX);
+		
+		if ($bentoLoggingDaily == 1) {
+			file_put_contents($logfile2, $performance_info, FILE_APPEND | LOCK_EX);
+		}
+		
+		
 	
 		//echo $performance_info;
 	

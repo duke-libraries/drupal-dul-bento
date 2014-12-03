@@ -1,5 +1,7 @@
 <?php
 
+$summonArticlesTimeStart = microtime(true);
+
 // cookie variable
 //$_SERVER['HTTP_COOKIE'];
 
@@ -265,6 +267,19 @@ echo '<div class="results-block first" id="results-articles">';
 
 echo '</div>';
 
+}
+
+$summonArticlesTimeEnd = microtime(true);
+
+// Check for logging
+$bentoLogging = variable_get('dul_bento.bento_logging', '');
+		
+if ($bentoLogging == 1) {
+	
+	global $summonArticlesCreationTime;
+
+	$summonArticlesCreationTime = ($summonArticlesTimeEnd - $summonArticlesTimeStart);
+	
 }
 
 ?>

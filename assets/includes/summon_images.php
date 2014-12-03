@@ -1,5 +1,7 @@
 <?php
 
+$summonImagesTimeStart = microtime(true);
+
 require_once("functions.php");
 
 //$queryTerms = 'asdasd asdasdad';
@@ -133,6 +135,19 @@ if($queryTerms != "") {
 
 	echo '</div>';
 
+}
+
+$summonImagesTimeEnd = microtime(true);
+
+// Check for logging
+$bentoLogging = variable_get('dul_bento.bento_logging', '');
+		
+if ($bentoLogging == 1) {
+
+	global $summonImagesCreationTime;
+
+	$summonImagesCreationTime = ($summonImagesTimeEnd - $summonImagesTimeStart);
+	
 }
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+$summonOtherTimeStart = microtime(true);
+
 require_once("functions.php");
 
 //$queryTerms = 'science';
@@ -247,5 +249,17 @@ if($queryTerms != "") {
 
 	}
 
+$summonOtherTimeEnd = microtime(true);
+
+// Check for logging
+$bentoLogging = variable_get('dul_bento.bento_logging', '');
+		
+if ($bentoLogging == 1) {
+
+	global $summonOtherCreationTime;
+
+	$summonOtherCreationTime = ($summonOtherTimeEnd - $summonOtherTimeStart);
+	
+}
 
 ?>
