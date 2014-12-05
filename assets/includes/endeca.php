@@ -1,8 +1,6 @@
 <?php
 
-
 $endecaStart = microtime(true);
-
 
 $urlString = "http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
@@ -332,9 +330,10 @@ if ($theSearch != "") {
 					if ($isDiffISBN == true) {
 			
 						$imagePath = "http://www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
-						$imageSize = getimagesize($imagePath);
-				
-						if ($imageSize[0] != '1') {
+						//$imageSize = getimagesize($imagePath);
+						
+						
+						//if ($imageWidth != '1') {
 			
 							echo '<div class="thumbnail">';
 								
@@ -343,7 +342,7 @@ if ($theSearch != "") {
 							
 							echo '</div>';
 							
-						}
+						//}
 				
 				
 					}
@@ -353,9 +352,10 @@ if ($theSearch != "") {
 				} else if (isset($theUPC)) {
 				
 					$imagePath = "http://www.syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
-					$imageSize = getimagesize($imagePath);
-				
-					if ($imageSize[0] != '1') {
+					//$imageSize = getimagesize($imagePath);
+					
+					
+					//if ($imageSize[0] != '1') {
 			
 						echo '<div class="thumbnail">';
 							
@@ -365,7 +365,7 @@ if ($theSearch != "") {
 							
 						echo '</div>';
 							
-					}
+					//}
 				
 				// DC Thumbnails
 				} else if (isset($theThumbnailURL)) {
@@ -924,6 +924,9 @@ if ($bentoLogging == 1) {
 
 	$endecaCreationTime = ($endecaEnd - $endecaStart);
 	$endecaXMLCreationTime = ($endecaXMLEnd - $endecaXMLStart);
+	
+	//$difference = ($endecaCreationTime - $endecaXMLCreationTime);
+	//echo '<br>Difference Time: ' . $difference . '<br><br>';
 	
 }
 
