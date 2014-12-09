@@ -1110,12 +1110,11 @@ function replaceMe() {
 
 
 
-
 (function($){ 
 
 	$(window).load(function(){
 
-		$('#results-books.div.thumbnail').find('img').each(function () {
+		$('#results-books div.thumbnail').find('img').each(function () {
 	
 			var $this = $(this), width = $(this).get(0).naturalWidth;
 			var $parentdiv = $(this).closest('div');
@@ -1129,7 +1128,7 @@ function replaceMe() {
 		});
 
 
-		$('#results-images.div.thumbnail').find('img').each(function () {
+		$('#results-images div.thumbnail').find('img').each(function () {
 	
 			var $this = $(this), width = $(this).get(0).naturalWidth;
 			var $parentdiv = $(this).closest('div');
