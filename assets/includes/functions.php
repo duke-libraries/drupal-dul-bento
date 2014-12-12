@@ -1,68 +1,68 @@
 <?php
 
 function hmacsha1($key,$data) {
-    $blocksize=64;
-    $hashfunc='sha1';
-    if (strlen($key)>$blocksize) {
-        $key=pack('H*', $hashfunc($key));
-    }
-    $key=str_pad($key,$blocksize,chr(0x00));
-    $ipad=str_repeat(chr(0x36),$blocksize);
-    $opad=str_repeat(chr(0x5c),$blocksize);
-    $hmac = pack(
-                'H*',$hashfunc(
-                    ($key^$opad).pack(
-                        'H*',$hashfunc(
-                            ($key^$ipad).$data
-                        )
-                    )
-                )
-            );
-    return base64_encode($hmac);
+	$blocksize=64;
+	$hashfunc='sha1';
+	if (strlen($key)>$blocksize) {
+		$key=pack('H*', $hashfunc($key));
+	}
+	$key=str_pad($key,$blocksize,chr(0x00));
+	$ipad=str_repeat(chr(0x36),$blocksize);
+	$opad=str_repeat(chr(0x5c),$blocksize);
+	$hmac = pack(
+				'H*',$hashfunc(
+					($key^$opad).pack(
+						'H*',$hashfunc(
+							($key^$ipad).$data
+						)
+					)
+				)
+			);
+	return base64_encode($hmac);
 }
 
 function is_authorized() {
 
-    // Returns TRUE if the browser is authenticated
-    // Returns TRUE if the request is coming from a wired campus IP range
-    // Otherwise returns FALSE
+	// Returns TRUE if the browser is authenticated
+	// Returns TRUE if the request is coming from a wired campus IP range
+	// Otherwise returns FALSE
 
-    // Grab the IP address of the request
-    $theIP =  ($_SERVER['REMOTE_ADDR']);
+	// Grab the IP address of the request
+	$theIP =  ($_SERVER['REMOTE_ADDR']);
 
-    // Grab Shib session cookie
-    $shibQuery = $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))];
+	// Grab Shib session cookie
+	$shibQuery = $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))];
 
-    // Check for shib cookie first
-    // Then check for IP range matches
-    if (!empty($shibQuery)) {
-        $authorized = true;
-    } elseif (preg_match('/152\.(3|16)\.\d*\.\d*/', $theIP)) {
-        // This checks to match
-        // 152.3.*
-        // 152.16.*
-        $authorized = true;
-    } elseif (preg_match('/67\.159\.(\d*)\.\d*/', $theIP, $matches)) {
-        // This checks to match
-        // 67.159.64-127.*
-        if ($matches[1] >= 64 and $matches[1] <= 127) {
-            $authorized = true;
-        } else {
-            $authorized = false;
-        }
-    } elseif (preg_match('/198\.(\d*)\.\d*\.\d*/', $theIP, $matches)) {
-        // This checks to match
-        // 198.29-86.*
-        if ($matches[1] >= 29 and $matches[1] <= 86) {
-            $authorized = true;
-        } else {
-            $authorized = false;
-        }
-    } else {
-        $authorized = false;
-    }
+	// Check for shib cookie first
+	// Then check for IP range matches
+	if (!empty($shibQuery)) {
+		$authorized = true;
+	} elseif (preg_match('/152\.(3|16)\.\d*\.\d*/', $theIP)) {
+		// This checks to match
+		// 152.3.*
+		// 152.16.*
+		$authorized = true;
+	} elseif (preg_match('/67\.159\.(\d*)\.\d*/', $theIP, $matches)) {
+		// This checks to match
+		// 67.159.64-127.*
+		if ($matches[1] >= 64 and $matches[1] <= 127) {
+			$authorized = true;
+		} else {
+			$authorized = false;
+		}
+	} elseif (preg_match('/198\.(\d*)\.\d*\.\d*/', $theIP, $matches)) {
+		// This checks to match
+		// 198.29-86.*
+		if ($matches[1] >= 29 and $matches[1] <= 86) {
+			$authorized = true;
+		} else {
+			$authorized = false;
+		}
+	} else {
+		$authorized = false;
+	}
 
-    return $authorized;
+	return $authorized;
 }
 
 function formatAuthor($document) {
@@ -127,9 +127,11 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	// query encoded for query request
 	$request_query = urlencode($summon_js_query);
 	$key_query = $summon_js_query;
+
+	$authorization_status = is_authorized();
 	
 	// These definitions are for the 'Identification String'
-	if (is_authorized()) {
+	if ($authorization_status) {
 		$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
 	} else {
 		$queryParameter = "s.q=" . $key_query . "&s.role=none";  // User query without authentication
@@ -152,7 +154,7 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	
 	// These definitions are for the cURL request
 	
-	if (is_authorized()) {
+	if ($authorization_status) {
 		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
 	} else {
 		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=none";  // User query without authentication
