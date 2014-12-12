@@ -21,6 +21,50 @@ function hmacsha1($key,$data) {
     return base64_encode($hmac);
 }
 
+function is_authorized() {
+
+    // Returns TRUE if the browser is authenticated
+    // Returns TRUE if the request is coming from a wired campus IP range
+    // Otherwise returns FALSE
+
+    // Grab the IP address of the request
+    $theIP =  ($_SERVER['REMOTE_ADDR']);
+
+    // Grab Shib session cookie
+    $shibQuery = $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))];
+
+    // Check for shib cookie first
+    // Then check for IP range matches
+    if (!empty($shibQuery)) {
+        $authorized = true;
+    } elseif (preg_match('/152\.(3|16)\.\d*\.\d*/', $theIP)) {
+        // This checks to match
+        // 152.3.*
+        // 152.16.*
+        $authorized = true;
+    } elseif (preg_match('/67\.159\.(\d*)\.\d*/', $theIP, $matches)) {
+        // This checks to match
+        // 67.159.64-127.*
+        if ($matches[1] >= 64 and $matches[1] <= 127) {
+            $authorized = true;
+        } else {
+            $authorized = false;
+        }
+    } elseif (preg_match('/198\.(\d*)\.\d*\.\d*/', $theIP, $matches)) {
+        // This checks to match
+        // 198.29-86.*
+        if ($matches[1] >= 29 and $matches[1] <= 86) {
+            $authorized = true;
+        } else {
+            $authorized = false;
+        }
+    } else {
+        $authorized = false;
+    }
+
+    return $authorized;
+}
+
 function formatAuthor($document) {
 	
 	$authorList = "";
@@ -85,8 +129,11 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	$key_query = $summon_js_query;
 	
 	// These definitions are for the 'Identification String'
-	//$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
-	$queryParameter = "s.q=" . $key_query . "&s.role=none";  // User query without authentication
+	if (is_authorized()) {
+		$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
+	} else {
+		$queryParameter = "s.q=" . $key_query . "&s.role=none";  // User query without authentication
+	}
 	
 	$facetParameter = "s.cmd=" . $facetParameterSetting; // Limit to records held by Duke
 	$facetParameter .= " setPageSize($pagesize)";  // set number of results per page
@@ -104,10 +151,12 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	
 	
 	// These definitions are for the cURL request
-	//$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
-	$encodedQueryParameter = "s.q=" . $request_query . "&s.role=none";  // User query without authentication
 	
-	
+	if (is_authorized()) {
+		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
+	} else {
+		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=none";  // User query without authentication
+	}
 	
 	$encodedFacetParameter = "s.cmd=" . urlencode($facetParameterSetting); // Limit to records held by Duke
 	
