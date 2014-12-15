@@ -28,7 +28,7 @@ function is_authorized() {
 	// Otherwise returns FALSE
 
 	// Grab the IP address of the request
-	$theIP =  ($_SERVER['HTTP_X_FORWARDED_FOR']);
+	$theIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
 	// Grab Shib session cookie
 	$shibQuery = $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))];
