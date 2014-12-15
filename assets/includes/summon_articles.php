@@ -9,7 +9,7 @@ require_once("functions.php");
 
 //TESTING
 
-if (is_authenticated() === true) {
+if (is_authorized() === true) {
 	$auth = 'showing restricted results';
 } else {
 	$auth = 'NOT showing restricted results';
