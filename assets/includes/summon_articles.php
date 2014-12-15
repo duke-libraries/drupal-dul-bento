@@ -48,7 +48,7 @@ echo '<!-- ' . $_SERVER['REMOTE_ADDR'] . ' -->';
 echo '<!-- ' . $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))] . ' -->';
 //END TESTING
 
-	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
+	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
 			<p class="smaller muted">From journals and magazines</p>
 			<div class="results-panel">';
 
@@ -272,7 +272,7 @@ echo '<!-- ' . $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKI
 		
 		echo '<div class="see-all">';
 			
-			echo '<a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
+			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryTerms . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
 			
 		echo '</div>';
 			
