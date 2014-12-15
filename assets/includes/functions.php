@@ -131,7 +131,7 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	$authorization_status = is_authorized();
 	
 	// These definitions are for the 'Identification String'
-	if ($authorization_status) {
+	if ($authorization_status === true) {
 		$queryParameter = "s.q=" . $key_query . "&s.role=authenticated";  // User query with authentication for all results
 	} else {
 		$queryParameter = "s.q=" . $key_query . "&s.role=none";  // User query without authentication
@@ -154,7 +154,7 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	
 	// These definitions are for the cURL request
 	
-	if ($authorization_status) {
+	if ($authorization_status === true) {
 		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=authenticated";  // User query with authentication for all results
 	} else {
 		$encodedQueryParameter = "s.q=" . $request_query . "&s.role=none";  // User query without authentication
