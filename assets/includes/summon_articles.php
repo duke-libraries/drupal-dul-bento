@@ -44,6 +44,8 @@ echo '<div class="results-block first" id="results-articles">';
 
 //TESTING
 echo '<!-- ' . $auth . ' -->';
+echo '<!-- ' . $_SERVER['REMOTE_ADDR'] . ' -->';
+echo '<!-- ' . $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))] . ' -->'
 //END TESTING
 
 	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/search?s.fvf%5B%5D=ContentType%2CJournal+Article%2Cf&s.fvf%5B%5D=ContentType%2CMagazine+Article%2Cf&s.light=t&s.cmd=addFacetValueFilters(ContentType,Book+Review:t,Newspaper+Article:t)&s.q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
