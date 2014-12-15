@@ -1,5 +1,17 @@
 <?php
 
+// Testing //
+
+echo '<!-- COOKIES: ';
+
+print_r($_COOKIE);
+
+echo '-->';
+
+// END Testing //
+
+
+
 $pageStart = microtime(true);
 
 settype($Ntt, "string");
