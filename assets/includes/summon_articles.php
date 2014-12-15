@@ -44,7 +44,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 //TESTING
 echo '<!-- ' . $auth . ' -->';
-echo '<!-- ' . $_SERVER['REMOTE_ADDR'] . ' -->';
+echo '<!-- ' . $_SERVER['HTTP_X_FORWARDED_FOR'] . ' -->';
 echo '<!-- ' . $_COOKIE[current(preg_grep('/^_shibsession_/', array_keys($_COOKIE)))] . ' -->';
 //END TESTING
 
