@@ -133,6 +133,10 @@ if ($theSearch != "") {
 				if (!empty ($title)) {
 					$theTitle = (string) $title[0];
 					$theTitle = htmlentities($theTitle, ENT_QUOTES, 'UTF-8');
+					
+					// nix '[electronic resource]' and '[serial]'
+					$theTitle = str_replace(' [electronic resource]', '', $theTitle);
+					$theTitle = str_replace(' [serial]', '', $theTitle);
 			
 					// truncate long titles
 					if (strlen($theTitle) > 135) {
@@ -203,6 +207,7 @@ if ($theSearch != "") {
 				// Main Author
 				if (!empty ($author)) {
 					$theAuthor = (string) $author[0];
+					$theAuthor = str_replace('|', '', $theAuthor);
 					$theAuthor = rtrim(htmlentities($theAuthor, ENT_QUOTES, 'UTF-8'), '.');
 				} else {
 					$theAuthor = "NONE";
@@ -395,34 +400,7 @@ if ($theSearch != "") {
 						}
 				
 				
-						if (!empty ($otherAuthors)) {
-					
-							if (isset($otherAuthors1)) {
-				
-								if ($theAuthor == "NONE") {
-					
-									echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $otherAuthors1 . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $otherAuthors1 . '</a>';
-					
-								}
-				
-							}	
-				
-							// MTD: removed other authors code on 7/25
-							
-					
-						}
-				
-						// Fallback for no author info
-				
-						if ($theAuthor == "NONE" AND empty ($otherAuthors)) {
-				
-							if (isset($theSOR)) {	
-				
-								echo $theSOR;
-				
-							}
-					
-						}
+						
 
 						echo '</div>';
 				
