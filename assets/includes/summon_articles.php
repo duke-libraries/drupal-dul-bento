@@ -105,19 +105,56 @@ echo '<div class="results-block first" id="results-articles">';
 			
 					// AUTHORS
 					echo '<div class="authors">';
+					
 					$authorList = formatAuthor($document);
+					
 					if($authorList != "") {
-					
-						$authorListDisplay = $authorList;
-					
-						// truncate long lists of authors
-						if (strlen($authorListDisplay) > 175) {
-							$authorListDisplay = wordwrap($authorListDisplay, 175);
-							$authorListDisplay = substr($authorListDisplay, 0, strpos($authorListDisplay, "\n"));
-							$authorListDisplay = $authorListDisplay . ' (&hellip;)';
+						
+						// split into array based on 'and'
+						
+						$authorListTemp = str_replace(";", "and", $authorList);
+						$authorListTemp = htmlspecialchars($authorListTemp);
+						$authorListArray = explode("and", $authorListTemp);
+						$authorCount = count($authorListArray);
+
+						//$authorListDisplay = $authorList;
+						
+						echo 'by ';
+						
+						
+						// loop through authors array
+						$n = 0;
+						while ($n < $authorCount) {
+						
+							echo '<a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorListArray[$n]) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListArray[$n] . '</a>';
+							
+							$n ++;
+							
+							if ($n < $authorCount) {
+								
+								if (($n + 1) == $authorCount) {
+									echo ' and ';
+								}
+								
+								else {
+									echo '; ';
+								}
+							} 
+		
+						
 						}
+						
+						
+						
+						// truncate long lists of authors
+						//if (strlen($authorListDisplay) > 175) {
+							//$authorListDisplay = wordwrap($authorListDisplay, 175);
+							//$authorListDisplay = substr($authorListDisplay, 0, strpos($authorListDisplay, "\n"));
+							//$authorListDisplay = $authorListDisplay . ' (&hellip;)';
+						//}
 					
-						echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
+						//echo '<a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
+						
 					}
 	
 					echo '</div>';
@@ -226,7 +263,9 @@ echo '<div class="results-block first" id="results-articles">';
 				// clear all variables
 					unset($theTitle);
 					unset($authorList);
-					unset($authorListDisplay);
+					unset($authorListTemp);
+					unset($authorListArray);
+					unset($authorCount);
 					unset($thePubTitle);
 					unset($theDate);
 					unset($startPage);
