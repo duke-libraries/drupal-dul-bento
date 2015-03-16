@@ -2,21 +2,21 @@
 
 // Testing //
 
-echo '<!-- COOKIES: ';
+//echo '<!-- COOKIES: ';
 
-print_r($_COOKIE);
+//print_r($_COOKIE);
 
-echo '-->';
+//echo '-->';
 
 
 
-echo '<!-- SHIB: ';
+//echo '<!-- SHIB: ';
 
-echo $_SERVER["HTTP_SHIB_SESSION_ID"];
+//echo $_SERVER["HTTP_SHIB_SESSION_ID"];
 
 //echo $_SERVER["Shib-Session-ID"];
 
-echo '-->';
+//echo '-->';
 
 
 
