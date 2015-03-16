@@ -71,7 +71,7 @@ if($queryTerms != "") {
 
 	if ($staff_persons->rowCount() == 0) {
 
-		echo "No Staff results found for <em>" . $queryTerms . "</em>.";
+		echo "No Staff results found for <em>" . $queryDisplay . "</em>.";
 	
 		echo '<br/><br/><a href="/about/directory/">Try another search &raquo;</a>';
 

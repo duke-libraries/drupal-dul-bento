@@ -8,6 +8,20 @@ print_r($_COOKIE);
 
 echo '-->';
 
+
+
+echo '<!-- SHIB: ';
+
+echo $_SERVER["HTTP_SHIB_SESSION_ID"];
+
+//echo $_SERVER["Shib-Session-ID"];
+
+echo '-->';
+
+
+
+
+
 // END Testing //
 
 
@@ -24,6 +38,7 @@ $bento_action = $GLOBALS['base_path'] . variable_get('dul_bento.results_url', ''
 if(isset($Ntt))
 {
 	$queryTerms = stripslashes($Ntt);
+	$queryDisplay = htmlspecialchars($queryTerms);
 }
 else $queryTerms = "Search for articles, books &amp; more";
 
@@ -43,7 +58,7 @@ else $contentType = NULL;
 				<div id="articles" class="tab-pane active">			
 					<form class="form-inline" action="<?php echo $bento_action; ?>">
 
-						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryTerms; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
+						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryDisplay; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
 						
 					</form>
 			

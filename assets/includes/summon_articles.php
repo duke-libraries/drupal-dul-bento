@@ -53,7 +53,7 @@ echo '<div class="results-block first" id="results-articles">';
 		
 		echo '<div class="no-results">';
 		
-		echo "No Articles results found for <em>" . $queryTerms . "</em>.";
+		echo "No Articles results found for <em>" . $queryDisplay . "</em>.";
 	
 		echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 		
@@ -295,7 +295,7 @@ echo '<div class="results-block first" id="results-articles">';
 		
 		echo '<div class="see-all">';
 			
-			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryTerms . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
+			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
 			
 		echo '</div>';
 			

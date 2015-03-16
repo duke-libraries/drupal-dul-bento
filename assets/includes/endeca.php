@@ -861,7 +861,7 @@ if ($theSearch != "") {
 			
 			echo '<div class="no-results">';
 			
-			$searchWarning = "No Books &amp; More results found for <em>" . $queryTerms . "</em>.";
+			$searchWarning = "No Books &amp; More results found for <em>" . $queryDisplay . "</em>.";
 	
 			$searchWarning .= '<br/><br/><a href="http://search.library.duke.edu/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 	

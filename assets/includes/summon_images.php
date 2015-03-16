@@ -29,7 +29,7 @@ if($queryTerms != "") {
 
 	echo '<div class="results-block" id="results-libguides">';
 
-		echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryTerms . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
+		echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
 				<p class="smaller muted">Digitized collections</p>
 				<div class="results-panel">';
 
@@ -47,7 +47,7 @@ if($queryTerms != "") {
 		
 			echo '<div class="no-results">';
 			
-			echo "No Images results found for <em>" . $queryTerms . "</em>.";
+			echo "No Images results found for <em>" . $queryDisplay . "</em>.";
 			
 			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 	 
