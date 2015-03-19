@@ -2,10 +2,10 @@
 
 require_once('SolrPhpClient/Service.php');
 
-$raw_query = 'oxford english dictionary'; // switch to use $queryTerms
+//$queryTerms = 'thompson one'; // switch to use $queryTerms
 
 // Remove these special characters:  ( ) ? * [ ] ` ! # $ % { } < > ^ ~ | + & 
-$sanitized_query = preg_replace("/\(|\)|\?|\*|\[|\]|`|!|#|\$|%|{|}|<|>|\^|~|\||\+|&/", "", $raw_query);
+$sanitized_query = preg_replace("/\(|\)|\?|\*|\[|\]|`|!|#|\$|%|{|}|<|>|\^|~|\||\+|&/", "", $queryTerms);
 
 // Replace these special characters with a single space: . : ; , - _ / = @
 $sanitized_query = preg_replace("/\.|:|;|,|-|_|\/|=|@/", " ", $sanitized_query);
@@ -34,7 +34,7 @@ if (substr_count($bestbets_query, ' ') < 3) {
     $params = array('defType' => 'dismax', 'mm' => '4');
 }
 
-$solr = new Apache_Solr_Service('localhost', '8983', '/solr');
+$solr = new Apache_Solr_Service('collections-01.lib.duke.edu', '8080', '/solr_bestbets');
 
 if (get_magic_quotes_gpc() == 1) {
     $bestbets_query = stripslashes($bestbets_query);
