@@ -50,7 +50,7 @@ $title = $results->response->docs[0]->title;
 $url = $results->response->docs[0]->url;
 
 if ($title && $url) {
-    echo '<h3><a href="' . $url . '">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
+    echo '<h3><a href="' . $url . '" class="best-bet-link">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
 }
 
 ?>

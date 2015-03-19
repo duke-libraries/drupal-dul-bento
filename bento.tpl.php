@@ -74,7 +74,7 @@ else $contentType = NULL;
 	
 	</div>
 
-	<div class="bestbets">
+	<div class="best-bet">
 		<?php include("assets/includes/bestbets.php"); ?>
 	</div>
 
