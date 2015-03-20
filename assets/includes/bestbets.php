@@ -48,9 +48,11 @@ try {
 
 $title = $results->response->docs[0]->title;
 $url = $results->response->docs[0]->url;
+$description = $results->docs[0]->description;
 
 if ($title && $url) {
     echo '<h3><a href="' . $url . '" class="best-bet-link">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
+    echo '<p class="best-bet-description">' . $description . '</p>'
 }
 
 ?>
