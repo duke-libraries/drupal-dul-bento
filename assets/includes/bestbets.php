@@ -10,6 +10,10 @@ $sanitized_query = preg_replace("/\(|\)|\?|\*|\[|\]|`|!|#|\$|%|{|}|<|>|\^|~|\||\
 // Replace these special characters with a single space: . : ; , - _ / = @
 $sanitized_query = preg_replace("/\.|:|;|,|-|_|\/|=|@/", " ", $sanitized_query);
 
+// This is a lazy way of doing this, but replace é and è with e
+$sanitized_query = preg_replace("/é|è/", "e", $sanitized_query);
+
+
 // Replace 1 or more whitespace charaters with a single space
 $sanitized_query = preg_replace("/[ \t\n\r\s]+/", " ", $sanitized_query);
 
@@ -48,11 +52,11 @@ try {
 
 $title = $results->response->docs[0]->title;
 $url = $results->response->docs[0]->url;
-$description = $results->docs[0]->description;
+$description = $results->response->docs[0]->description;
 
 if ($title && $url) {
     echo '<h3><a href="' . $url . '" class="best-bet-link">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
-    echo '<p class="best-bet-description">' . $description . '</p>'
+    echo '<p class="best-bet-description">' . $description . '</p>';
 }
 
 ?>
