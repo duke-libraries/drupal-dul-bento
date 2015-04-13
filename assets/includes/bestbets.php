@@ -8,7 +8,7 @@ require_once('SolrPhpClient/Service.php');
 $sanitized_query = preg_replace("/\(|\)|\?|\*|\[|\]|`|!|#|\$|%|{|}|<|>|\^|~|\||\+|&/", "", $queryTerms);
 
 // Replace these special characters with a single space: . : ; , - _ / = @
-$sanitized_query = preg_replace("/\.|:|;|,|-|_|\/|=|@/", " ", $sanitized_query);
+$sanitized_query = preg_replace("/\.|:|;|,|-|_|\/|=|@|'/", " ", $sanitized_query);
 
 // This is a lazy way of doing this, but replace é and è with e
 $sanitized_query = preg_replace("/é|è/", "e", $sanitized_query);
@@ -26,17 +26,21 @@ $params = array();
 $results = '';
 $errors = array();
 
-if (substr_count($bestbets_query, ' ') < 3) {
-    // for queries containing 3 or fewer terms
-    // use non-analyzed keyword field with phrased search
-    $bestbets_query = 'keywords: "' . $bestbets_query . '"';
-} else {
-    // use DisMax query parser for longer queries
-    // NOTE: edismax parser causes too liberal matching if the word "or"
-    //       is present in the query
-    // force at least 4 terms to match
-    $params = array('defType' => 'dismax', 'mm' => '4');
-}
+// The dismax parser was proving troublesome for best bets with longer keywords and many stopwords
+// So we're back to exact phrase matching for now.
+$bestbets_query = 'keywords: "' . $bestbets_query . '"';
+
+// if (substr_count($bestbets_query, ' ') < 3) {
+//     // for queries containing 3 or fewer terms
+//     // use non-analyzed keyword field with phrased search
+//     $bestbets_query = 'keywords: "' . $bestbets_query . '"';
+// } else {
+//     // use DisMax query parser for longer queries
+//     // NOTE: edismax parser causes too liberal matching if the word "or"
+//     //       is present in the query
+//     // force at least 4 terms to match
+//     $params = array('defType' => 'dismax', 'mm' => '3', 'qf' => 'text');
+// }
 
 $solr = new Apache_Solr_Service('collections-01.lib.duke.edu', '8080', '/solr_bestbets');
 
