@@ -1100,6 +1100,14 @@ jQuery(document).ready(function(){
     } else {
         jQuery('.best-bet-flag').remove();
     }
+
+    jQuery('.best-bet-link').click(function() {
+        
+        jQuery.ajax({
+            url:'/sites/all/modules/dul_bento/assets/includes/bestbets_logger.php?id=' + jQuery('.best-bet-link').data('best-bet-id') + '&event=bb_click',
+            timeout: 10000
+        });
+    });
 });
 
 (function($) {
