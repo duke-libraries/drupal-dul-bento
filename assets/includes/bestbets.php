@@ -54,10 +54,12 @@ try {
     $errors[] = $e->getMessage();
 }
 
-$id = $results->response->docs[0]->id;
-$title = $results->response->docs[0]->title;
-$url = $results->response->docs[0]->url;
-$description = $results->response->docs[0]->description;
+if (isset($results->response->docs[0])) {
+    $id = $results->response->docs[0]->id;
+    $title = $results->response->docs[0]->title;
+    $url = $results->response->docs[0]->url;
+    $description = $results->response->docs[0]->description;
+}
 
 if ($title && $url && $id) {
 
