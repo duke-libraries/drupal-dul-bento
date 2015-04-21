@@ -70,7 +70,7 @@ if ($title && $url && $id) {
 
     file_put_contents($logfile, $bestbet_loginfo, FILE_APPEND | LOCK_EX);
 
-    echo '<h3><a href="' . $url . '" class="best-bet-link" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BestBets\', eventLabel: \'' . $title . '\'})">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
+    echo '<h3><a href="' . $url . '" class="best-bet-link" data-best-bet-id="' . $id . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BestBets\', eventLabel: \'' . $title . '\'})">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
     echo '<p class="best-bet-description">' . $description . '</p>';
 }
 
