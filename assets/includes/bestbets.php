@@ -1,9 +1,6 @@
 <?php
-date_default_timezone_set('America/New_York');
 
 require_once('SolrPhpClient/Service.php');
-
-$logfile = 'private://bestbets_log.txt';
 
 //$queryTerms = 'thompson one'; // switch to use $queryTerms
 
@@ -63,12 +60,6 @@ $url = $results->response->docs[0]->url;
 $description = $results->response->docs[0]->description;
 
 if ($title && $url && $id) {
-
-    $bestbet_loginfo = date('Y-m-d H:i:s');
-    $bestbet_loginfo .= "\tbb_serve";
-    $bestbet_loginfo .= "\t" . $id . "\n";
-
-    file_put_contents($logfile, $bestbet_loginfo, FILE_APPEND | LOCK_EX);
 
     echo '<h3><a href="' . $url . '" class="best-bet-link" data-best-bet-id="' . $id . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BestBets\', eventLabel: \'' . $title . '\'})">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
     echo '<p class="best-bet-description">' . $description . '</p>';
