@@ -1101,7 +1101,7 @@ jQuery(document).ready(function(){
         jQuery('.best-bet-flag').remove();
     }
 
-    if (jQuery('.best-bet-link')) {
+    if (jQuery('.best-bet-link')[0]) {
         jQuery.ajax({
             url:'/sites/all/modules/dul_bento/assets/includes/bestbets_logger.php?id=' + jQuery('.best-bet-link').data('best-bet-id') + '&event=bb_serve',
             timeout: 10000
