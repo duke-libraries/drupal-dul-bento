@@ -370,6 +370,35 @@ width: 28%;
 	margin-top: 1.5em;
 }
 
+/* Best Bets */
+
+.best-bet {
+    margin-top: 40px;
+}
+
+.best-bet h3 {
+	font-size: 16pt;
+}
+
+.best-bet p {
+	font-size: 12pt;
+}
+
+.best-bet-link {
+    color: #0062A0 !important;
+}
+
+.best-bet-link:hover {
+    text-decoration: underline !important;
+}
+
+.best-bet-flag {
+    display: none;
+    color: #FFF;
+    background-color: #a1b70d;
+    padding: 3px 6px;
+}
+
 @media (min-width: 980px) {
 	
 	.discovery .bento {

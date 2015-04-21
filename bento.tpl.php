@@ -89,6 +89,10 @@ else $contentType = NULL;
 	
 	</div>
 
+	<div class="best-bet">
+		<?php include("assets/includes/bestbets.php"); ?>
+	</div>
+
 
 	<div class="grid-4 alpha">
 		
