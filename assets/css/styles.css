@@ -376,6 +376,14 @@ width: 28%;
     margin-top: 40px;
 }
 
+.best-bet h3 {
+	font-size: 16pt;
+}
+
+.best-bet p {
+	font-size: 12pt;
+}
+
 .best-bet-link {
     color: #0062A0 !important;
 }
