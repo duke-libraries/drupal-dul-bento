@@ -251,7 +251,7 @@ if ($theSearch != "") {
 
 						$theItemtypeDisplay = "Serial";
 
-					} elseif ($theItemtypeDisplay == "BPER") {
+					} elseif ($theItemtypeDisplay == "Bper") {
 
 						$theItemtypeDisplay = "Serial";
 
