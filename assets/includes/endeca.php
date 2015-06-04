@@ -57,6 +57,7 @@ if ($theSearch != "") {
 
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
+				$ROLLUP = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Rollup/item');
 				$Imprint = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Imprint/item');
 				$Publisher = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Publisher/item');
 				$ISBN = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Syndetics-ISBN/item');
@@ -157,11 +158,21 @@ if ($theSearch != "") {
 					$theID = "";
 				}
 
-					// Check for DC
-					$dcItem = "false";
-					if (strpos($theID,'DUKEDC') !== false) {
-    					$dcItem = "true";
-					}
+				// Check for DC
+				$dcItem = "false";
+				if (strpos($theID,'DUKEDC') !== false) {
+						$dcItem = "true";
+				}
+
+				// if ID is empty, use Rollup instead
+				$rollupItem = "false";
+				if ($theID == "") {
+						if(!empty ($ROLLUP)) {
+							$theID = (string) $ROLLUP[0];
+							$rollupItem = "true";
+						}
+				}
+
 
 
 
@@ -224,41 +235,33 @@ if ($theSearch != "") {
 					$theItemtypeDisplay = ucwords(strtolower(str_replace('|', '', $theItemtype)));
 
 					if ($theItemtypeDisplay == "Mfich") {
-
 						$theItemtypeDisplay = "Microfiche";
 
 					} elseif ($theItemtypeDisplay == "Itnet") {
-
 						$theItemtypeDisplay = "Internet resource";
 
 					} elseif ($theItemtypeDisplay == "Lprec") {
-
 						$theItemtypeDisplay = "LP record";
 
 					} elseif ($theItemtypeDisplay == "Cdrec") {
-
 						$theItemtypeDisplay = "Audio CD";
 
 					} elseif ($theItemtypeDisplay == "Dvd") {
-
 						$theItemtypeDisplay = "Video DVD";
 
 					} elseif ($theItemtypeDisplay == "Mss") {
-
 						$theItemtypeDisplay = "Manuscript";
 
 					} elseif ($theItemtypeDisplay == "Ser") {
-
 						$theItemtypeDisplay = "Serial";
 
 					} elseif ($theItemtypeDisplay == "Bper") {
-
 						$theItemtypeDisplay = "Serial";
-
 					}
 
 
-
+				} else {
+					$theItemtype = "";
 				}
 
 
@@ -324,7 +327,7 @@ if ($theSearch != "") {
 
 							// check for DC
 
-							if ($dcItem == "true") {
+							if ($dcItem == "true" || $rollupItem == "true") {
 
 								echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
@@ -386,7 +389,7 @@ if ($theSearch != "") {
 				} else if (isset($theThumbnailURL)) {
 
 					// Check for DC
-					if ($dcItem == "true") {
+					if ($dcItem == "true" || $rollupItem == "true") {
 
 						echo '<div class="thumbnail">';
 
@@ -464,7 +467,11 @@ if ($theSearch != "") {
 							// added year
 							if (!empty ($thePublished)) {
 
-								echo ', ' . $thePublished;
+								if ($theItemtype != "") {
+									echo ', ';
+								}
+
+								echo $thePublished;
 
 							}
 
@@ -759,7 +766,7 @@ if ($theSearch != "") {
 								if ($holdingsCount == 1) {
 
 									// Check for DC
-									if ($dcItem == "true") {
+									if ($dcItem == "true" || $rollupItem == "true") {
 
 										echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
@@ -774,7 +781,7 @@ if ($theSearch != "") {
 								} else {
 
 									// Check for DC
-									if ($dcItem == "true") {
+									if ($dcItem == "true" || $rollupItem == "true") {
 
 										echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
@@ -856,6 +863,7 @@ if ($theSearch != "") {
 				unset ($libraryName);
 
 				unset ($dcItem);
+				unset ($rollupItem);
 				unset ($ThumbnailURL);
 				unset ($theThumbnailURL);
 
