@@ -63,8 +63,24 @@ if (isset($results->response->docs[0])) {
 
 if ($title && $url && $id) {
 
-    echo '<h3><a href="' . $url . '" class="best-bet-link" data-best-bet-id="' . $id . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BestBets\', eventLabel: \'' . $title . '\'})">' . $title . '</a>&nbsp;&nbsp;&nbsp;<span class="best-bet-flag">Best Bet</span></h3>';
-    echo '<p class="best-bet-description">' . $description . '</p>';
+    echo '<div class="results-block first" id="results-articles"><h2>Top Result</h2>';
+    echo '<p class="smaller muted">Recommended link</p>';
+    echo '<div class="results-panel">';
+    echo '<div class="document-frame">';
+    echo '<div class="title">';
+    echo '<div class="text">';
+    echo '<h3 class="resultTitle">';
+    echo '<a href="' . $url . '" class="best-bet-link" data-best-bet-id="' . $id . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BestBets\', eventLabel: \'' . $title . '\'})">' . $title . '</a>';
+    echo '</h3>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="document-summary">';
+    echo $description;
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+
 }
 
 ?>
