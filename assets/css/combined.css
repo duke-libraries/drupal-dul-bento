@@ -29,7 +29,7 @@
 }
 
 
-#cse_libguides .gs-result .gs-title, 
+#cse_libguides .gs-result .gs-title,
 #cse_libguides .gs-result .gs-title *,
 #cse_web .gs-result .gs-title,
 #cse_web .gs-result .gs-title * {
@@ -241,7 +241,7 @@ margin: 0 15px 15px 0;
 .images .thumbnail {
 float: none;
 margin: 0 0 5px 0;
-width: 95%;	
+width: 95%;
 }
 
 .personResult,
@@ -404,20 +404,20 @@ width: 28%;
 }
 
 @media (min-width: 980px) {
-	
+
 	.discovery .bento {
 		/*min-height: 95px !important;*/
 	}
-	
+
 	.discovery {
-		margin: 15px;
-		margin-top: 15px !important;
+		/*margin: 15px;
+		margin-top: 15px !important;*/
 	}
-	
+
 	.discovery .tab-content {
     	padding: 20px 20px 10px 20px !important;
 	}
-	
+
 }
 
 
@@ -433,37 +433,37 @@ width: 28%;
 
 
 @media (max-width: 739px) {
-  
+
 	.search-results-nav {
 		display: block;
 		margin-top: 1em;
 		margin-bottom: .5em;
 		overflow: hidden;
 	}
-	
+
 	.search-results-nav ul,
 	.search-results-nav li {
 		list-style: none;
 		padding:0;
 		margin:0;
 	}
-	
+
 	.search-results-nav li {
 		float: left;
 	}
-	
+
 	.search-results-nav li a {
 		padding: 5px;
 		margin: 5px;
 		font-size: 115%;
 	}
-	
+
 	.content-pad-left,
 	.content-pad-right,
 	.content-pad {
 		padding:0;
 	}
-	
+
 
 }
 
