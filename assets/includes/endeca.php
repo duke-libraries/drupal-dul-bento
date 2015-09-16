@@ -264,6 +264,12 @@ if ($theSearch != "") {
 					$theItemtype = "";
 				}
 
+				// Update ID (to use rollup) for streaming media item types
+				if ($theItemtype == "Online Video" || $theItemtype == "Streaming audio") {
+					$theID = (string) $ROLLUP[0];
+					$rollupItem = "true";
+				}
+
 
 				// Due Date (just check if it exists)
 
