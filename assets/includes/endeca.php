@@ -74,8 +74,13 @@ if ($theSearch != "") {
 				$SOR = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statement-of-Responsibility/item');
 				$DueDate = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Item-Due-Date/item');
 				$ThumbnailURL = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Thumbnail-URL/item');
-
 				$Statuses = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Statuses/item');
+				$SharedRecord = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/SharedRecordFlag/item');
+
+				// for NC Live items
+				$PrimaryURL = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Primary-URL/item');
+
+
 
 				# NOTE: The Libraries, Items Types, Call Numbers and Item IDs, as a unit, represent (a portion) of a Holdings record
 				# so, an array will be created to store those values (array)
@@ -151,6 +156,7 @@ if ($theSearch != "") {
 					$theTitle = "";
 				}
 
+
 				// ID
 				if (!empty ($ID)) {
 					$theID = (string) $ID[0];
@@ -158,30 +164,26 @@ if ($theSearch != "") {
 					$theID = "";
 				}
 
+				// fallback to Rollup (for no ID)
+				$rollupItem = "false";
+				if ($theID == "") {
+					if(!empty ($ROLLUP)) {
+						$theID = (string) $ROLLUP[0];
+						$rollupItem = "true";
+					}
+				}
+
 				// Check for DC
 				$dcItem = "false";
 				if (strpos($theID,'DUKEDC') !== false) {
-						$dcItem = "true";
+					$dcItem = "true";
 				}
-
-				// if ID is empty, use Rollup instead
-				$rollupItem = "false";
-				if ($theID == "") {
-						if(!empty ($ROLLUP)) {
-							$theID = (string) $ROLLUP[0];
-							$rollupItem = "true";
-						}
-				}
-
-
-
 
 
 				// ISBN
 				if (!empty ($ISBN)) {
 
 					$theISBN = (string) $ISBN[0];
-
 
 					// check if ISBN repeats
 
@@ -213,7 +215,6 @@ if ($theSearch != "") {
 				if (!empty ($UPC)) {
 					$theUPC = (string) $UPC[0];
 				}
-
 
 				// Main Author
 				if (!empty ($author)) {
@@ -264,8 +265,40 @@ if ($theSearch != "") {
 					$theItemtype = "";
 				}
 
+				// IDs for Internet Resources (default to Rollup, otherwise use local ID)
+				if ($theItemtypeDisplay == "Internet Resource") {
+
+					if (!empty ($ROLLUP)) {
+						$theID = (string) $ROLLUP[0];
+						$rollupItem = "true";
+					}
+				}
+
 				// Update ID (to use rollup) for streaming media item types
 				if ($theItemtype == "Online Video" || $theItemtype == "Streaming audio") {
+					$theID = (string) $ROLLUP[0];
+					$rollupItem = "true";
+				}
+
+				// Check for NCLive items
+				$ncLiveItem = "false";
+				if (!empty ($PrimaryURL)) {
+					$thePrimaryURL = (string) $PrimaryURL[0];
+					if (strpos($thePrimaryURL,'http://media.nclive.org') !== false) {
+					    $ncLiveItem = "true";
+						$theItemtype = "Online Video";
+						$theItemtypeDisplay = "Online Video";
+					}
+				}
+
+				// Dataset Shared records
+				if ($theItemtype == "DATASET" && $SharedRecord = "Shared") {
+					$theID = (string) $ROLLUP[0];
+					$rollupItem = "true";
+				}
+
+				// Generic Shared records
+				if ($theItemtype == "" && $SharedRecord = "Shared") {
 					$theID = (string) $ROLLUP[0];
 					$rollupItem = "true";
 				}
@@ -324,6 +357,22 @@ if ($theSearch != "") {
 				}
 
 
+				// SET Local ID Qualifier (default to 'DUKE' for most items)
+
+				if ($dcItem == "true" || $rollupItem == "true") {
+
+					$itemPrepend = "";
+
+				} else if ($ncLiveItem =="true") {
+
+					$itemPrepend = "NCLIVE";
+
+				} else {
+
+					$itemPrepend = "DUKE";
+
+				}
+
 
 
 				echo '<div class="document-frame" titlelocalid="' . $theID . '">';
@@ -331,18 +380,7 @@ if ($theSearch != "") {
 					echo '<div class="title">';
 						echo '<div class="text">';
 
-							// check for DC
-
-							if ($dcItem == "true" || $rollupItem == "true") {
-
-								echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
-
-							} else {
-
-								echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
-
-							}
-
+							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
 						echo '</div>';
 					echo '</div>';
@@ -361,7 +399,7 @@ if ($theSearch != "") {
 
 							echo '<div class="thumbnail">';
 
-								echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								echo '<a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 							echo '</div>';
@@ -384,26 +422,12 @@ if ($theSearch != "") {
 						echo '<div class="thumbnail">';
 
 
-							echo '<a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 						echo '</div>';
 
 					//}
-
-				// DC Thumbnails
-				} else if (isset($theThumbnailURL)) {
-
-					// Check for DC
-					if ($dcItem == "true" || $rollupItem == "true") {
-
-						echo '<div class="thumbnail">';
-
-							echo '<a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $theThumbnailURL . '" alt="item thumbnail" class="artwork"></a>';
-
-						echo '</div>';
-
-					}
 
 				}
 
@@ -771,41 +795,18 @@ if ($theSearch != "") {
 								// single holding
 								if ($holdingsCount == 1) {
 
-									// Check for DC
-									if ($dcItem == "true" || $rollupItem == "true") {
-
-										echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
-
-									} else {
-
-										echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
-
-									}
-
+									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
 								// multiple holdings
 								} else {
 
-									// Check for DC
-									if ($dcItem == "true" || $rollupItem == "true") {
-
-										echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
-
-									} else {
-
-										echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=DUKE' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
-
-									}
-
+									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
 								}
 
 								//print_r($arrHoldings);
 
 								// extra holdings
-
-
-
 
 							}
 
@@ -872,6 +873,12 @@ if ($theSearch != "") {
 				unset ($rollupItem);
 				unset ($ThumbnailURL);
 				unset ($theThumbnailURL);
+
+				unset ($ncLiveItem);
+				unset ($PrimaryURL);
+				unset ($thePrimaryURL);
+				unset ($SharedRecord);
+				unset ($itemPrepend);
 
 				$i ++;
 
