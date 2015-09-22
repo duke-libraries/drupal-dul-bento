@@ -335,7 +335,31 @@ width: 28%;
 }
 
 .search-results-nav {
-	display: none;
+	/*display: none;*/
+}
+
+.search-results-nav {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: .5em;
+	overflow: hidden;
+}
+
+.search-results-nav ul,
+.search-results-nav li {
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+
+.search-results-nav li {
+	float: left;
+}
+
+.search-results-nav li a {
+	padding: 5px;
+	margin: 5px 10px 5px 0;
+	font-size: 115%;
 }
 
 
@@ -385,6 +409,13 @@ width: 28%;
     	padding: 20px 20px 10px 20px !important;
 	}
 
+	.search-results-nav li a {
+		padding: 5px 15px 5px 5px;
+		margin: 5px 15px 5px 0;
+		font-size: 115%;
+		background: url(/sites/all/modules/dul_bento/assets/images/anchor_arrow.png) no-repeat right;
+	}
+
 }
 
 
@@ -401,29 +432,7 @@ width: 28%;
 
 @media (max-width: 739px) {
 
-	.search-results-nav {
-		display: block;
-		margin-top: 1em;
-		margin-bottom: .5em;
-		overflow: hidden;
-	}
 
-	.search-results-nav ul,
-	.search-results-nav li {
-		list-style: none;
-		padding:0;
-		margin:0;
-	}
-
-	.search-results-nav li {
-		float: left;
-	}
-
-	.search-results-nav li a {
-		padding: 5px;
-		margin: 5px;
-		font-size: 115%;
-	}
 
 	.content-pad-left,
 	.content-pad-right,
