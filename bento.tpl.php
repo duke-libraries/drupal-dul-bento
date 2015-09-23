@@ -72,13 +72,13 @@ else $contentType = NULL;
 		</div>
 	</div>
 
-	
+
 	<div class="search-results-nav">
 
 		<ul>
 
 			<li><a href="#results-articles" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'Articles', eventLabel: 'AnchorNav'});">Articles</a></li>
-			<li><a href="#results-books" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'BooksMedia', eventLabel: 'AnchorNav'});">Books &amp; More</a></li>
+			<li><a href="#results-books" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'BooksMedia', eventLabel: 'AnchorNav'});">Books &amp; Media</a></li>
 			<li><a href="#results-website" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'OurWebsite', eventLabel: 'AnchorNav'});">Our Website</a></li>
 			<li><a href="#results-libguides" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'ResearchGuides', eventLabel: 'AnchorNav'});">Research Guides</a></li>
 			<!--<li><a href="#results-staff" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'Staff', eventLabel: 'AnchorNav'});">Staff</a></li>-->
