@@ -410,10 +410,15 @@ width: 28%;
 	}
 
 	.search-results-nav li a {
-		padding: 5px 15px 5px 5px;
-		margin: 5px 15px 5px 0;
+		padding: 5px 15px 5px 0;
+		margin: 5px 20px 5px 0;
 		font-size: 115%;
 		background: url(/sites/all/modules/dul_bento/assets/images/anchor_arrow.png) no-repeat right;
+		opacity: .6;
+	}
+
+	.search-results-nav li a:hover {
+		opacity: .8;
 	}
 
 }
