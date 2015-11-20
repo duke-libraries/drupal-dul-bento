@@ -56,6 +56,7 @@ if ($theSearch != "") {
 				$resultCount = $i;
 
 				$title = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Title/item');
+				$uniformTitle = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Uniform-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
 				$ROLLUP = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Rollup/item');
 				$Imprint = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Imprint/item');
@@ -154,6 +155,14 @@ if ($theSearch != "") {
 
 				} else {
 					$theTitle = "";
+				}
+
+				// Uniform Titles
+				if (!empty ($uniformTitle)) {
+					$theUniformTitle = (string) $uniformTitle[0];
+					$theUniformTitle = htmlentities($theUniformTitle, ENT_QUOTES, 'UTF-8');
+				} else {
+					$theUniformTitle = "";
 				}
 
 
@@ -381,6 +390,10 @@ if ($theSearch != "") {
 						echo '<div class="text">';
 
 							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+
+							if ($theUniformTitle != "") {
+								echo '<div class="subtitle"><em>' . $theUniformTitle . '</em></div>';
+							}
 
 						echo '</div>';
 					echo '</div>';
@@ -828,6 +841,7 @@ if ($theSearch != "") {
 				// clear all variables
 				unset($title);
 				unset($theTitle);
+				unset($theUniformTitle);
 				unset($ID);
 				unset($theID);
 				unset($Imprint);

@@ -194,6 +194,12 @@ h3.resultTitle a:hover {
 	color: #0062A0;
 }
 
+.subtitle {
+	font-size: 16px;
+	margin: -.25em 0 .25em 0;
+	color: #878787;
+}
+
 .document-frame {
 overflow: hidden;
 padding-bottom: .5em;
