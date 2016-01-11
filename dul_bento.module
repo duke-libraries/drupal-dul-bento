@@ -1,7 +1,7 @@
 <?php
 
 function dul_bento_menu() {
-    
+
     $items = array(
 
 		'admin/config/bento' => array(
@@ -13,9 +13,9 @@ function dul_bento_menu() {
 			'type' => MENU_NORMAL_ITEM,
 			'file' => 'dul_bento.admin.inc',
 		),
-		
+
 	);
-    
+
     //$items['find/bento'] = array(
     $items[variable_get('dul_bento.results_url', '')] = array(
         'title' => variable_get('dul_bento.results_title', ''),
@@ -29,19 +29,19 @@ function dul_bento_menu() {
 /**
  * Implements hook_theme
  */
- 
+
 function dul_bento_theme() {
-	
+
 	return array(
 		'the_results' => array(
 			'template' => 'bento',
 			'variables' => array(
-				'queryTerms' => NULL, 
+				'queryTerms' => NULL,
 				'requestURL' => NULL,
 				),
 			),
 		);
-	
+
 }
 
 
@@ -50,29 +50,41 @@ function dul_bento_theme() {
  * Implements page callback for overall search results
  */
 function dul_bento_search_results() {
-	
+
 	$page = array();
+
+    // check for admin setting
+    $bentoIndex = variable_get('dul_bento.bento_results_index', '');
+
+    if ($bentoIndex == 0) {
+
+        $noindex_meta_tag = array(
+            '#tag' => 'meta',
+            '#attributes' => array(
+              'name' => 'robots',
+              'content' => 'noindex',
+            ),
+        );
+
+        drupal_add_html_head($noindex_meta_tag, 'install_meta_robots');
+
+    }
 
 	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/combined.min.css' , array('preprocess' => FALSE));
 
 	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/combined.min.js', array('preprocess' => FALSE));
-	
+
 	drupal_add_js('https://www.google.com/jsapi', 'external');
 	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/google_search.js', array('preprocess' => TRUE));
-	
-	
-	
+
+
+
 	$page['results_content'] = array (
 		'#theme' => 'the_results',
 		'#queryTerms' => 'queryTerms',
 		);
-	
-	
+
+
 	return $page;
 
 }
-
-
-
-
-
