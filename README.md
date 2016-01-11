@@ -35,6 +35,10 @@ Options include:
 - Summon Client Key
   - your client key
 
+- Indexing option
+  - by default, the results page is rendered with a robots metatag set to 'noindex'
+  - you can tick the checkbox to turn this off (in case you'd like the page to be indexed)
+
 - Logging options
   - log files are generated in your 'private' drupal directory as 'bento_log.txt'
   - the daily option creates a new file appended with the date
