@@ -920,7 +920,7 @@ if ($theSearch != "") {
 
 
 
-		if ($searchResults == "-1") {
+		elseif ($searchResults == "-1") {
 
 			echo '<div class="no-results">';
 
