@@ -21,9 +21,25 @@ $maxResults = 8;
 
 if ($theSearch != "") {
 
-	$searchResults = $theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults');
+	//check for xpath
+	$nodeCount = count($theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults'));
 
-	$searchResults = (string) $searchResults[0];
+	// broken path...
+	if ($nodeCount == 0) {
+
+		$searchResults = "-1";
+		// error output on line ~923
+
+	}
+
+	// there is a node!
+	else {
+
+		$searchResults = $theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults');
+
+		$searchResults = (string) $searchResults[0];
+
+	}
 
 } else {
 
@@ -47,7 +63,7 @@ if ($theSearch != "") {
 
 		<?php
 
-		if($searchResults != "0" AND $theSearch != "") {
+		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "") {
 
 			$resultCount = 0; // for GA event tracking
 
@@ -902,6 +918,23 @@ if ($theSearch != "") {
 
 		}
 
+
+
+		if ($searchResults == "-1") {
+
+			echo '<div class="no-results">';
+
+			$searchWarning = "A network or server error was encountered while searching for <em>" . $queryDisplay . "</em>. Please try again in a few moments";
+
+			$searchWarning .= '<br/><br/>If you continue to encounter this error, please <a href="//library.duke.edu/research/ask" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'GetHelp\'});">report the problem to Library Staff</a>';
+
+			echo $searchWarning;
+
+			echo '</div>';
+
+		}
+
+
 		else {
 
 			echo '<div class="no-results">';
@@ -920,7 +953,7 @@ if ($theSearch != "") {
 
 
 		// See all bottom link
-		if($searchResults != "0" AND $theSearch != "") {
+		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "") {
 
 			echo '<div class="see-all">';
 
