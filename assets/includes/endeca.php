@@ -8,6 +8,8 @@ $urlString = "http://search.library.dukeeee.edu/search?Nty=1&Ntk=Keyword&N=0&out
 
 $theSearch = urlencode($queryTerms);
 
+$searchResults = "";
+
 
 $endecaXMLStart = microtime(true);
 	if (file_get_contents($urlString)) {
