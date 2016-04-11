@@ -1,5 +1,7 @@
 <?php
 
+//ini_set('display_errors',1);
+
 $endecaStart = microtime(true);
 
 $urlString = "http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
@@ -8,9 +10,12 @@ $theSearch = urlencode($queryTerms);
 
 
 $endecaXMLStart = microtime(true);
-$theXML = simplexml_load_file ($urlString . $theSearch);
+	if (file_get_contents($urlString)) {
+		$theXML = simplexml_load_file ($urlString . $theSearch);
+	} else {
+		$searchResults = "-1";
+	}
 $endecaXMLEnd = microtime(true);
-
 
 $tempISBN = "";
 $isDiffISBN = false;
@@ -19,7 +24,7 @@ $i = 1;
 
 $maxResults = 8;
 
-if ($theSearch != "") {
+if ($theSearch != "" && $searchResults != "-1") {
 
 	//check for xpath
 	$nodeCount = count($theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults'));
@@ -41,11 +46,10 @@ if ($theSearch != "") {
 
 	}
 
-} else {
+} //else {
 
-	$searchResults = "0";
-}
-
+	//$searchResults = "0";
+//}
 
 
 if ($theSearch != "") {
@@ -63,7 +67,7 @@ if ($theSearch != "") {
 
 		<?php
 
-		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "") {
+		if ($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "") {
 
 			$resultCount = 0; // for GA event tracking
 
