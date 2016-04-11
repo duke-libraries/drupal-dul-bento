@@ -4,7 +4,7 @@
 
 $endecaStart = microtime(true);
 
-$urlString = "http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
+$urlString = "http://search.library.dukeeee.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
 
