@@ -2,9 +2,13 @@
 
 //ini_set('display_errors',1);
 
+ini_set('default_socket_timeout', 10);
+
 $endecaStart = microtime(true);
 
-$urlString = "//search.library.duke.edu:81/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
+$urlString = "https://search.library.duke.edu:81";
+
+$searchPath = "/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
 
@@ -13,7 +17,7 @@ $searchResults = "";
 
 $endecaXMLStart = microtime(true);
 	if (file_get_contents($urlString)) {
-		$theXML = simplexml_load_file ($urlString . $theSearch);
+		$theXML = simplexml_load_file ($urlString . $searchPath . $theSearch);
 	} else {
 		$searchResults = "-1";
 	}
@@ -25,6 +29,7 @@ $isDiffISBN = false;
 $i = 1;
 
 $maxResults = 8;
+
 
 if ($theSearch != "" && $searchResults != "-1") {
 
