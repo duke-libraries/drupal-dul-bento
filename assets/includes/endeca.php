@@ -4,7 +4,7 @@
 
 $endecaStart = microtime(true);
 
-$urlString = "http://search.library.dukeeee.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
+$urlString = "//search.library.duke.edu:81/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
 
@@ -63,7 +63,7 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 
-				<h2>Books &amp; Media <a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
+				<h2>Books &amp; Media <a href="//search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 
 				<p class="smaller muted">Books, music, movies &amp; more</p>
 
@@ -411,7 +411,7 @@ if ($theSearch != "") {
 					echo '<div class="title">';
 						echo '<div class="text">';
 
-							echo '<h3 class="resultTitle"><a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							echo '<h3 class="resultTitle"><a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
 							if ($theUniformTitle != "") {
 								echo '<div class="subtitle"><em>' . $theUniformTitle . '</em></div>';
@@ -426,7 +426,7 @@ if ($theSearch != "") {
 
 					if ($isDiffISBN == true) {
 
-						$imagePath = "http://www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
+						$imagePath = "//www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
 						//$imageSize = getimagesize($imagePath);
 
 
@@ -434,7 +434,7 @@ if ($theSearch != "") {
 
 							echo '<div class="thumbnail">';
 
-								echo '<a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 							echo '</div>';
@@ -448,7 +448,7 @@ if ($theSearch != "") {
 				// UPC Thumbnails
 				} else if (isset($theUPC)) {
 
-					$imagePath = "http://www.syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
+					$imagePath = "//www.syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
 					//$imageSize = getimagesize($imagePath);
 
 
@@ -457,7 +457,7 @@ if ($theSearch != "") {
 						echo '<div class="thumbnail">';
 
 
-							echo '<a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="http://www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 						echo '</div>';
@@ -473,7 +473,7 @@ if ($theSearch != "") {
 						echo '<div class="authors">';
 
 						if ($theAuthor != "NONE") {
-							echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $theAuthor . '</a>';
+							echo 'by <a href="//duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $theAuthor . '</a>';
 
 						}
 
@@ -830,12 +830,12 @@ if ($theSearch != "") {
 								// single holding
 								if ($holdingsCount == 1) {
 
-									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
 								// multiple holdings
 								} else {
 
-									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="http://search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
 
 								}
 
@@ -947,7 +947,7 @@ if ($theSearch != "") {
 
 			$searchWarning = "No Books &amp; More results found for <em>" . $queryDisplay . "</em>.";
 
-			$searchWarning .= '<br/><br/><a href="http://search.library.duke.edu/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			$searchWarning .= '<br/><br/><a href="//search.library.duke.edu/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo $searchWarning;
 
@@ -963,7 +963,7 @@ if ($theSearch != "") {
 
 			echo '<div class="see-all">';
 
-				echo '<a href="http://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=' . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
+				echo '<a href="//search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=' . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
 
 			echo '</div>';
 
