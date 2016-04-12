@@ -1,14 +1,13 @@
 <?php
 
-//ini_set('display_errors',1);
-
-ini_set('default_socket_timeout', 10);
+//display errors
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
 
 $endecaStart = microtime(true);
 
-$urlString = "https://search.library.duke.edu:81";
-
-$searchPath = "/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
+$urlString = "https://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
 
@@ -16,11 +15,28 @@ $searchResults = "";
 
 
 $endecaXMLStart = microtime(true);
-	if (file_get_contents($urlString)) {
-		$theXML = simplexml_load_file ($urlString . $searchPath . $theSearch);
-	} else {
-		$searchResults = "-1";
+
+	if ($theSearch != "") {
+
+		// check for endeca response
+		$ch=curl_init();
+		$timeout=10;
+
+		curl_setopt($ch, CURLOPT_URL, $urlString . $theSearch);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+		$chResult=curl_exec($ch);
+		curl_close($ch);
+
+		if ($chResult === false) {
+		    $searchResults = "-1";
+		} else {
+			//$theXML = simplexml_load_file ($urlString . $theSearch);
+			$theXML = simplexml_load_string ($chResult);
+		}
 	}
+
 $endecaXMLEnd = microtime(true);
 
 $tempISBN = "";
@@ -53,10 +69,7 @@ if ($theSearch != "" && $searchResults != "-1") {
 
 	}
 
-} //else {
-
-	//$searchResults = "0";
-//}
+}
 
 
 if ($theSearch != "") {
