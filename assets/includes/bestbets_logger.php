@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/New_York');
+
 $logfile = '/srv/web/libcms/backup/bestbets_log.txt';
 
 if (isset($_GET['event'])) {
