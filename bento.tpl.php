@@ -51,8 +51,8 @@ else $contentType = NULL;
 
 ?>
 
-	<div class="discovery">
-		<div class="search-resources-tabs bento">
+	<div class="search-resources-wrapper">
+		<div class="search-resources-tabs bento single wider">
 			<div class="tab-content">
 
 				<div id="articles" class="tab-pane active">
@@ -92,7 +92,7 @@ else $contentType = NULL;
 
 
 
-	<div class="grid-4 alpha">
+	<div class="col col-md-4">
 
 		<div class="content-pad-left">
 
@@ -105,7 +105,7 @@ else $contentType = NULL;
 	</div>
 
 
-	<div class="grid-4">
+	<div class="col col-md-4">
 
 		<div class="content-pad">
 
@@ -116,7 +116,7 @@ else $contentType = NULL;
 	</div>
 
 
-	<div class="grid-4 omega">
+	<div class="col col-md-4">
 
 		<div class="content-pad-right">
 
