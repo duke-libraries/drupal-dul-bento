@@ -46,6 +46,9 @@
 #cse_web .gs-result .gs-title * {
 height: auto;
 line-height: 1.1;
+color: #053482 !important;
+padding-top: .25em;
+padding-bottom: .25em;
 }
 
 .gsc-resultsHeader {
@@ -197,7 +200,8 @@ padding-bottom: 10px;
 
 h3.resultTitle {
 	margin: 1em 0 .5em 0;
-	font-size: 16px;
+	font-size: 1.2em;
+  font-weight: 400;
 	letter-spacing: .01px;
 }
 
