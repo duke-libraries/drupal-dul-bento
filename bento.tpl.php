@@ -1,3 +1,17 @@
+
+<style type="text/css">
+/* temp fix */
+#cse_web table,
+#cse_web table th,
+#cse_web table td,
+#cse_libguides table,
+#cse_libguides table th,
+#cse_libguides table td {
+	border: none !important
+}
+
+</style>
+
 <?php
 
 // Testing //
