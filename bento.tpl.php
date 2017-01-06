@@ -4,10 +4,13 @@
 #cse_web table,
 #cse_web table th,
 #cse_web table td,
+#cse_web tbody,
 #cse_libguides table,
 #cse_libguides table th,
-#cse_libguides table td {
+#cse_libguides table td,
+#cse_libguides tbody {
 	border: none !important
+	border-top: none !important;
 }
 
 </style>

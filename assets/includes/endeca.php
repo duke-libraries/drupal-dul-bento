@@ -83,7 +83,7 @@ if ($theSearch != "") {
 
 				<h2>Books &amp; Media <a href="//search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 
-				<p class="smaller muted">Books, music, movies &amp; more</p>
+				<p class="small text-muted">Books, music, movies &amp; more</p>
 
 		<?php
 
