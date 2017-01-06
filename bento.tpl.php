@@ -1,20 +1,3 @@
-
-<style type="text/css">
-/* temp fix */
-#cse_web table,
-#cse_web table th,
-#cse_web table td,
-#cse_web tbody,
-#cse_libguides table,
-#cse_libguides table th,
-#cse_libguides table td,
-#cse_libguides tbody {
-	border: none !important
-	border-top: none !important;
-}
-
-</style>
-
 <?php
 
 // Testing //
@@ -94,7 +77,7 @@ else $contentType = NULL;
 
 	<div class="search-results-nav">
 
-		<ul>
+		<ul class="list-unstyled">
 
 			<li><a href="#results-articles" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'Articles', eventLabel: 'AnchorNav'});">Articles</a></li>
 			<li><a href="#results-books" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'BooksMedia', eventLabel: 'AnchorNav'});">Books &amp; Media</a></li>
