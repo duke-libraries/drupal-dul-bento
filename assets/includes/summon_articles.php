@@ -33,7 +33,7 @@ if($queryTerms != "") {
 echo '<div class="results-block first" id="results-articles">';
 
 	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
-			<p class="smaller muted">From journals, magazines &amp; conferences</p>
+			<p class="small text-muted">From journals, magazines &amp; conferences</p>
 			<div class="results-panel">';
 
 

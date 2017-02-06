@@ -52,7 +52,7 @@ if($queryTerms != "") {
 	echo '<div class="results-block" id="results-other">';
 
 		echo '<h2>Other Resources <a href="http://duke.summon.serialssolutions.com/search?s.fvf[]=ContentType%2CModel%2Cf&s.fvf[]=ContentType%2CReport%2Cf&s.fvf[]=ContentType%2CDatabase%2Cf&s.fvf[]=ContentType%2CArtifact%2Cf&s.fvf[]=ContentType%2CComputer+File%2Cf&s.fvf[]=ContentType%2CPatent%2Cf&s.fvf[]=ContentType%2CTechnical+Report%2Cf&s.fvf[]=ContentType%2CStandard%2Cf&s.fvf[]=ContentType%2CBook+Review%2Ct&s.fvf[]=ContentType%2CNewspaper+Article%2Ct&s.fvf[]=ContentType%2CReference%2Cf&s.fvf[]=ContentType%2CPresentation%2Cf&s.fvf[]=ContentType%2CData+Set%2Cf&s.fvf[]=ContentType%2CArchitectural+Drawing%2Cf&s.fvf[]=ContentType%2CRealia%2Cf&s.fvf[]=ContentType%2CAtlas%2Cf&s.fvf[]=ContentType%2CArchival+Material%2Cf&s.light=t&s.%29&s.q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'OtherResources\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
-					<p class="smaller muted">Research databases, encyclopedias &amp; more</p>
+					<p class="small text-muted">Research databases, encyclopedias &amp; more</p>
 					<div class="results-panel">';
 
 		////

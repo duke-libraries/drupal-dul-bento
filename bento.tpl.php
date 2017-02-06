@@ -51,20 +51,22 @@ else $contentType = NULL;
 
 ?>
 
-	<div class="discovery">
-		<div class="search-resources-tabs bento">
+	<div class="search-resources-wrapper">
+		<div class="search-resources-tabs bento single wider">
 			<div class="tab-content">
 
 				<div id="articles" class="tab-pane active">
 					<form class="form-inline" action="<?php echo $bento_action; ?>">
 
-						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryDisplay; ?>" class="" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary bannerSearch"> <em class="icon-search icon-white");"> &nbsp; </em> </button>
+						<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryDisplay; ?>" class="searchbox" placeholder="Search articles, books, journals, &amp; our website"> <button type="submit" class="btn btn-primary"> search </button>
 
 					</form>
 
 				</div>
 
-				<ul class="inline small">
+				<br clear="all" />
+
+				<ul class="inline small" style="padding-left: .75em;">
 					<li><a href="/find/about" title="Learn more about this search results page" onClick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'MainSearch', eventLabel: 'About'});">How to use this search</a></li>
 				</ul>
 
@@ -75,7 +77,7 @@ else $contentType = NULL;
 
 	<div class="search-results-nav">
 
-		<ul>
+		<ul class="list-unstyled">
 
 			<li><a href="#results-articles" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'Articles', eventLabel: 'AnchorNav'});">Articles</a></li>
 			<li><a href="#results-books" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'BooksMedia', eventLabel: 'AnchorNav'});">Books &amp; Media</a></li>
@@ -92,7 +94,7 @@ else $contentType = NULL;
 
 
 
-	<div class="grid-4 alpha">
+	<div class="col col-md-4">
 
 		<div class="content-pad-left">
 
@@ -105,7 +107,7 @@ else $contentType = NULL;
 	</div>
 
 
-	<div class="grid-4">
+	<div class="col col-md-4">
 
 		<div class="content-pad">
 
@@ -116,7 +118,7 @@ else $contentType = NULL;
 	</div>
 
 
-	<div class="grid-4 omega">
+	<div class="col col-md-4">
 
 		<div class="content-pad-right">
 
