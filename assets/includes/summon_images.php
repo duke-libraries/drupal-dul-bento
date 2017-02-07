@@ -5,7 +5,7 @@ $summonImagesTimeStart = microtime(true);
 require_once("functions.php");
 
 //$queryTerms = 'asdasd asdasdad';
-$pageSize = 3;
+$pageSize = 2;
 $contentTypes = array('Image','Photograph');
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
 $section = "Images Search";
@@ -29,7 +29,7 @@ if($queryTerms != "") {
 
 	echo '<div class="results-block" id="results-images">';
 
-		echo '<h2>Images <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
+		echo '<h2><div class="anchor-highlight hide">»</div> Images <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
 				<p class="small text-muted">Digitized collections</p>
 				<div class="results-panel">';
 
@@ -128,22 +128,35 @@ if($queryTerms != "") {
 
 				//}
 
-
-				// clear all variables
-				unset($theTitle);
-				unset($imagePath);
-				unset($imageSize);
-
 			}
 
 		}
 
-		unset ($resultCount);
+
 
 
 		echo '</div>';
 
+
+		// See all bottom link
+
+		if ($theData['recordCount'] > "1" AND $theData['recordCount'] != "") {
+
+			echo '<div class="see-all">';
+
+				echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> image results</a>';
+
+			echo '</div>';
+
+		}
+
 	echo '</div>';
+
+	// clear all variables
+	unset($theTitle);
+	unset($imagePath);
+	unset($imageSize);
+	unset ($resultCount);
 
 }
 
