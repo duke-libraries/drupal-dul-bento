@@ -22,9 +22,10 @@ function hmacsha1($key,$data) {
 }
 
 function is_authorized() {
+	$authorized = false; // default to false
 
 	// Returns TRUE if the browser is authenticated
-	// Returns TRUE if the request is coming from a wired campus IP range
+	// Returns TRUE if the request is coming from a wired campus IP range (or DukeBlue wireless?)
 	// Otherwise returns FALSE
 
 	// Grab the IP address of the request
@@ -33,6 +34,8 @@ function is_authorized() {
 		$theIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	} else {
 		$authorized = false;
+		// break if no IP?
+		// return $authorized;
 	}
 
 
@@ -48,6 +51,12 @@ function is_authorized() {
 		// 152.3.*
 		// 152.16.*
 		$authorized = true;
+
+	//} elseif (preg_match('/10\.189\.\d*\.\d*/', $theIP)) {
+		// This checks to match DukeBlue
+		// 10.189.*
+		//$authorized = true;
+
 	} elseif (preg_match('/67\.159\.(\d*)\.\d*/', $theIP, $matches)) {
 		// This checks to match
 		// 67.159.64-127.*
@@ -135,6 +144,10 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	$key_query = $summon_js_query;
 
 	$authorization_status = is_authorized();
+
+// testing
+	//$authorization_status = true;
+	// echo 'auth status: ' . $authorization_status;
 
 	// These definitions are for the 'Identification String'
 	if ($authorization_status === true) {

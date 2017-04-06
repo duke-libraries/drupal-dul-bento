@@ -8,7 +8,7 @@ $summonArticlesTimeStart = microtime(true);
 require_once("functions.php");
 
 //$queryTerms = 'science';
-$pageSize = 10;
+$pageSize = 3; // number of results to display
 $contentTypes = array('Journal Article','Magazine Article','Conference Proceeding','Newspaper Article:t', 'Book Review:t');
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
 $section = "Articles Search";
@@ -32,8 +32,8 @@ if($queryTerms != "") {
 
 echo '<div class="results-block first" id="results-articles">';
 
-	echo '<h2>Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
-			<p class="smaller muted">From journals, magazines &amp; conferences</p>
+	echo '<h2><div class="anchor-highlight hide">»</div> Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
+			<p class="small text-muted">From journals, magazines &amp; conferences</p>
 			<div class="results-panel">';
 
 
@@ -62,7 +62,6 @@ echo '<div class="results-block first" id="results-articles">';
 
 	} elseif ($theData['recordCount'] == "") {
 
-
 		echo '<div class="no-results">';
 		echo "A network or server error was encountered while searching for <em>" . $queryDisplay . "</em>. Please try again in a few moments.";
 
@@ -76,9 +75,6 @@ echo '<div class="results-block first" id="results-articles">';
 		$resultCount = 0; // for GA event tracking
 
 		// Loop through results array and add markup!
-
-		//foreach($theData['documents'] as $document) {
-		// 8/20/2014 -- changed loop method to implement counter
 
 		for ($i = 0; $i < count($theData['documents']); $i++) {
 
@@ -124,6 +120,8 @@ echo '<div class="results-block first" id="results-articles">';
 						// split into array based on 'and'
 
 						$authorListTemp = str_replace(";", "and", $authorList);
+						$authorListTemp = str_replace("<h>", "", $authorListTemp);
+						$authorListTemp = str_replace("</h>", "", $authorListTemp);
 						$authorListTemp = htmlspecialchars($authorListTemp);
 						$authorListArray = explode("and", $authorListTemp);
 						$authorCount = count($authorListArray);
@@ -152,9 +150,7 @@ echo '<div class="results-block first" id="results-articles">';
 								}
 							}
 
-
 						}
-
 
 
 						// truncate long lists of authors
@@ -302,16 +298,15 @@ echo '<div class="results-block first" id="results-articles">';
 
 	// See all bottom link
 
-	if ($theData['recordCount'] != "0" AND $theData['recordCount'] != "") {
+	if ($theData['recordCount'] > "1" AND $theData['recordCount'] != "") {
 
 		echo '<div class="see-all">';
 
-			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
+			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> article results</a>';
 
 		echo '</div>';
 
 	}
-
 
 
 echo '</div>';

@@ -7,7 +7,7 @@ error_reporting(-1);
 
 $endecaStart = microtime(true);
 
-$urlString = "https://search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&output-format=xml&Ntt=";
+$urlString = "https://search.library.duke.edu/search?Nao=0&Nr=NOT(200092)&N=206474&affiliation=DUKE&Ntk=Keyword&output-format=xml&Ntt=";
 
 $theSearch = urlencode($queryTerms);
 
@@ -44,7 +44,7 @@ $isDiffISBN = false;
 
 $i = 1;
 
-$maxResults = 8;
+$maxResults = 4; // number of results to display (minus 1)
 
 
 if ($theSearch != "" && $searchResults != "-1") {
@@ -64,8 +64,10 @@ if ($theSearch != "" && $searchResults != "-1") {
 	else {
 
 		$searchResults = $theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults');
-
 		$searchResults = (string) $searchResults[0];
+
+		$numTotalResults = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/summaryInfo/number-total-results');
+		$numTotalResults = (string) $numTotalResults[0];
 
 	}
 
@@ -81,9 +83,9 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 
-				<h2>Books &amp; Media <a href="//search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
+				<h2><div class="anchor-highlight hide">»</div> Books &amp; Media <a href="//search.library.duke.edu/search?Nao=0&Nr=NOT(200092)&N=206474&affiliation=DUKE&Ntk=Keyword&Ntt=<?php echo $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 
-				<p class="smaller muted">Books, music, movies &amp; more</p>
+				<p class="small text-muted">Books, music, movies &amp; more</p>
 
 		<?php
 
@@ -99,6 +101,7 @@ if ($theSearch != "") {
 				$uniformTitle = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Main-Uniform-Title/item');
 				$ID = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/LocalId/item');
 				$ROLLUP = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Rollup/item');
+				$SPEC = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/spec');
 				$Imprint = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Imprint/item');
 				$Publisher = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Publisher/item');
 				$ISBN = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/records/item['.$i.']/properties/Syndetics-ISBN/item');
@@ -207,19 +210,24 @@ if ($theSearch != "") {
 
 
 				// ID
+
 				if (!empty ($ID)) {
 					$theID = (string) $ID[0];
 				} else {
-					$theID = "";
+					$theID = "empty";
 				}
+
 
 				// fallback to Rollup (for no ID)
 				$rollupItem = "false";
-				if ($theID == "") {
+
+				if ($theID == "empty") {
+
 					if(!empty ($ROLLUP)) {
 						$theID = (string) $ROLLUP[0];
 						$rollupItem = "true";
 					}
+
 				}
 
 				// Check for DC
@@ -347,7 +355,7 @@ if ($theSearch != "") {
 				}
 
 				// Generic Shared records
-				if ($theItemtype == "" && $SharedRecord = "Shared") {
+				if ($theID == "empty" && $theItemtype == "" && $SharedRecord = "Shared") {
 					$theID = (string) $ROLLUP[0];
 					$rollupItem = "true";
 				}
@@ -494,9 +502,6 @@ if ($theSearch != "") {
 							echo 'by <a href="//duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . $theAuthor . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $theAuthor . '</a>';
 
 						}
-
-
-
 
 						echo '</div>';
 
@@ -831,8 +836,6 @@ if ($theSearch != "") {
 
 							}
 
-
-
 							echo '</div>';
 
 							//echo 'firstHolding-status: ';
@@ -848,12 +851,12 @@ if ($theSearch != "") {
 								// single holding
 								if ($holdingsCount == 1) {
 
-									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 								// multiple holdings
 								} else {
 
-									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more &raquo;</a></div>';
+									echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 								}
 
@@ -870,8 +873,6 @@ if ($theSearch != "") {
 						}
 						// End holdings
 
-
-
 					echo '</div>';
 
 				echo '</div>';
@@ -884,6 +885,8 @@ if ($theSearch != "") {
 				unset($theUniformTitle);
 				unset($ID);
 				unset($theID);
+				unset($ROLLUP);
+				unset($SPEC);
 				unset($Imprint);
 				unset($theImprint);
 				unset($Publisher);
@@ -977,11 +980,11 @@ if ($theSearch != "") {
 
 
 		// See all bottom link
-		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "") {
+		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "" AND $numTotalResults > 1) {
 
 			echo '<div class="see-all">';
 
-				echo '<a href="//search.library.duke.edu/search?Nty=1&Ntk=Keyword&N=0&Ntt=' . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See All Results</a>';
+				echo '<a href="//search.library.duke.edu/search?Nao=0&Nr=NOT(200092)&N=206474&affiliation=DUKE&Ntk=Keyword&Ntt=' . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> books and media results at Duke</a>';
 
 			echo '</div>';
 
