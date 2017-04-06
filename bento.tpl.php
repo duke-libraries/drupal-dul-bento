@@ -286,7 +286,7 @@ if ($bentoLogging == 1) {
 		$('.nav-anchor').on('click', function(){
 		  var href = $(this).attr('href');
 			var myTarget = href+' .anchor-highlight';
-			console.log(myTarget);
+			//console.log(myTarget);
 			$(myTarget).removeClass('hide');
 		  setTimeout(function() { $(myTarget).fadeOut(); }, 5000);
 			setTimeout(function() { $(myTarget).addClass('hide'); }, 6000);
