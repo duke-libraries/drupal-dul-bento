@@ -3,23 +3,18 @@
 // Testing //
 
 	// Error reporting
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
+	//error_reporting(E_ALL);
+	//ini_set('display_errors', '1');
+
 
 	//echo '<!-- COOKIES: ';
-
 	//print_r($_COOKIE);
-
 	//echo '-->';
 
 
-
 	//echo '<!-- SHIB: ';
-
 	//echo $_SERVER["HTTP_SHIB_SESSION_ID"];
-
 	//echo $_SERVER["Shib-Session-ID"];
-
 	//echo '-->';
 
 
@@ -290,7 +285,6 @@ if ($bentoLogging == 1) {
 		// show/hide pointers
 		$('.nav-anchor').on('click', function(){
 		  var href = $(this).attr('href');
-		  //$(href).show();
 			var myTarget = href+' .anchor-highlight';
 			console.log(myTarget);
 			$(myTarget).removeClass('hide');
