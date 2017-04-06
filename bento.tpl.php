@@ -270,7 +270,7 @@ if ($bentoLogging == 1) {
   $(document).ready(function(){
 
 		// Add smooth scrolling to all links
-    $('a').on('click', function(event) {
+    $('a.nav-anchor').on('click', function(event) {
       if (this.hash !== '') {
         event.preventDefault();
         var hash = this.hash;
@@ -286,7 +286,7 @@ if ($bentoLogging == 1) {
 		$('.nav-anchor').on('click', function(){
 		  var href = $(this).attr('href');
 			var myTarget = href+' .anchor-highlight';
-			console.log(myTarget);
+			//console.log(myTarget);
 			$(myTarget).removeClass('hide');
 		  setTimeout(function() { $(myTarget).fadeOut(); }, 5000);
 			setTimeout(function() { $(myTarget).addClass('hide'); }, 6000);
