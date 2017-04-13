@@ -52,6 +52,7 @@ if ($theSearch != "" && $searchResults != "-1") {
 	//check for xpath
 	$nodeCount = count($theXML->xpath('/trln-endeca-results/results-data/endeca-search-info/searchInfoItems/nav-search-info/nav-search-reports/item/numberOfMatchingResults'));
 
+
 	// broken path...
 	if ($nodeCount == 0) {
 
@@ -68,6 +69,11 @@ if ($theSearch != "" && $searchResults != "-1") {
 
 		$numTotalResults = $theXML->xpath('/trln-endeca-results/results-data/endeca-records-list/summaryInfo/number-total-results');
 		$numTotalResults = (string) $numTotalResults[0];
+
+		// check for actual results
+		if ($numTotalResults == "0") {
+			$searchResults = "0";
+		}
 
 	}
 
