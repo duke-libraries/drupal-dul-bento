@@ -233,15 +233,14 @@ if ($bentoLogging == 1) {
 		$performance_info .= '"' . $performanceTerms . '"' . ',';
 
 		$performance_info .= $endecaXMLCreationTime . ",";
-
 		$performance_info .= $endecaCreationTime . ",";
 
+		$performance_info .= $endecaArchivalCreationTime . ",";
+		$performance_info .= $endecaXMLArchivalCreationTime . ",";
+
 		$performance_info .= $summonPerformance;
-
 		$performance_info .= $summonArticlesCreationTime . ",";
-
 		$performance_info .= $summonImagesCreationTime . ",";
-
 		$performance_info .= $summonOtherCreationTime . ",";
 
 		$performance_info .= $pageCreationTime ."\r\n";

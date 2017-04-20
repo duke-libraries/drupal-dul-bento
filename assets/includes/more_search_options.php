@@ -17,6 +17,10 @@ if($queryTerms != "") {
         <li><a href="https://scholar.google.com/scholar?hl=en&q=<?php echo $queryDisplay; ?>&btnG=&as_sdt=1%2C34&as_sdtp=">Google Scholar</a></li>
       </ul>
 
+      <hr />
+
+      <p><a href="https://library.duke.edu/research/ask"><i class="fa fa-comment" aria-hidden="true" style="font-size: 225%; color:rgba(5,52,130,.25); display: block; float: left; margin: -.25em .15em 0 0;"></i> Need help? Ask a Librarian!</a></p>
+
   </div>
 
 <?php

@@ -100,7 +100,7 @@ if ($theSearch != "") {
 				$resultCount = $i;
 
 				// if it's the only item, break the loop
-				if ($internalTotalResults == 0) {
+				if ($internalTotalResults == 0 OR $maxResults == 24) {
 
 				  echo '<div class="no-results">';
 
@@ -220,6 +220,7 @@ if ($theSearch != "") {
 							unset($tmpItemID);
 							unset($tmpCallNumber);
 							unset($tmpStatus);
+
 
 							// Title
 							if (!empty ($title)) {
@@ -929,7 +930,7 @@ if ($theSearch != "") {
 
 
 		// See all bottom link
-		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "" AND $internalTotalResults > 1) {
+		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "" AND $internalTotalResults > 1 AND $maxResults < 24) {
 
 			echo '<div class="see-all">';
 
