@@ -27,13 +27,21 @@ $endecaXMLStart = microtime(true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 
 		$chResult=curl_exec($ch);
+		$chHTTPCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 		curl_close($ch);
 
 		if ($chResult === false) {
 		    $searchResults = "-1";
 		} else {
-			//$theXML = simplexml_load_file ($urlString . $theSearch);
-			$theXML = simplexml_load_string ($chResult);
+
+			if ($chHTTPCode == 200) {
+				//$theXML = simplexml_load_file ($urlString . $theSearch);
+				$theXML = simplexml_load_string ($chResult);
+			} else {
+				$searchResults = "-1";
+			}
+
 		}
 	}
 
@@ -955,18 +963,33 @@ if ($theSearch != "") {
 
 		elseif ($searchResults == "-1") {
 
-			echo '<div class="no-results">';
+			if ($chHTTPCode != 200) {
 
-			$searchWarning = "A network or server error was encountered while searching for <em>" . $queryDisplay . "</em>. Please try again in a few moments";
+				echo '<div class="no-results">';
 
-			$searchWarning .= '<br/><br/>If you continue to encounter this error, please <a href="//library.duke.edu/research/ask" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'GetHelp\'});">report the problem to Library Staff</a>';
+				$searchWarning = "No Books &amp; More results found for <em>" . $queryDisplay . "</em>.";
 
-			echo $searchWarning;
+				$searchWarning .= '<br/><br/><a href="//search.library.duke.edu/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
-			echo '</div>';
+				echo $searchWarning;
+
+				echo '</div>';
+
+			} else {
+
+					echo '<div class="no-results">';
+
+					$searchWarning = "A network or server error was encountered while searching for <em>" . $queryDisplay . "</em>. Please try again in a few moments";
+
+					$searchWarning .= '<br/><br/>If you continue to encounter this error, please <a href="//library.duke.edu/research/ask" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'GetHelp\'});">report the problem to Library Staff</a>';
+
+					echo $searchWarning;
+
+					echo '</div>';
+
+			}
 
 		}
-
 
 		else {
 

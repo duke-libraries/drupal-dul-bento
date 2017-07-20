@@ -35,6 +35,7 @@ if(isset($Ntt))
 {
 	$queryTerms = stripslashes($Ntt);
 	$queryDisplay = htmlspecialchars($queryTerms);
+
 }
 else $queryTerms = "Search for articles, books &amp; more";
 
