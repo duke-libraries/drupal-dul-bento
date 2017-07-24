@@ -9,7 +9,9 @@ require_once("functions.php");
 
 //$queryTerms = 'science';
 $pageSize = 3; // number of results to display
-$contentTypes = array('Journal Article','Magazine Article','Conference Proceeding','Newspaper Article:t', 'Book Review:t');
+//$contentTypes = array('Journal Article','Magazine Article','Conference Proceeding','Newspaper Article:t', 'Book Review:t');
+$contentTypes = array('Journal Article','Magazine Article');
+
 $facetParameterSetting = "setHoldingsOnly(true)"; // Limit to records held by Duke
 $section = "Articles Search";
 
@@ -32,8 +34,8 @@ if($queryTerms != "") {
 
 echo '<div class="results-block first" id="results-articles">';
 
-	echo '<h2><div class="anchor-highlight hide">»</div> Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
-			<p class="small text-muted">From journals, magazines &amp; conferences</p>
+	echo '<h2><div class="anchor-highlight hide">»</div> Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
+			<p class="small text-muted">From journals and magazines</p>
 			<div class="results-panel">';
 
 
@@ -45,8 +47,9 @@ echo '<div class="results-block first" id="results-articles">';
 	$theData = json_decode($data, TRUE);
 
 	//Debug:
-	//echo "The data:<br />";
+	//echo "<!--The data:<br />";
 	//print_r($data);
+	//echo "-->";
 
 
 	if ($theData['recordCount'] == "0") {
@@ -302,7 +305,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 		echo '<div class="see-all">';
 
-			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f|ContentType,Conference%20Proceeding,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> article results</a>';
+			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> article results</a>';
 
 		echo '</div>';
 
