@@ -63,7 +63,7 @@ if (isset($results->response->docs[0])) {
 
 if ($title && $url && $id) {
 
-    echo '<div class="results-block first" id="results-articles"><h2>Top Result</h2>';
+    echo '<div class="results-block first" id="results-top"><h2>Top Result</h2>';
     echo '<p class="small text-muted">Recommended link</p>';
     echo '<div class="results-panel">';
     echo '<div class="document-frame">';

@@ -545,6 +545,11 @@ a.callbox {
 	margin-bottom: 2em;
 }
 
+#results-top {
+	margin-bottom: 2em;
+}
+
+
 @media (max-width: 739px) {
 
 	.content-pad-left,
