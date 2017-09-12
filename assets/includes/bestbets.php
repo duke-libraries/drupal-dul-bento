@@ -4,7 +4,7 @@ require_once('SolrPhpClient/Service.php');
 
 //$queryTerms = 'thompson one'; // switch to use $queryTerms
 
-// Remove these special characters:  ( ) ? * [ ] ` ! # $ % { } < > ^ ~ | + & 
+// Remove these special characters:  ( ) ? * [ ] ` ! # $ % { } < > ^ ~ | + &
 $sanitized_query = preg_replace("/\(|\)|\?|\*|\[|\]|`|!|#|\$|%|{|}|<|>|\^|~|\||\+|&/", "", $queryTerms);
 
 // Replace these special characters with a single space: . : ; , - _ / = @
@@ -64,7 +64,7 @@ if (isset($results->response->docs[0])) {
 if ($title && $url && $id) {
 
     echo '<div class="results-block first" id="results-articles"><h2>Top Result</h2>';
-    echo '<p class="smaller muted">Recommended link</p>';
+    echo '<p class="small text-muted">Recommended link</p>';
     echo '<div class="results-panel">';
     echo '<div class="document-frame">';
     echo '<div class="title">';
@@ -74,9 +74,9 @@ if ($title && $url && $id) {
     echo '</h3>';
     echo '</div>';
     echo '</div>';
-    echo '<div class="document-summary">';
+    echo '<div class="document-summary"><div class="content-type">';
     echo $description;
-    echo '</div>';
+    echo '</div></div>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
