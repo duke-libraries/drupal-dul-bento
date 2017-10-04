@@ -228,7 +228,7 @@ function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting,
 	// Assemble the target Summon API request URL
 
 
-		$summonApiUrl = "http://api.summon.serialssolutions.com/2.0.0/search?" . implode($encodedRequestParameters, "&");
+		$summonApiUrl = "https://api.summon.serialssolutions.com/2.0.0/search?" . implode($encodedRequestParameters, "&");
 
 
 

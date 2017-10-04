@@ -390,7 +390,7 @@ if ($theSearch != "") {
 							$ncLiveItem = "false";
 							if (!empty ($PrimaryURL)) {
 								$thePrimaryURL = (string) $PrimaryURL[0];
-								if (strpos($thePrimaryURL,'http://media.nclive.org') !== false) {
+								if (strpos($thePrimaryURL,'//media.nclive.org/play') !== false) {
 								    $ncLiveItem = "true";
 									$theItemtype = "Online Video";
 									$theItemtypeDisplay = "Online Video";

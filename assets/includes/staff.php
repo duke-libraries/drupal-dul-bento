@@ -130,7 +130,7 @@ if($queryTerms != "") {
 					} else {
 
 						echo '<div class="thumbnail">';
-						echo '<a href="/about/directory/staff/' . $person->id .  '/"><img src="http://libcms.oit.duke.edu/sites/default/files/dul/directory/no_photo_reading_devil.png"></a>';
+						echo '<a href="/about/directory/staff/' . $person->id .  '/"><img src="https://library.duke.edu/sites/default/files/dul/directory/no_photo_reading_devil.png"></a>';
 						echo '</div>';
 
 					}
