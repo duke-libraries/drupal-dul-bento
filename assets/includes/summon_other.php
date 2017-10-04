@@ -151,7 +151,7 @@ if($queryTerms != "") {
 
 							}
 
-							echo 'by <a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'OtherResources\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
+							echo 'by <a href="https://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'OtherResources\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
 						}
 
 						echo '</div>';

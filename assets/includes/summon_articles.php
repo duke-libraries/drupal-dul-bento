@@ -34,7 +34,7 @@ if($queryTerms != "") {
 
 echo '<div class="results-block first" id="results-articles">';
 
-	echo '<h2><div class="anchor-highlight hide">»</div> Articles <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
+	echo '<h2><div class="anchor-highlight hide">»</div> Articles <a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAll\'});">See&nbsp;All&nbsp;&raquo;</a></h2>
 			<p class="small text-muted">From journals and magazines</p>
 			<div class="results-panel">';
 
@@ -58,7 +58,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 		echo "No Articles results found for <em>" . $queryDisplay . "</em>.";
 
-		echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+		echo '<br/><br/><a href="https://duke.summon.serialssolutions.com/" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 		echo '</div>';
 
@@ -138,7 +138,7 @@ echo '<div class="results-block first" id="results-articles">';
 						$n = 0;
 						while ($n < $authorCount) {
 
-							echo '<a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorListArray[$n]) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListArray[$n] . '</a>';
+							echo '<a href="https://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorListArray[$n]) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListArray[$n] . '</a>';
 
 							$n ++;
 
@@ -163,7 +163,7 @@ echo '<div class="results-block first" id="results-articles">';
 							//$authorListDisplay = $authorListDisplay . ' (&hellip;)';
 						//}
 
-						//echo '<a href="http://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
+						//echo '<a href="https://duke.summon.serialssolutions.com/search?s.dym=false&s.q=Author%3A%22' . str_replace(',', '%2C+', $authorList) . '%22" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemAuthor' . $resultCount . '\'});">' . $authorListDisplay . '</a>';
 
 					}
 
@@ -305,7 +305,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 		echo '<div class="see-all">';
 
-			echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> article results</a>';
+			echo '<a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Journal%20Article,f|ContentType,Magazine%20Article,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> article results</a>';
 
 		echo '</div>';
 

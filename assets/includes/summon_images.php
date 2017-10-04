@@ -29,7 +29,7 @@ if($queryTerms != "") {
 
 	echo '<div class="results-block" id="results-images">';
 
-		echo '<h2><div class="anchor-highlight hide">»</div> Images <a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
+		echo '<h2><div class="anchor-highlight hide">»</div> Images <a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" class="callbox" style="margin-left: 10px;" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAll\'});">See All »</a></h2>
 				<p class="small text-muted">Digitized collections</p>
 				<div class="results-panel">';
 
@@ -49,7 +49,7 @@ if($queryTerms != "") {
 
 			echo "No Images results found for <em>" . $queryDisplay . "</em>.";
 
-			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			echo '<br/><br/><a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo '</div>';
 
@@ -59,7 +59,7 @@ if($queryTerms != "") {
 
 			echo "There was an error while searching for <em>" . $queryDisplay . "</em>.";
 
-			echo '<br/><br/><a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			echo '<br/><br/><a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo '</div>';
 
@@ -144,7 +144,7 @@ if($queryTerms != "") {
 
 			echo '<div class="see-all">';
 
-				echo '<a href="http://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> image results</a>';
+				echo '<a href="https://duke.summon.serialssolutions.com/advanced#!/search?ho=t&fvf=ContentType,Image,f|ContentType,Photograph,f&l=en&q=' . $queryDisplay . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Images\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($theData['recordCount']) . '</strong> image results</a>';
 
 			echo '</div>';
 
