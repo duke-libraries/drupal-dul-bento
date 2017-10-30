@@ -23,7 +23,7 @@ $endecaXMLStart = microtime(true);
 
 		// check for endeca response
 		$ch=curl_init();
-		$timeout=5;
+		$timeout=10;
 
 		curl_setopt($ch, CURLOPT_URL, $urlString . $theSearch);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
