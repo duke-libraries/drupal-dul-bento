@@ -1,9 +1,9 @@
 <?php
 
 //display errors
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+//ini_set('display_errors',1);
+//ini_set('display_startup_errors',1);
+//error_reporting(-1);
 
 $endecaStart = microtime(true);
 
@@ -14,13 +14,16 @@ $theSearch = urlencode($queryTerms);
 $searchResults = "";
 
 
+
+
+
 $endecaXMLStart = microtime(true);
 
 	if ($theSearch != "") {
 
 		// check for endeca response
 		$ch=curl_init();
-		$timeout=10;
+		$timeout=5;
 
 		curl_setopt($ch, CURLOPT_URL, $urlString . $theSearch);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -28,6 +31,7 @@ $endecaXMLStart = microtime(true);
 
 		$chResult=curl_exec($ch);
 		$chHTTPCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$chTotalTime = curl_getinfo($ch, CURLINFO_TOTAL_TIME);
 
 		curl_close($ch);
 
@@ -35,11 +39,14 @@ $endecaXMLStart = microtime(true);
 		    $searchResults = "-1";
 		} else {
 
-			if ($chHTTPCode == 200) {
-				//$theXML = simplexml_load_file ($urlString . $theSearch);
-				$theXML = simplexml_load_string ($chResult);
+			if ($chHTTPCode == 200 && $chTotalTime < $timeout) {
+
+					//$theXML = simplexml_load_file ($urlString . $theSearch);
+					$theXML = simplexml_load_string ($chResult);
+
 			} else {
-				$searchResults = "-1";
+
+					$searchResults = "-1";
 			}
 
 		}
@@ -963,7 +970,7 @@ if ($theSearch != "") {
 
 		elseif ($searchResults == "-1") {
 
-			if ($chHTTPCode != 200) {
+			if ($chHTTPCode == 200 && $chTotalTime < $timeout) {
 
 				echo '<div class="no-results">';
 

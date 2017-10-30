@@ -1,9 +1,9 @@
 <?php
 
 //display errors
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+//ini_set('display_errors',1);
+//ini_set('display_startup_errors',1);
+//error_reporting(-1);
 
 $endecaArchivalStart = microtime(true);
 
@@ -20,20 +20,24 @@ $endecaXMLArchivalStart = microtime(true);
 
 		// check for endeca response
 		$ch=curl_init();
-		$timeout=10;
+		$timeout=5;
 
 		curl_setopt($ch, CURLOPT_URL, $urlString . $theSearch);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 
 		$chResult=curl_exec($ch);
+
+		$chHTTPCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$chTotalTime = curl_getinfo($ch, CURLINFO_TOTAL_TIME);
+
 		curl_close($ch);
 
 		if ($chResult === false) {
 		    $searchResults = "-1";
 		} else {
 
-			if ($chHTTPCode == 200) {
+			if ($chHTTPCode == 200 && $chTotalTime < $timeout) {
 				//$theXML = simplexml_load_file ($urlString . $theSearch);
 				$theXML = simplexml_load_string ($chResult);
 			} else {
@@ -905,7 +909,7 @@ if ($theSearch != "") {
 
 		elseif ($searchResults == "-1") {
 
-			if ($chHTTPCode != 200) {
+			if ($chHTTPCode == 200 && $chTotalTime < $timeout) {
 
 				echo '<div class="no-results">';
 
