@@ -70,9 +70,9 @@ function dul_bento_search_results() {
 
     }
 
-	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/combined.min.css' , array('preprocess' => FALSE));
+	drupal_add_css(drupal_get_path('module', 'dul_bento') . '/assets/css/styles.min.css' , array('preprocess' => FALSE));
 
-	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/combined.min.js', array('preprocess' => FALSE));
+	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/scripts.min.js', array('preprocess' => FALSE));
 
 	drupal_add_js('https://www.google.com/jsapi', 'external');
 	drupal_add_js(drupal_get_path('module', 'dul_bento') . '/assets/js/google_search.js', array('preprocess' => TRUE));
