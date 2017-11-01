@@ -5,7 +5,7 @@ This is a custom module for drupal 7 developed by Duke University Libraries (usi
 
 
 File structure
----------------------
+-----------------------------
 - the main page template file is bento.tpl.php
   - this controls the layout of the bento home page
   - the bento sections are loaded in via includes
@@ -13,8 +13,15 @@ File structure
 - the assets folder houses css, js, images, and included files
 
 
+
+Managing CSS and JS Assets
+-----------------------------
+- CSS and JS files live in their appropriate sub folders. When editing scripts.js or styles.css, you will need to manually minify them (using something like minifier.org) and update the .min versions as well. These minified versions are called in dul_bento.module, and are in turn concatenated into the drupal assets stack. Note that google_search.js remains a discrete file and is loaded by itself as an external script in drupal.
+
+
+
 Using the module
----------------------
+-----------------------------
 
 Installing and enabling the module will add a config menu at /admin/config/bento
 
