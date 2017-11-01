@@ -868,7 +868,7 @@ $.Autosuggest = function(input, options){
 			suggestionFlagCookie: null,
 			querySubmit: '#querySubmit',
 			queryForm: '#queryBox',
-			suggestUrl: "http://autosuggest.trln.org/suggestservice/",
+			suggestUrl: "https://autosuggest.trln.org/suggestservice/",
 			clearIndexOnFirstFocus: true,
 			clearIndexOnFirstChange: false,
 			defaultIndex: "Keyword",
