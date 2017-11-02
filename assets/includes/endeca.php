@@ -473,7 +473,7 @@ if ($theSearch != "") {
 
 					if ($isDiffISBN == true) {
 
-						$imagePath = "//www.syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
+						$imagePath = "//syndetics.com/index.aspx?isbn=" . $theISBN . "/MC.GIF&oclc=" . $theOCLC . "&client=trlnet";
 						//$imageSize = getimagesize($imagePath);
 
 
@@ -481,7 +481,7 @@ if ($theSearch != "") {
 
 							echo '<div class="thumbnail">';
 
-								echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//www.syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+								echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//syndetics.com/index.aspx?isbn=' . $theISBN . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 							echo '</div>';
@@ -495,7 +495,7 @@ if ($theSearch != "") {
 				// UPC Thumbnails
 				} else if (isset($theUPC)) {
 
-					$imagePath = "//www.syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
+					$imagePath = "//syndetics.com/index.aspx?upc=" . $theUPC . "/MC.GIF&oclc=" . $theUPC . "&client=trlnet";
 					//$imageSize = getimagesize($imagePath);
 
 
@@ -504,7 +504,7 @@ if ($theSearch != "") {
 						echo '<div class="thumbnail">';
 
 
-							echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//www.syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="//search.library.duke.edu/search?id=' . $itemPrepend . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="//syndetics.com/index.aspx?upc=' . $theUPC . '/MC.GIF&oclc=' . $theOCLC . '&client=trlnet" alt="cover artwork" class="artwork"></a>';
 
 
 						echo '</div>';
