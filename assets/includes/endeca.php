@@ -27,7 +27,7 @@ $endecaXMLStart = microtime(true);
 
 		curl_setopt($ch, CURLOPT_URL, $urlString . $theSearch);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+		curl_setopt($ch, CURLOPT_TIMEOUT, $timeout+2);
 
 		$chResult=curl_exec($ch);
 		$chHTTPCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
