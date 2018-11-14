@@ -3,8 +3,8 @@
 // Testing //
 
 	// Error reporting
-	//error_reporting(E_ALL);
-	//ini_set('display_errors', '1');
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');
 
 
 	//echo '<!-- COOKIES: ';
@@ -127,7 +127,7 @@ else $contentType = NULL;
 
 		<div class="content-pad-right">
 
-		<?php include("assets/includes/endeca.php"); ?>
+		<?php include("assets/includes/blacklight.php"); ?>
 
 		</div>
 
@@ -157,7 +157,7 @@ else $contentType = NULL;
 
 			<div class="col-md-6">
 				<!-- archival materials -->
-				<?php include("assets/includes/endeca_archival_material.php"); ?>
+				<?php include("assets/includes/blacklight_archival_material.php"); ?>
 			</div>
 
 		</div>
@@ -233,11 +233,11 @@ if ($bentoLogging == 1) {
 
 		$performance_info .= '"' . $performanceTerms . '"' . ',';
 
-		$performance_info .= $endecaXMLCreationTime . ",";
-		$performance_info .= $endecaCreationTime . ",";
+		$performance_info .= $blacklightJSONCreationTime . ",";
+		$performance_info .= $blacklightCreationTime . ",";
 
-		$performance_info .= $endecaArchivalCreationTime . ",";
-		$performance_info .= $endecaXMLArchivalCreationTime . ",";
+		$performance_info .= $blacklightArchivalCreationTime . ",";
+		$performance_info .= $blacklightArchivalJSONCreationTime . ",";
 
 		$performance_info .= $summonPerformance;
 		$performance_info .= $summonArticlesCreationTime . ",";
