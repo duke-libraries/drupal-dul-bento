@@ -133,14 +133,14 @@ if ($theSearch != "") {
 
 				$title = $theJSON['response']['docs'][$i]['title_main'];
 	      $ID = $theJSON['response']['docs'][$i]['id'];
-	      $ISBN = $theJSON['response']['docs'][$i]['isbn_number_a'][0];
-	      $UPC = $theJSON['response']['docs'][$i]['upc_a'][0];
-	      $author = $theJSON['response']['docs'][$i]['statement_of_responsibility_a'][0];
+	      $ISBN = $theJSON['response']['docs'][$i]['isbn_number_a'];
+	      $UPC = $theJSON['response']['docs'][$i]['upc_a'];
+	      $author = $theJSON['response']['docs'][$i]['statement_of_responsibility_a'];
 	      $otherAuthors = $theJSON['response']['docs'][$i]['author_suggest'];
-	      $itemtype = $theJSON['response']['docs'][$i]['resource_type_a'][0];
+	      $itemtype = $theJSON['response']['docs'][$i]['resource_type_a'];
 	      $Published = $theJSON['response']['docs'][$i]['publication_year_isort_stored_single'];
 	      $Items_a = $theJSON['response']['docs'][$i]['items_a'];
-	      $Available_a = $theJSON['response']['docs'][$i]['available_a'][0];
+	      $Available_a = $theJSON['response']['docs'][$i]['available_a'];
 
 
 				// Title
@@ -176,18 +176,18 @@ if ($theSearch != "") {
 
 	      // ISBN
 	      if (!empty ($ISBN)) {
-	        $theISBN = (string) $ISBN;
+	        $theISBN = (string) $ISBN[0];
 	      }
 
 	      // UPC
 	      if (!empty ($UPC)) {
-	        $theUPC = (string) $UPC;
+	        $theUPC = (string) $UPC[0];
 	        $theUPC = str_replace('UPC: ', '', $theUPC);
 	      }
 
 	      // Main Author
 	      if (!empty ($author)) {
-	        $theAuthor = (string) $author;
+	        $theAuthor = (string) $author[0];
 	      } else {
 	        $theAuthor = "NONE";
 	      }
@@ -201,7 +201,7 @@ if ($theSearch != "") {
 	        $firstType = json_decode($Items_a[0], true);
 	        $theItemtype = (string) trim($firstType['type']);
 	      } elseif (!empty ($itemtype)) { //fallback item type
-	        $theItemtype = (string) trim($itemtype);
+	        $theItemtype = (string) trim($itemtype[0]);
 	      }
 
 	      // Translate Item Types
@@ -264,7 +264,7 @@ if ($theSearch != "") {
 
 	      // Availability
 	      if (!empty ($Available_a)) {
-	        $theAvailability = (string) $Available_a;
+	        $theAvailability = (string) $Available_a[0];
 	      } elseif (!empty ($Items_a)) {
 	        $firstStatus = json_decode($Items_a[0], true);
 	        $theAvailability = $firstStatus['status'];
