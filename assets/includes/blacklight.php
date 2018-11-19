@@ -8,6 +8,9 @@
 $blacklightStart = microtime(true);
 
 //$searchURL = "https://find-dev.library.duke.edu/";
+
+$baseURL = "https://find-dev.library.duke.edu/";
+
 $searchURL = "https://find-dev.library.duke.edu/?utf8=✓&f_inclusive%5Bresource_type_f%5D%5B%5D=Audiobook&f_inclusive%5Bresource_type_f%5D%5B%5D=Book&f_inclusive%5Bresource_type_f%5D%5B%5D=Database&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Geospatial&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Statistical&f_inclusive%5Bresource_type_f%5D%5B%5D=Game&f_inclusive%5Bresource_type_f%5D%5B%5D=Government+publication&f_inclusive%5Bresource_type_f%5D%5B%5D=Image&f_inclusive%5Bresource_type_f%5D%5B%5D=Journal%2C+Magazine%2C+or+Periodical&f_inclusive%5Bresource_type_f%5D%5B%5D=Kit&f_inclusive%5Bresource_type_f%5D%5B%5D=Map&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+score&f_inclusive%5Bresource_type_f%5D%5B%5D=Newspaper&f_inclusive%5Bresource_type_f%5D%5B%5D=Non-musical+sound+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Object&f_inclusive%5Bresource_type_f%5D%5B%5D=Software%2Fmultimedia&f_inclusive%5Bresource_type_f%5D%5B%5D=Thesis%2FDissertation&f_inclusive%5Bresource_type_f%5D%5B%5D=Video&f_inclusive%5Bresource_type_f%5D%5B%5D=Web+page+or+site&range%5Bpublication_year_isort%5D%5Bbegin%5D=&range%5Bpublication_year_isort%5D%5Bend%5D=&sort=score+desc%2C+publication_year_isort+desc%2C+title_sort_ssort_single+asc&search_field=advanced&commit=Search&q=";
 
 //$urlString = "https://find-dev.library.duke.edu/catalog.json?search_field=all_fields&q=";
@@ -277,7 +280,7 @@ if ($theSearch != "") {
 					echo '<div class="title">';
 						echo '<div class="text">';
 
-							echo '<h3 class="resultTitle"><a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							echo '<h3 class="resultTitle"><a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
 						echo '</div>';
 					echo '</div>';
@@ -292,7 +295,7 @@ if ($theSearch != "") {
 
 						echo '<div class="thumbnail">';
 
-							echo '<a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
 
 						echo '</div>';
 
@@ -373,12 +376,12 @@ if ($theSearch != "") {
 				        // single extra item
 				        if ($holdingsCount == 1) {
 
-				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        // multiple extra items
 				      } elseif ($holdingsCount > 1) {
 
-				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        }
 

@@ -7,8 +7,8 @@
 
 $blacklightArchivalStart = microtime(true);
 
-$searchURL = "https://find-dev.library.duke.edu/";
-$extendedSearchURL = "https://find-dev.library.duke.edu/?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&q=";
+$baseURL = "https://find-dev.library.duke.edu/";
+$searchURL = "https://find-dev.library.duke.edu/?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&q=";
 $urlString = "https://find-dev.library.duke.edu/catalog.json?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&q=";
 
 $theSearch = urlencode($queryTerms);
@@ -102,7 +102,7 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 
-				<h3><div class="anchor-highlight hide">»</div> Archival Materials <a href="<?php echo $extendedSearchURL . $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h3>
+				<h3><div class="anchor-highlight hide">»</div> Archival Materials <a href="<?php echo $searchURL . $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h3>
 
 				<p class="small text-muted">Manuscripts and archival materials</p>
 
@@ -271,7 +271,7 @@ if ($theSearch != "") {
 					echo '<div class="title">';
 						echo '<div class="text">';
 
-							echo '<h3 class="resultTitle"><a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							echo '<h3 class="resultTitle"><a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
 						echo '</div>';
 					echo '</div>';
@@ -286,7 +286,7 @@ if ($theSearch != "") {
 
 						echo '<div class="thumbnail">';
 
-							echo '<a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
 
 						echo '</div>';
 
@@ -367,12 +367,12 @@ if ($theSearch != "") {
 				        // single extra item
 				        if ($holdingsCount == 1) {
 
-				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        // multiple extra items
 				      } elseif ($holdingsCount > 1) {
 
-				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $searchURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        }
 
@@ -435,7 +435,7 @@ if ($theSearch != "") {
 
 				$searchWarning = "No Archival Material results found for <em>" . $queryDisplay . "</em>.";
 
-				$searchWarning .= '<br/><br/><a href="' . $extendedSearchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+				$searchWarning .= '<br/><br/><a href="' . $searchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 				echo $searchWarning;
 
@@ -463,7 +463,7 @@ if ($theSearch != "") {
 
 			$searchWarning = "No Archival Material results found for <em>" . $queryDisplay . "</em>.";
 
-			$searchWarning .= '<br/><br/><a href="' . $extendedSearchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			$searchWarning .= '<br/><br/><a href="' . $searchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo $searchWarning;
 
@@ -479,7 +479,7 @@ if ($theSearch != "") {
 
 			echo '<div class="see-all">';
 
-        echo '<a href="' . $extendedSearchURL . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> archival material results at Duke</a>';
+        echo '<a href="' . $searchURL . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'ArchivalMaterials\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> archival material results at Duke</a>';
 
       echo '</div>';
 
