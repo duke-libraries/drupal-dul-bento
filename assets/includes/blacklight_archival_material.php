@@ -278,11 +278,11 @@ if ($theSearch != "") {
 
 
 					// Thumbnails
-		      if (isset($theISBN)) {
-		        $imagePath = 'https://syndetics.com/index.php?client=trlnet&isbn=' . $theISBN . '%2FMC.GIF';
-		      } else if (isset($theUPC)){
+					if (isset($theUPC)){
 						$imagePath = 'https://syndetics.com/index.php?client=trlnet&upc=' . $theUPC . '&isbn=' . $theISBN . '%2FMC.GIF';
-					}
+					} else if (isset($theISBN)) {
+		        $imagePath = 'https://syndetics.com/index.php?client=trlnet&isbn=' . $theISBN . '%2FMC.GIF';
+		      } 
 
 					if (isset($imagePath)) {
 
