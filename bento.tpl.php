@@ -57,9 +57,9 @@ else $contentType = NULL;
 				<div class="tab-content">
 
 					<div id="articles" class="tab-pane active">
-						<form class="form-inline" action="<?php echo $bento_action; ?>">
+						<form class="form-inline catalog-search-form" action="<?php echo $bento_action; ?>">
 
-							<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryDisplay; ?>" class="searchbox" placeholder="Search articles, books, journals, &amp; our website" aria-label="All Search"> <button type="submit" class="btn btn-primary"> search </button>
+							<input id="Ntt" type="text" name="Ntt" value="<?php echo $queryDisplay; ?>" class="searchbox" placeholder="Search articles, books, journals, &amp; our website" aria-label="All Search" data-autosuggest-enabled="true" data-autosuggest-path="https://find.library.duke.edu/suggest" autocomplete="off"> <button type="submit" class="btn btn-primary"> search </button>
 
 						</form>
 
