@@ -15,7 +15,7 @@ $theSearch = urlencode($queryTerms);
 
 $searchResults = "";
 
-$itemCampaignParams = "&utm_campaign=bento&utm_content=bento_result_link&utm_source=library.duke.edu&utm_medium=referral";
+$itemCampaignParams = "?utm_campaign=bento&utm_content=bento_result_link&utm_source=library.duke.edu&utm_medium=referral";
 
 $allCampaignParams = "&utm_campaign=bento&utm_content=bento_see_more_link&utm_source=library.duke.edu&utm_medium=referral";
 
