@@ -7,9 +7,9 @@
 
 $blacklightArchivalStart = microtime(true);
 
-$baseURL = "https://find-dev.library.duke.edu/";
-$searchURL = "https://find-dev.library.duke.edu/?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&all_fields=";
-$urlString = "https://find-dev.library.duke.edu/catalog.json?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&all_fields=";
+$baseURL = "https://find.library.duke.edu/";
+$searchURL = "https://find.library.duke.edu/?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&all_fields=";
+$urlString = "https://find.library.duke.edu/catalog.json?f_inclusive%5Bresource_type_f%5D%5B%5D=Archival+and+manuscript+material&search_field=advanced&commit=Search&all_fields=";
 
 $theSearch = urlencode($queryTerms);
 
