@@ -7,22 +7,19 @@
 
 $blacklightStart = microtime(true);
 
-$baseURL = "https://find-dev.library.duke.edu/";
+$baseURL = "https://find.library.duke.edu/";
 
-$searchURL = "https://find-dev.library.duke.edu/catalog?utf8=✓&search_field=all_fields&q=";
+$searchURL = "https://find.library.duke.edu/catalog?utf8=✓&search_field=all_fields&q=";
 
-//$searchURL = "https://find-dev.library.duke.edu/?utf8=✓&f_inclusive%5Bresource_type_f%5D%5B%5D=Audiobook&f_inclusive%5Bresource_type_f%5D%5B%5D=Book&f_inclusive%5Bresource_type_f%5D%5B%5D=Database&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Geospatial&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Statistical&f_inclusive%5Bresource_type_f%5D%5B%5D=Game&f_inclusive%5Bresource_type_f%5D%5B%5D=Government+publication&f_inclusive%5Bresource_type_f%5D%5B%5D=Image&f_inclusive%5Bresource_type_f%5D%5B%5D=Journal%2C+Magazine%2C+or+Periodical&f_inclusive%5Bresource_type_f%5D%5B%5D=Kit&f_inclusive%5Bresource_type_f%5D%5B%5D=Map&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+score&f_inclusive%5Bresource_type_f%5D%5B%5D=Newspaper&f_inclusive%5Bresource_type_f%5D%5B%5D=Non-musical+sound+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Object&f_inclusive%5Bresource_type_f%5D%5B%5D=Software%2Fmultimedia&f_inclusive%5Bresource_type_f%5D%5B%5D=Thesis%2FDissertation&f_inclusive%5Bresource_type_f%5D%5B%5D=Video&f_inclusive%5Bresource_type_f%5D%5B%5D=Web+page+or+site&range%5Bpublication_year_isort%5D%5Bbegin%5D=&range%5Bpublication_year_isort%5D%5Bend%5D=&sort=score+desc%2C+publication_year_isort+desc%2C+title_sort_ssort_single+asc&search_field=advanced&commit=Search&all_fields=";
-
-$urlString = "https://find-dev.library.duke.edu/catalog.json?search_field=all_fields&q=";
-//$urlString = "https://find-dev.library.duke.edu/catalog.json?f_inclusive%5Bresource_type_f%5D%5B%5D=Audiobook&f_inclusive%5Bresource_type_f%5D%5B%5D=Book&f_inclusive%5Bresource_type_f%5D%5B%5D=Database&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Geospatial&f_inclusive%5Bresource_type_f%5D%5B%5D=Dataset+--+Statistical&f_inclusive%5Bresource_type_f%5D%5B%5D=Game&f_inclusive%5Bresource_type_f%5D%5B%5D=Government+publication&f_inclusive%5Bresource_type_f%5D%5B%5D=Image&f_inclusive%5Bresource_type_f%5D%5B%5D=Journal%2C+Magazine%2C+or+Periodical&f_inclusive%5Bresource_type_f%5D%5B%5D=Kit&f_inclusive%5Bresource_type_f%5D%5B%5D=Map&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Music+score&f_inclusive%5Bresource_type_f%5D%5B%5D=Newspaper&f_inclusive%5Bresource_type_f%5D%5B%5D=Non-musical+sound+recording&f_inclusive%5Bresource_type_f%5D%5B%5D=Object&f_inclusive%5Bresource_type_f%5D%5B%5D=Software%2Fmultimedia&f_inclusive%5Bresource_type_f%5D%5B%5D=Thesis%2FDissertation&f_inclusive%5Bresource_type_f%5D%5B%5D=Video&f_inclusive%5Bresource_type_f%5D%5B%5D=Web+page+or+site&range%5Bpublication_year_isort%5D%5Bbegin%5D=&range%5Bpublication_year_isort%5D%5Bend%5D=&sort=score+desc%2C+publication_year_isort+desc%2C+title_sort_ssort_single+asc&search_field=advanced&commit=Search&all_fields=";
+$urlString = "https://find.library.duke.edu/catalog.json?search_field=all_fields&q=";
 
 $theSearch = urlencode($queryTerms);
 
 $searchResults = "";
 
+$itemCampaignParams = "&utm_campaign=bento&utm_content=bento_result_link&utm_source=library.duke.edu&utm_medium=referral";
 
-
-
+$allCampaignParams = "&utm_campaign=bento&utm_content=bento_see_more_link&utm_source=library.duke.edu&utm_medium=referral";
 
 
 $blacklightJSONStart = microtime(true);
@@ -111,7 +108,7 @@ if ($theSearch != "") {
 
 		<div class="resultsHeader">
 
-				<h2><div class="anchor-highlight hide">»</div> Books &amp; Media <a href="<?php echo $searchURL . $theSearch; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
+				<h2><div class="anchor-highlight hide">»</div> Books &amp; Media <a href="<?php echo $searchURL . $theSearch . $allCampaignParams; ?>" class="callbox" style="margin-left: 10px;" <?php echo 'onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAll\'});"' ?>>See&nbsp;All&nbsp;&raquo;</a></h2>
 
 				<p class="small text-muted">Books, music, movies &amp; more</p>
 
@@ -297,7 +294,7 @@ if ($theSearch != "") {
 
 						echo '<div class="thumbnail">';
 
-							echo '<a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
+							echo '<a href="' . $baseURL . 'catalog/' . $theID . $itemCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemThumbnail' . $resultCount . '\'});"><img src="' . $imagePath . '" alt="cover artwork" class="artwork"></a>';
 
 						echo '</div>';
 
@@ -378,12 +375,12 @@ if ($theSearch != "") {
 				        // single extra item
 				        if ($holdingsCount == 1) {
 
-				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There is ' . $holdingsCount . ' additional item available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . $itemCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        // multiple extra items
 				      } elseif ($holdingsCount > 1) {
 
-				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
+				          echo '<div class="more-holdings">There are ' . $holdingsCount . ' additional items available &ndash; <a href="' . $baseURL . 'catalog/' . $theID . $itemCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemMoreHoldings' . $resultCount . '\'});">show more&nbsp;&raquo;</a></div>';
 
 				        }
 
@@ -490,7 +487,7 @@ if ($theSearch != "") {
 
 			echo '<div class="see-all">';
 
-        echo '<a href="' . $searchURL . $theSearch . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> books and media results at Duke</a>';
+        echo '<a href="' . $searchURL . $theSearch . $allCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> books and media results at Duke</a>';
 
       echo '</div>';
 
