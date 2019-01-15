@@ -277,7 +277,7 @@ if ($theSearch != "") {
 					echo '<div class="title">';
 						echo '<div class="text">';
 
-							echo '<h3 class="resultTitle"><a href="' . $baseURL . 'catalog/' . $theID . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
+							echo '<h3 class="resultTitle"><a href="' . $baseURL . 'catalog/' . $theID . $itemCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'ItemTitle' . $resultCount . '\'});">' . $theTitle . '</a></h3>';
 
 						echo '</div>';
 					echo '</div>';
