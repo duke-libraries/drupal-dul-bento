@@ -309,7 +309,8 @@ padding-left: 0 !important
 .thumbnail {
 width: 85px;
 float: left;
-margin: 0 15px 15px 0;
+margin: 0 15px 0 0;
+margin-bottom: 0 !important;
 }
 
 .thumbnail img {
@@ -466,6 +467,15 @@ width: 100%;
 	text-decoration: underline !important;
 }
 
+.brown {
+	color: #9b4e1b;
+}
+
+.brown a {
+	color: #9b4e1b !important;
+	text-decoration: underline !important;
+}
+
 .search-results-nav {
 	/*display: none;*/
 }
@@ -565,7 +575,7 @@ a.callbox {
 	.thumbnail {
 		width: 50px;
 		float: left;
-		margin: 0 10px 10px 0;
+		margin: 0 10px 0 0;
 	}
 
 }
