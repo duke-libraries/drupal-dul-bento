@@ -86,6 +86,8 @@ else $contentType = NULL;
 
 					<li><a class="nav-anchor" href="#results-books" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'BooksMedia', eventLabel: 'AnchorNav'});">Books &amp; Media</a></li>
 
+					<li><a class="nav-anchor" href="#results-website" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'OurWebsite', eventLabel: 'AnchorNav'});">Our Website</a></li>
+
 					<li><a class="nav-anchor" href="#results-collection-guides" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'CollectionGuides', eventLabel: 'AnchorNav'});">Collection Guides</a></li>
 
 					<li><a class="nav-anchor" href="#results-archival-materials" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'ArchivalMaterials', eventLabel: 'AnchorNav'});">Archival Materials</a></li>
@@ -93,8 +95,6 @@ else $contentType = NULL;
 					<li><a class="nav-anchor" id="images-nav" href="#results-images" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'Images', eventLabel: 'AnchorNav'});">Images</a></li>
 
 					<li><a class="nav-anchor" href="#results-other" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'OtherResources', eventLabel: 'AnchorNav'});">Other Resources</a></li>
-
-					<li><a class="nav-anchor" href="#results-website" onclick="ga('send', 'event', { eventCategory: 'BentoResults', eventAction: 'OurWebsite', eventLabel: 'AnchorNav'});">Our Website</a></li>
 
 				</ul>
 
@@ -135,9 +135,22 @@ else $contentType = NULL;
 
 </div>
 
+
 <!-- second results row -->
 <br clear="all" />
 
+<div class="row">
+
+	<div class="col-md-12">
+
+		<?php include("assets/includes/google_website.php"); ?>
+
+	</div>
+
+</div>
+
+
+<!-- third results row -->
 <div class="row">
 
 	<?php if($queryTerms != "") { ?>
@@ -180,11 +193,10 @@ else $contentType = NULL;
 
 </div>
 
+<br clear="all" />
 <div class="row">
 
 	<div class="col-md-12">
-
-		<?php include("assets/includes/google_website.php"); ?>
 
 		<?php include("assets/includes/more_search_options.php"); ?>
 
