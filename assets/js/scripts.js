@@ -43,6 +43,9 @@ jQuery(document).ready(function(){
 			$("#results-website .see-all").hide();
 		}
 
+		$("#cse_web .gcsc-more-maybe-branding-root").hide();
+		$("#cse_libguides .gcsc-more-maybe-branding-root").hide();
+
 	}
 
 })(jQuery);
