@@ -11,6 +11,8 @@ $baseURL = "https://find.library.duke.edu/";
 
 $searchURL = "https://find.library.duke.edu/catalog?utf8=✓&search_field=all_fields&q=";
 
+$newSearchURL = "https://find.library.duke.edu/";
+
 $urlString = "https://find.library.duke.edu/catalog.json?search_field=all_fields&q=";
 
 $theSearch = urlencode($queryTerms);
@@ -443,7 +445,7 @@ if ($theSearch != "") {
 
 				$searchWarning = "No Books &amp; Media results found for <em>" . $queryDisplay . "</em>.";
 
-				$searchWarning .= '<br/><br/><a href="' . $searchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+				$searchWarning .= '<br/><br/><a href="' . $newSearchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 				echo $searchWarning;
 
@@ -471,7 +473,7 @@ if ($theSearch != "") {
 
 			$searchWarning = "No Books &amp; Media results found for <em>" . $queryDisplay . "</em>.";
 
-			$searchWarning .= '<br/><br/><a href="' . $searchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			$searchWarning .= '<br/><br/><a href="' . $newSearchURL . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'BooksMedia\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo $searchWarning;
 
