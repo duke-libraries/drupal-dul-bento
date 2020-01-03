@@ -643,6 +643,19 @@ a.callbox {
 }
 
 
+.doi-wrapper a.btn-primary {
+	background-color: #fff;
+	color: #053482;
+	font-size: .8em;
+	margin: .5em 0 .5em .5em;
+}
+
+.doi-wrapper a.btn-primary:hover {
+	border-color: #031c47;
+	color: #031c47;
+}
+
+
 
 
 

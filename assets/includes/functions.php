@@ -127,6 +127,38 @@ function formatAuthor($document) {
 
 }
 
+
+function queryLibKey($theDOI) {
+
+	// ==============================================
+	// LibKey API query parameters
+	// ==============================================
+
+
+// format: /public/v1/libraries/:library_id/articles/doi/:article_doi
+
+// Replace the :library_id portion of the endpoint path with the id # of your library
+// Replace :article_doi with the DOI of an article. Only one DOI can be supplied. (DOI value does not need to be URI encoded)
+
+// GET https://public-api.thirdiron.com/public/v1/get-some-data?access_token=ffffffff-ffff-ffff-ffff-ffffffffffff
+
+	$theLibkeyToken = variable_get('dul_bento.libkey_token', '');
+	$theLibkeyID = variable_get('dul_bento.libkey_ID', '');
+	$theURLString = 'https://public-api.thirdiron.com/public/v1/libraries/' . $theLibkeyID . '/articles/doi/' . $theDOI . '?access_token=' . $theLibkeyToken;
+
+	$options = array(
+		'method' => 'GET',
+		'timeout' => 5,
+		'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+	);
+
+	$result = drupal_http_request($theURLString, $options);
+	
+	return $result;
+
+}
+
+
 function querySummonDUL($query, $results, $contentTypes, $facetParameterSetting, $section) {
 
 	// ==============================================

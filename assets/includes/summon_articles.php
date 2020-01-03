@@ -47,10 +47,8 @@ echo '<div class="results-block first" id="results-articles">';
 	$theData = json_decode($data, TRUE);
 
 	//Debug:
-	//echo "<!--The data:<br />";
-	//print_r($data);
-	//echo "-->";
-
+	// echo "The data:<br />";
+	// print_r($data);
 
 	if ($theData['recordCount'] == "0") {
 
@@ -260,7 +258,7 @@ echo '<div class="results-block first" id="results-articles">';
 
 						echo $contentType = $document["ContentType"][0];
 
-						if($document["hasFullText"] == 1) {
+						if ($document["hasFullText"] == 1) {
 
 							echo ': <a href="' . $document["link"] . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'ItemFullText' . $resultCount . '\'});">Full Text Online</a>';
 
@@ -269,6 +267,27 @@ echo '<div class="results-block first" id="results-articles">';
 					echo '</div>';
 
 
+					// DOI
+
+					if (isset($document["DOI"][0])) {
+
+							$libkeyData = queryLibKey($document["DOI"][0]);
+
+							$theLibkeyData = json_decode($libkeyData->data, TRUE);
+
+							if ($theLibkeyData['data']['fullTextFile'] != '') {
+
+								echo '<div class="doi-wrapper" data-doi=' . $document["DOI"][0] . '>';
+
+								echo '<a href="' . $theLibkeyData['data']['fullTextFile'] . '" class="btn btn-primary btn-xs" target="_blank" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'Articles\', eventLabel: \'LibKeyLink' . $resultCount . '\'});"><i class="fa fa-file-text" aria-hidden="true"></i> View Article PDF</a>';
+
+								echo '</div>';
+
+							}
+
+					}
+
+					
 
 				// clear all variables
 					unset($theTitle);
