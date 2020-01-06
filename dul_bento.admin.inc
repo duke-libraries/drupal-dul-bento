@@ -38,6 +38,20 @@ function dul_bento_admin_settings() {
 		'#default_value' => variable_get('dul_bento.summon_clientKey', ''),
 	);
 
+	$form['libkey_token'] = array(
+		'#type' => 'textfield',
+		'#title' => t('LibKey API Token'),
+		'#description' => t('Enter the LibKey API Token'),
+		'#default_value' => variable_get('dul_bento.libkey_token', ''),
+	);
+
+	$form['libkey_ID'] = array(
+		'#type' => 'textfield',
+		'#title' => t('LibKey ID'),
+		'#description' => t('Enter the LibKey ID'),
+		'#default_value' => variable_get('dul_bento.libkey_ID', ''),
+	);
+
 	$form['bento_results_index'] = array(
 		'#type' => 'checkbox',
 		'#title' => t('Index the results page'),
@@ -89,6 +103,9 @@ function dul_bento_admin_settings_submit($form, $form_state) {
 	variable_set('dul_bento.summon_accessId', $form_state['values']['summon_accessId']);
 	variable_set('dul_bento.summon_secretKey', $form_state['values']['summon_secretKey']);
 	variable_set('dul_bento.summon_clientKey', $form_state['values']['summon_clientKey']);
+
+	variable_set('dul_bento.libkey_token', $form_state['values']['libkey_token']);
+	variable_set('dul_bento.libkey_ID', $form_state['values']['libkey_ID']);
 
 	variable_set('dul_bento.bento_results_index', $form_state['values']['bento_results_index']);
 
