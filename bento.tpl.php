@@ -161,7 +161,7 @@ else $contentType = NULL;
 
 			<div class="col-md-6">
 				<!-- collection guides -->
-				<?php include("assets/includes/google_collection_guides.php"); ?>
+				<?php include("assets/includes/arclight_collection_guides.php"); ?>
 			</div>
 
 			<div class="col-md-6">
