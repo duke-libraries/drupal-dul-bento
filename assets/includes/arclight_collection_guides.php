@@ -10,8 +10,8 @@ $arclightGuidesStart = microtime(true);
 $baseURL = "https://archives.lib.duke.edu/";
 $catalogURL = "https://archives.lib.duke.edu/catalog/";
 $searchURLGrouped = "https://archives.lib.duke.edu/?utf8=%E2%9C%93&group=true&search_field=all_fields&q=";
-$searchURLAll = "https://archives.lib.duke.edu/catalog?search_field=all_fields&q=";
 $urlString = "https://archives.lib.duke.edu/catalog.json?utf8=%E2%9C%93&search_field=all_fields&q=";
+$groupedURLString = 'https://archives.lib.duke.edu/catalog.json?utf8=✓&group=true&search_field=all_fields&q=';
 
 $theSearch = urlencode($queryTerms);
 
@@ -47,6 +47,18 @@ $arclightGuidesJSONStart = microtime(true);
 
 					//$theXML = simplexml_load_string ($chResult);
 					$theJSON = json_decode($chResult,true);
+
+
+          // run another api call to check grouped results count
+          $ch2=curl_init();
+          curl_setopt($ch2, CURLOPT_URL, $groupedURLString . $theSearch);
+          curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch2, CURLOPT_TIMEOUT, $timeout+2);
+          $ch2Result=curl_exec($ch2);
+          // $ch2HTTPCode = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+          // $ch2TotalTime = curl_getinfo($ch2, CURLINFO_TOTAL_TIME);
+          curl_close($ch2);
+          $theGroupedJSON = json_decode($ch2Result,true);
 
 			} else {
 
@@ -85,6 +97,7 @@ if ($theSearch != "" && $searchResults != "-1") {
 	else {
 
 		$numTotalResults = $theJSON['meta']['pages']['total_count'];
+    $numTotalGroupedResults = $theGroupedJSON['meta']['pages']['total_count'];
 
 		// check for actual results
 		if ($numTotalResults == "0") {
@@ -334,7 +347,7 @@ if ($theSearch != "") {
 
 				$searchWarning = "No Collection Guides results found for <em>" . $queryDisplay . "</em>.";
 
-				$searchWarning .= '<br/><br/><a href="' . $searchURLAll . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+				$searchWarning .= '<br/><br/><a href="' . $searchURLGrouped . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 				echo $searchWarning;
 
@@ -362,7 +375,7 @@ if ($theSearch != "") {
 
 			$searchWarning = "No Collection Guides results found for <em>" . $queryDisplay . "</em>.";
 
-			$searchWarning .= '<br/><br/><a href="' . $searchURLAll . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
+			$searchWarning .= '<br/><br/><a href="' . $searchURLGrouped . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'TryAnotherSearch\'});">Try another search &raquo;</a>';
 
 			echo $searchWarning;
 
@@ -374,11 +387,11 @@ if ($theSearch != "") {
 
 
 		// See all bottom link
-		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "" AND $numTotalResults > 3) {
+		if($searchResults != "0" AND $searchResults != "-1" AND $theSearch != "" AND $numTotalGroupedResults > 3) {
 
 			echo '<div class="see-all">';
 
-        echo '<a href="' . $searchURLAll . $theSearch . $allCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'SeeAllBottom\'});">See all <strong>' . number_format($numTotalResults) .'</strong> collection guides results at Duke</a>';
+        echo '<a href="' . $searchURLGrouped . $theSearch . $allCampaignParams . '" onClick="ga(\'send\', \'event\', { eventCategory: \'BentoResults\', eventAction: \'CollectionGuides\', eventLabel: \'SeeAllBottom\'});">See results from <strong>' . number_format($numTotalGroupedResults) .'</strong> archival collections at Duke</a>';
 
       echo '</div>';
 
