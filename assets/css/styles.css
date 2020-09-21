@@ -733,3 +733,32 @@ div.ac_results ul li.ac_over strong {
 div.ac_results ul li.ac_over small {
 	color: #D3DDE7;
 }
+
+/* blacklight icons */
+
+.blacklight-icons svg {
+  overflow: hidden;
+  vertical-align: middle;
+  height: 1rem;
+  width: 1rem;
+  width: .75em;
+  height: .75em;
+  margin-bottom: .1em;
+}
+
+.al-online-content-icon svg {
+  fill: #28a745;
+}
+
+.al-restricted-component-icon svg {
+  color: #ffd960;
+}
+
+.blacklight-icons {
+  margin-left: .2rem;
+}
+
+.icon-wrapper {
+  margin-left: 1rem;
+  display: inline;
+}
