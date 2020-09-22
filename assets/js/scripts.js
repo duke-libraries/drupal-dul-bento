@@ -88,5 +88,12 @@ jQuery(document).ready(function(){
 
 	});
 
+})(jQuery);
 
+
+/* load tooltips */
+(function($) {
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  });   
 })(jQuery);

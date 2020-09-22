@@ -101,7 +101,7 @@ if ($theSearch != "") {
 ?>
 
 
-	<div class="results-block first" id="results-books">
+	<div class="results-block first" id="results-archival-materials">
 
 		<div class="resultsHeader">
 
